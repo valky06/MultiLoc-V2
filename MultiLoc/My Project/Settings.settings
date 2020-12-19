@@ -1,0 +1,42 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="ChemTemp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\temp\</Value>
+    </Setting>
+    <Setting Name="SqlCon" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Provider=SQLOLEDB.1;Server=tcp:valky57.database.windows.net;Database=MULTILOC;User ID=V@lca5ara@valky57;Password=V@lky*03;</Value>
+    </Setting>
+    <Setting Name="Debug" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ChemModeleOffice" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\temp\</Value>
+    </Setting>
+    <Setting Name="TVADefaut" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="SqlConDebug" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Provider=SQLNCLI11;Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=MultiLoc;Integrated Security=SSPI;Persist Security Info=False;</Value>
+    </Setting>
+    <Setting Name="DebugAppel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SrvSMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.free.fr</Value>
+    </Setting>
+    <Setting Name="SrvSMTPPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="EmailAdr" Type="System.String" Scope="User">
+      <Value Profile="(Default)">laurent@valcasara.com</Value>
+    </Setting>
+    <Setting Name="EmailPwd" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="EmailTxt" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

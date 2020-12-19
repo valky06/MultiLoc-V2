@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A4F35F48-70B1-4AB3-AB1D-7A6147B125AA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>MultiLoc.My.MyApplication</StartupObject>
+    <RootNamespace>MultiLoc</RootNamespace>
+    <AssemblyName>MultiLoc V2</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <PublishUrl>C:\Develop\Siano\publication V2\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://www.asyst.fr/MultiLoc/</InstallUrl>
+    <ProductName>MultiLoc</ProductName>
+    <PublisherName>Asyst</PublisherName>
+    <MinimumRequiredVersion>1.0.9.4</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>index.html</WebPage>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>08780C6583C1BD11434EC4826E6769CD4A96E434</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MultiLoc.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common.vb" />
+    <Compile Include="F_LocaPlanC.Designer.vb">
+      <DependentUpon>F_LocaPlanC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaPlanC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Requete.Designer.vb">
+      <DependentUpon>F_Requete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Requete.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeCptRub.Designer.vb">
+      <DependentUpon>F_TypeCptRub.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeCptRub.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaAppelLoyer.Designer.vb">
+      <DependentUpon>F_LocaAppelLoyer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaAppelLoyer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ComptaModifl.Designer.vb">
+      <DependentUpon>F_ComptaModifl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ComptaModifl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Email.Designer.vb">
+      <DependentUpon>F_Email.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Email.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaDGAvoir.Designer.vb">
+      <DependentUpon>F_LocaDGAvoir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaDGAvoir.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_FacturationLoc.Designer.vb">
+      <DependentUpon>F_FacturationLoc.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_FacturationLoc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaListeAppel.Designer.vb">
+      <DependentUpon>F_LocaListeAppel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaListeAppel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CoproHono.Designer.vb">
+      <DependentUpon>F_CoproHono.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CoproHono.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaLot.Designer.vb">
+      <DependentUpon>F_LocaLot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaLot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeChargeCat.designer.vb">
+      <DependentUpon>F_TypeChargeCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeChargeCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CoproCharge_old.Designer.vb">
+      <DependentUpon>F_CoproCharge_old.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CoproCharge_old.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaAvoir.Designer.vb">
+      <DependentUpon>F_LocaAvoir.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaAvoir.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaAvoirLoyer.Designer.vb">
+      <DependentUpon>F_LocaAvoirLoyer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaAvoirLoyer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeContact.Designer.vb">
+      <DependentUpon>F_TypeContact.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeContact.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_GrandLivre.Designer.vb">
+      <DependentUpon>F_GrandLivre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_GrandLivre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_BanqueNew.Designer.vb">
+      <DependentUpon>F_BanqueNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_BanqueNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientAppMensuel.designer.vb">
+      <DependentUpon>F_ClientAppMensuel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientAppMensuel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_EmpNew.Designer.vb">
+      <DependentUpon>F_EmpNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_EmpNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaAppel.Designer.vb">
+      <DependentUpon>F_LocaAppel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaAppel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaRembours.Designer.vb">
+      <DependentUpon>F_LocaRembours.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaRembours.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaDGReprise.Designer.vb">
+      <DependentUpon>F_LocaDGReprise.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaDGReprise.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaCharge.Designer.vb">
+      <DependentUpon>F_LocaCharge.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaCharge.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientCharge.Designer.vb">
+      <DependentUpon>F_ClientCharge.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientCharge.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Budget.Designer.vb">
+      <DependentUpon>F_Budget.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Budget.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_BanqueSuivi.Designer.vb">
+      <DependentUpon>F_BanqueSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_BanqueSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientEncaissement.Designer.vb">
+      <DependentUpon>F_ClientEncaissement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientEncaissement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_EmpRech.Designer.vb">
+      <DependentUpon>F_EmpRech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_EmpRech.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientContrat.Designer.vb">
+      <DependentUpon>F_ClientContrat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientContrat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientNew.Designer.vb">
+      <DependentUpon>F_ClientNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_ClientSuivi.Designer.vb">
+      <DependentUpon>F_ClientSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClientSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_DepotSuivi.Designer.vb">
+      <DependentUpon>F_DepotSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_DepotSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaEncaissement.Designer.vb">
+      <DependentUpon>F_LocaEncaissement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaEncaissement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_FourReglement.Designer.vb">
+      <DependentUpon>F_FourReglement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_FourReglement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_FourSuivi.Designer.vb">
+      <DependentUpon>F_FourSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_FourSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_FourBalance.Designer.vb">
+      <DependentUpon>F_FourBalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_FourBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_DepotBalance.Designer.vb">
+      <DependentUpon>F_DepotBalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_DepotBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaBalance.Designer.vb">
+      <DependentUpon>F_LocaBalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaDGAppel.Designer.vb">
+      <DependentUpon>F_LocaDGAppel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaDGAppel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_BudgetLigne.Designer.vb">
+      <DependentUpon>F_BudgetLigne.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_BudgetLigne.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Budget_Old.Designer.vb">
+      <DependentUpon>F_Budget_Old.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Budget_Old.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_EmpSuivi.Designer.vb">
+      <DependentUpon>F_EmpSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_EmpSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Document.Designer.vb">
+      <DependentUpon>F_Document.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Document.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LoyerRevision.designer.vb">
+      <DependentUpon>F_LoyerRevision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LoyerRevision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_societe.Designer.vb">
+      <DependentUpon>F_societe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_societe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_SocieteCharge.Designer.vb">
+      <DependentUpon>F_SocieteCharge.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_SocieteCharge.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CoproCharge.Designer.vb">
+      <DependentUpon>F_CoproCharge.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CoproCharge.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Compte.Designer.vb">
+      <DependentUpon>F_Compte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Compte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CoproListe.Designer.vb">
+      <DependentUpon>F_CoproListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CoproListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Copro.Designer.vb">
+      <DependentUpon>F_Copro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Copro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Indice.Designer.vb">
+      <DependentUpon>F_Indice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Indice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_IndiceListe.Designer.vb">
+      <DependentUpon>F_IndiceListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_IndiceListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeReglement.Designer.vb">
+      <DependentUpon>F_TypeReglement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeReglement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypePeriode.Designer.vb">
+      <DependentUpon>F_TypePeriode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypePeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeLocal.Designer.vb">
+      <DependentUpon>F_TypeLocal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeLocal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeSociete.Designer.vb">
+      <DependentUpon>F_TypeSociete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeSociete.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeListe.Designer.vb">
+      <DependentUpon>F_TypeListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_TypeBail.Designer.vb">
+      <DependentUpon>F_TypeBail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_TypeBail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Lot.Designer.vb">
+      <DependentUpon>F_Lot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Lot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CleRepart.Designer.vb">
+      <DependentUpon>F_CleRepart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CleRepart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_CoproSuivi.Designer.vb">
+      <DependentUpon>F_CoproSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CoproSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_DepotRevision.Designer.vb">
+      <DependentUpon>F_DepotRevision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_DepotRevision.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaListe.Designer.vb">
+      <DependentUpon>F_LocaListe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaListe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaSorti.Designer.vb">
+      <DependentUpon>F_LocaSorti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaSorti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaPreavis.Designer.vb">
+      <DependentUpon>F_LocaPreavis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaPreavis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LotRech.Designer.vb">
+      <DependentUpon>F_LotRech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LotRech.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaSuivi.Designer.vb">
+      <DependentUpon>F_LocaSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Annuaire.Designer.vb">
+      <DependentUpon>F_Annuaire.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Annuaire.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_AnnuRech.Designer.vb">
+      <DependentUpon>F_AnnuRech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_AnnuRech.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LotSuivi.Designer.vb">
+      <DependentUpon>F_LotSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LotSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_LocaNew.Designer.vb">
+      <DependentUpon>F_LocaNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_LocaNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_main.Designer.vb">
+      <DependentUpon>F_main.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Param.designer.vb">
+      <DependentUpon>F_Param.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Param.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_pers.Designer.vb">
+      <DependentUpon>F_pers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_pers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_SocieteSuivi.Designer.vb">
+      <DependentUpon>F_SocieteSuivi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_SocieteSuivi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="F_LocaPlanC.resx">
+      <DependentUpon>F_LocaPlanC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Requete.resx">
+      <DependentUpon>F_Requete.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeCptRub.resx">
+      <DependentUpon>F_TypeCptRub.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaAppelLoyer.resx">
+      <DependentUpon>F_LocaAppelLoyer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ComptaModifl.resx">
+      <DependentUpon>F_ComptaModifl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Email.resx">
+      <DependentUpon>F_Email.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaDGAvoir.resx">
+      <DependentUpon>F_LocaDGAvoir.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_FacturationLoc.resx">
+      <DependentUpon>F_FacturationLoc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaListeAppel.resx">
+      <DependentUpon>F_LocaListeAppel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CoproHono.resx">
+      <DependentUpon>F_CoproHono.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaLot.resx">
+      <DependentUpon>F_LocaLot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeChargeCat.resx">
+      <DependentUpon>F_TypeChargeCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CoproCharge_old.resx">
+      <DependentUpon>F_CoproCharge_old.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaAvoir.resx">
+      <DependentUpon>F_LocaAvoir.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaAvoirLoyer.resx">
+      <DependentUpon>F_LocaAvoirLoyer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeContact.resx">
+      <DependentUpon>F_TypeContact.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_GrandLivre.resx">
+      <DependentUpon>F_GrandLivre.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_BanqueNew.resx">
+      <DependentUpon>F_BanqueNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientAppMensuel.resx">
+      <DependentUpon>F_ClientAppMensuel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_EmpNew.resx">
+      <DependentUpon>F_EmpNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaAppel.resx">
+      <DependentUpon>F_LocaAppel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaRembours.resx">
+      <DependentUpon>F_LocaRembours.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaDGReprise.resx">
+      <DependentUpon>F_LocaDGReprise.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaCharge.resx">
+      <DependentUpon>F_LocaCharge.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientCharge.resx">
+      <DependentUpon>F_ClientCharge.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Budget.resx">
+      <DependentUpon>F_Budget.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_BanqueSuivi.resx">
+      <DependentUpon>F_BanqueSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientEncaissement.resx">
+      <DependentUpon>F_ClientEncaissement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_EmpRech.resx">
+      <DependentUpon>F_EmpRech.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientContrat.resx">
+      <DependentUpon>F_ClientContrat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientNew.resx">
+      <DependentUpon>F_ClientNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClientSuivi.resx">
+      <DependentUpon>F_ClientSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_DepotSuivi.resx">
+      <DependentUpon>F_DepotSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaEncaissement.resx">
+      <DependentUpon>F_LocaEncaissement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_FourReglement.resx">
+      <DependentUpon>F_FourReglement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_FourSuivi.resx">
+      <DependentUpon>F_FourSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_FourBalance.resx">
+      <DependentUpon>F_FourBalance.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_DepotBalance.resx">
+      <DependentUpon>F_DepotBalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaBalance.resx">
+      <DependentUpon>F_LocaBalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaDGAppel.resx">
+      <DependentUpon>F_LocaDGAppel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_BudgetLigne.resx">
+      <DependentUpon>F_BudgetLigne.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Budget_Old.resx">
+      <DependentUpon>F_Budget_Old.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_EmpSuivi.resx">
+      <DependentUpon>F_EmpSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Document.resx">
+      <DependentUpon>F_Document.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LoyerRevision.resx">
+      <DependentUpon>F_LoyerRevision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_societe.resx">
+      <DependentUpon>F_societe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_SocieteCharge.resx">
+      <DependentUpon>F_SocieteCharge.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CoproCharge.resx">
+      <DependentUpon>F_CoproCharge.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Compte.resx">
+      <DependentUpon>F_Compte.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CoproListe.resx">
+      <DependentUpon>F_CoproListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Copro.resx">
+      <DependentUpon>F_Copro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Indice.resx">
+      <DependentUpon>F_Indice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_IndiceListe.resx">
+      <DependentUpon>F_IndiceListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeReglement.resx">
+      <DependentUpon>F_TypeReglement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypePeriode.resx">
+      <DependentUpon>F_TypePeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeLocal.resx">
+      <DependentUpon>F_TypeLocal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeSociete.resx">
+      <DependentUpon>F_TypeSociete.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeListe.resx">
+      <DependentUpon>F_TypeListe.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_TypeBail.resx">
+      <DependentUpon>F_TypeBail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Lot.resx">
+      <DependentUpon>F_Lot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CleRepart.resx">
+      <DependentUpon>F_CleRepart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CoproSuivi.resx">
+      <DependentUpon>F_CoproSuivi.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_DepotRevision.resx">
+      <DependentUpon>F_DepotRevision.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaListe.resx">
+      <DependentUpon>F_LocaListe.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaSorti.resx">
+      <DependentUpon>F_LocaSorti.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaPreavis.resx">
+      <DependentUpon>F_LocaPreavis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LotRech.resx">
+      <DependentUpon>F_LotRech.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaSuivi.resx">
+      <DependentUpon>F_LocaSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Annuaire.resx">
+      <DependentUpon>F_Annuaire.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_AnnuRech.resx">
+      <DependentUpon>F_AnnuRech.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LotSuivi.resx">
+      <DependentUpon>F_LotSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_LocaNew.resx">
+      <DependentUpon>F_LocaNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_main.resx">
+      <DependentUpon>F_main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Param.resx">
+      <DependentUpon>F_Param.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_pers.resx">
+      <DependentUpon>F_pers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_SocieteSuivi.resx">
+      <DependentUpon>F_SocieteSuivi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\param.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\xl1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallsearch.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\smallplus.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancelled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MC_MiniSave.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preavis.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MultiLoc.ico" />
+    <None Include="Resources\smallupdate.gif" />
+    <None Include="Resources\pivot.fw.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
