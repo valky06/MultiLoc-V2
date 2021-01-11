@@ -13,7 +13,7 @@
         Me.tTTC.Text = ""
         Call ComboRempli("select cptbkid,cptbknom from comptebancaire", Me.lCptBk, conSql)
         Me.lCptBk.SelectedIndex = 0
-        lers = sqlLit("select sum(ecrMontantHT), sum(ecrMontantTTC),sum(ecrmontantTVA)  from comptagene where rubrique='LOCATAIRE' and locid=" & Me.leLocid, conSql)
+        lers = sqlLit("select sum(ecrMontantHT), sum(ecrMontantTTC),sum(ecrmontantTVA)  from comptagene where tiers='LOCATAIRE' and locid=" & Me.leLocid, conSql)
         While lers.Read
             Me.sHT.Text = num2txt(Math.Round(lers(0), 2))
             Me.sTTC.Text = num2txt(Math.Round(lers(1), 2))

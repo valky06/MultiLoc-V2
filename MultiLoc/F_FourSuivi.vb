@@ -23,7 +23,7 @@ Public Class F_FourSuivi
         Try
             sSql = "SELECT ecrId, numPiece, ecrDate, ecrEcheance, ecrLib, ecrMontantTTC,numfacture" _
             & " FROM ComptaGene " _
-            & " where rubrique='FOURNISSEUR' and fourid= " & leFourId & " order by ecrDate desc"
+            & " where tiers='FOURNISSEUR' and fourid= " & leFourId & " order by ecrDate desc"
 
             Me.gCompta.Rows.Clear()
             lers = sqlLit(sSql, conSql)

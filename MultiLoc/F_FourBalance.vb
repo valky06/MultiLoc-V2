@@ -12,7 +12,7 @@ Public Class F_FourBalance
             sSql = "SELECT comptaGene.FourId, Annuaire.nom, Sum(comptaGene.ecrMontantTTC) AS solde" _
             & " FROM comptaGene LEFT JOIN annuaire " _
             & " ON Annuaire.PersId = comptagene.fourid" _
-            & " WHERE comptaGene.Rubrique='FOURNISSEUR'" _
+            & " WHERE comptaGene.tiers='FOURNISSEUR'" _
             & " GROUP BY comptaGene.FourId, Annuaire.nom"
 
 

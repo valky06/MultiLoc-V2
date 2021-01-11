@@ -14,7 +14,7 @@ Public Class F_DepotSuivi
             & " FROM ComptaGene " _
             & " inner join locataire on ComptaGene.locId = locataire.locId " _
             & " left join annuaire on locataire.persId= annuaire.persId" _
-            & " WHERE ComptaGene.Rubrique='SOCIETE' AND ComptaGene.Journal='DEPOT'" _
+            & " WHERE ComptaGene.tiers='SOCIETE' AND ComptaGene.Journal='DEPOT'" _
             & " order by ecrdate desc, ecrid desc"
 
 

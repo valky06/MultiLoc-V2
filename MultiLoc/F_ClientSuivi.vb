@@ -1,13 +1,14 @@
 ﻿Imports System.IO
+
 Public Class F_ClientSuivi
-    Public leCliId As Integer
+    Public leTiersId As Integer
 
 
     Sub ListeClient()
         Dim sSql As String
-        sSql = "SELECT cliId, nom" _
-        & " FROM client INNER JOIN Annuaire ON client.PersId = Annuaire.PersId" _
-        & " where nom like '%" & Me.tRech.Text & "%'"
+        sSql = "SELECT locid, nom" _
+        & " FROM locataire INNER JOIN Annuaire ON locataire.PersId = Annuaire.PersId " _
+        & " where typeloc=2  and nom like '%" & Me.tRech.Text & "%'"
 
         Me.lCLient.Items.Clear()
         Call ComboRempli(sSql, Me.lCLient, conSql)
@@ -18,25 +19,6 @@ Public Class F_ClientSuivi
         End If
     End Sub
 
-
-    Sub listeContrat()
-        Dim sSql As String
-        Dim lers As OleDb.OleDbDataReader
-
-        sSql = "SELECT Contrat.contratId, DateDebut, DateFinPrev, DateFin, MontantHT, count(ContratEmplacement.EmpId) AS NBEmp" _
-        & " FROM Contrat LEFT JOIN ContratEmplacement ON Contrat.ContratId = ContratEmplacement.ContratId" _
-        & " where cliid=" & Me.leCliId _
-        & " GROUP BY Contrat.contratId, DateDebut, DateFinPrev, DateFin, MontantHT"
-
-        Me.gContrat.Rows.Clear()
-        lers = sqlLit(sSql, conSql)
-        While lers.Read
-            Me.gContrat.Rows.Add(lers("contratId"), "E" & lers("contratId").ToString.PadLeft(5, "0"), date2Grid(lers("dateDebut")), date2Grid(lers("dateFinPrev")), date2Grid(lers("dateFin")), lers("MontantHT").ToString, lers("nbEmp").ToString)
-        End While
-    End Sub
-
-
-
     Sub comptaClient()
         Dim sSql As String
         Dim lers As OleDb.OleDbDataReader
@@ -46,7 +28,7 @@ Public Class F_ClientSuivi
 
         Try
             sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC FROM ComptaGene" _
-            & " where rubrique='CLIENT' and cliId= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc"
+            & " where Tiers='CLIENT' and locid= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc"
 
             Me.gCompta.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -66,17 +48,14 @@ Public Class F_ClientSuivi
 
     Sub afficheClient()
 
-        Me.leCliId = Me.lCLient.SelectedItem.value
-        Call FormRempli(Me.gBail, "SELECT cliId, PersId, TRgtId, TPerId,  CptSuffixe FROM Client where cliid=" & Me.leCliId, conSql)
-
-        StatutBar("Client")
-        Call listeContrat()
+        Me.leTiersId = Me.lCLient.SelectedItem.value
+        Call FormRempli(Me.gClient, "SELECT locid, PersId, CptSuffixe FROM locataire where locid=" & Me.leTiersId, conSql)
 
         StatutBar("Compta")
         Call comptaClient()
 
         StatutBar("Documents")
-        Call DocListe(docType.Client, Me.leCliId, Me.gDoc)
+        Call DocListe(docType.Client, Me.leTiersId, Me.gDoc)
 
         Me.oOnglet.Enabled = True
         F_main.sLabel.Text = ""
@@ -87,16 +66,10 @@ Public Class F_ClientSuivi
         Me.tRech.Text = ""
         Try
             Call ListeClient()
-            StatutBar("Type Période")
-            Call ComboRempli("select tperId,tperNom from typePEriode", Me.lTypePer, conSql)
 
-            StatutBar("Type Règlement")
-            Call ComboRempli("select tRgtId,tRgtNom from typeReglement", Me.lTypeRgt, conSql)
-
-
-            If Me.leCliId > 0 Then
+            If Me.leTiersId > 0 Then
                 Me.tRech.Text = ""
-                Call ComboSelectValue(Me.leCliId, Me.lCLient)
+                Call ComboSelectValue(Me.leTiersId, Me.lCLient)
             End If
             F_main.sLabel.Text = ""
         Catch ex As Exception
@@ -109,9 +82,8 @@ Public Class F_ClientSuivi
         If Me.lCLient.SelectedIndex < 0 Then Exit Sub
         Select Case oOnglet.SelectedTab.Text
             Case "Ecritures" : Call XLexport(Me.gCompta, "Ecritures : " & Me.lCLient.Text)
-            Case "Contrats" : Call XLexport(Me.gContrat, "Contrats : " & Me.lCLient.Text)
         End Select
-      End Sub
+    End Sub
 
     Private Sub Button1_Click(sender As System.Object, e As System.EventArgs) Handles bWord.Click
         Dim ssql As String
@@ -123,77 +95,15 @@ Public Class F_ClientSuivi
         If Me.lCLient.SelectedIndex >= 0 Then Call afficheClient()
     End Sub
 
-    Private Sub Button2_Click_1(sender As System.Object, e As System.EventArgs)
-        Call FormEnreg(Me.gBail, "locataire", conSql)
-    End Sub
-
-    Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        If Me.gContrat.Rows.Count < 1 Then Exit Sub
-
-        Dim ssql As String
-        Dim lesLot As String = ""
-        Dim lers As OleDb.OleDbDataReader
-
-        If Me.tLocId.Text <> "" Then
-            Try
-                lesLot = ""
-                ssql = "SELECT Emplacement FROM ContratEmplacement " _
-                    & " left join emplacement  ON ContratEmplacement.empId = emplacement.empId" _
-                    & " where contratId = " & Me.gContrat.SelectedRows(0).Cells("contratId").Value
-                lers = sqlLit(ssql, conSql)
-                While lers.Read
-                    lesLot &= lers("emplacement").ToString & ","
-                End While
-                lers.Close()
-
-
-                ssql = "SELECT nom, Adr1, CodePostal,'" & Me.gContrat.SelectedRows(0).Cells("contratNom").Value & "' as NumContrat,Localite, TRgtNom, TPerNom, '" & lesLot & "' as lesEmp, datedebut,datefinprev,montantHt,MontantTTC,contrat.tauxTVA" _
-                & " FROM client LEFT JOIN Annuaire ON client.PersId = Annuaire.PersId" _
-                & " left join contrat on contrat.cliId = client.cliId" _
-                & "  LEFT JOIN TypePeriode ON client.TPerId = TypePeriode.TPerId" _
-                & " LEFT JOIN TypeReglement ON client.TRgtId = TypeReglement.TRgtID " _
-                & " where contratid=" & Me.gContrat.SelectedRows(0).Cells("contratId").Value
-
-                Call wordFusionSQL("ClientContrat.docx", ssql)
-            Catch ex As Exception
-
-            End Try
-
-        End If
-
-    End Sub
-
     Private Sub tRech_KeyUp(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles tRech.KeyUp
         If e.KeyCode = Keys.Enter Then Call ListeClient()
-    End Sub
-
-    Private Sub NouveauToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs)
-        If F_LocaNew.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Call ListeClient()
-            Call ComboSelectValue(F_LocaNew.leLocId, Me.lCLient)
-            Me.oOnglet.SelectTab("Bail")
-        End If
-    End Sub
-
-    Private Sub LinkLabel2_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
-        F_TypeListe.laForm = F_TypePeriode
-        F_TypeListe.MOdeEdit = False
-
-        If F_TypeListe.ShowDialog = Windows.Forms.DialogResult.OK Then Call ComboRempli("SELECT TPerid, TPernom FROM TypePeriode", Me.lTypePer, conSql)
-    End Sub
-
-    Private Sub LinkLabel3_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
-        F_TypeListe.laForm = F_TypeReglement
-        F_TypeListe.MOdeEdit = False
-
-        If F_TypeListe.ShowDialog = Windows.Forms.DialogResult.OK Then Call ComboRempli("SELECT TRgtid, TRgtnom FROM TypeReglement", Me.lTypeRgt, conSql)
     End Sub
 
     Private Sub NouveauToolStripMenuItem_Click_1(sender As System.Object, e As System.EventArgs) Handles mnuNouveau.Click
         If F_ClientNew.ShowDialog = Windows.Forms.DialogResult.OK Then
             Call ListeClient()
             Call ComboSelectValue(F_ClientNew.leCliId, Me.lCLient)
-            Me.oOnglet.SelectTab("Contrats")
+            '    Me.oOnglet.SelectTab("Contrats")
         End If
     End Sub
 
@@ -203,14 +113,14 @@ Public Class F_ClientSuivi
 
     Private Sub Button6_Click(sender As System.Object, e As System.EventArgs) Handles Button6.Click
         F_Document.leDocType = docType.Client
-        F_Document.lId = Me.leCliId
-        If F_Document.ShowDialog = Windows.Forms.DialogResult.OK Then Call DocListe(docType.Client, Me.leCliId, Me.gDoc)
+        F_Document.lId = Me.leTiersId
+        If F_Document.ShowDialog = Windows.Forms.DialogResult.OK Then Call DocListe(docType.Client, Me.leTiersId, Me.gDoc)
         F_Document.Dispose()
     End Sub
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         If Me.gDoc.SelectedRows.Count < 1 Then Exit Sub
-        If DocSupprime(Me.gDoc.SelectedRows(0).Cells(0).Value) Then Call DocListe(docType.Client, Me.leCliId, Me.gDoc)
+        If DocSupprime(Me.gDoc.SelectedRows(0).Cells(0).Value) Then Call DocListe(docType.Client, Me.leTiersId, Me.gDoc)
     End Sub
 
     Private Sub gDoc_CellDoubleClick(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gDoc.CellClick
@@ -220,8 +130,8 @@ Public Class F_ClientSuivi
     End Sub
 
     Private Sub Button11_Click(sender As System.Object, e As System.EventArgs) Handles Button11.Click
-        If Me.leCliId = 0 Then Exit Sub
-        F_ClientEncaissement.leCliId = Me.leCliId
+        If Me.leTiersId = 0 Then Exit Sub
+        F_ClientEncaissement.leTiersId = Me.leTiersId
         If F_ClientEncaissement.ShowDialog = Windows.Forms.DialogResult.OK Then
             Call comptaClient()
         End If
@@ -251,96 +161,22 @@ Public Class F_ClientSuivi
         End If
     End Sub
 
-    Private Sub Button2_Click_2(sender As System.Object, e As System.EventArgs) Handles Button2.Click
-        Call FormEnreg(Me.gBail, "client", conSql)
-    End Sub
-
-    Private Sub Button4_Click(sender As System.Object, e As System.EventArgs) Handles Button4.Click
-        F_ClientContrat.leCliId = Me.leCliId
-        F_ClientContrat.leContratId = 0
-        If F_ClientContrat.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Call listeContrat()
-        End If
-    End Sub
-
-
-    Private Sub gContrat_CellDoubleClick(sender As Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gContrat.CellDoubleClick
-        If Me.gContrat.SelectedRows.Count = 0 Then Exit Sub
-
-        F_ClientContrat.leCliId = Me.leCliId
-        F_ClientContrat.leContratId = Me.gContrat.SelectedRows(0).Cells("contratId").Value
-        If F_ClientContrat.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Call listeContrat()
-        End If
-    End Sub
-
-    Private Sub Button5_Click(sender As System.Object, e As System.EventArgs) Handles Button5.Click
-        If MessageBox.Show("Effacer le contrat ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
-            sqlDo("delete from contratEmplacement where contratId=" & Me.gContrat.SelectedRows(0).Cells("COntratID").Value, conSql)
-            sqlDo("delete from contrat where contratId=" & Me.gContrat.SelectedRows(0).Cells("COntratID").Value, conSql)
-            Call listeContrat()
-        End If
-    End Sub
-
-    Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles Button8.Click
-        If Me.gContrat.SelectedRows.Count = 0 Then Exit Sub
-        F_ClientAppMensuel.leContratID = Me.gContrat.SelectedRows(0).Cells("contratId").Value
-        If F_ClientAppMensuel.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Call comptaClient()
-        End If
-    End Sub
 
     Private Sub Button9_Click(sender As System.Object, e As System.EventArgs) Handles Button9.Click
-        If Me.leCliId = 0 Then Exit Sub
-        F_ClientCharge.lecliid = Me.leCliId
-        F_ClientCharge.FactInterne = True
-        If F_ClientCharge.ShowDialog = Windows.Forms.DialogResult.OK Then
+        If Me.leTiersId = 0 Then Exit Sub
+        F_FactureClient.leTiersid = Me.leTiersId
+        If F_FactureClient.ShowDialog = Windows.Forms.DialogResult.OK Then
             comptaClient()
         End If
-        F_ClientCharge.Dispose()
+        F_FactureClient.Dispose()
     End Sub
 
     Private Sub bEditFacture_Click(sender As System.Object, e As System.EventArgs) Handles bEditFActure.Click
         If Me.gCompta.SelectedRows.Count = 0 Then Exit Sub
         If Me.gCompta.SelectedRows(0).Cells("numFacture").Value = "" Then Exit Sub
         If MessageBox.Show("Editer la Facture '" & Me.gCompta.SelectedRows(0).Cells("numFacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
-            Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numfacture").Value, docType.Client, 0, leCliId)
+            Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numfacture").Value)
         End If
     End Sub
-
-    Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles Button10.Click
-
-
-
-        If Me.gContrat.Rows.Count < 1 Then Exit Sub
-
-        Dim sSql As String
-        Dim lers As OleDb.OleDbDataReader
-        Dim appXL As New Microsoft.Office.Interop.Excel.Application
-
-        For i = 0 To Me.gContrat.Rows.Count - 1
-            sSql = "SELECT ContratId, Emplacement,ContratEmplacement.empid FROM ContratEmplacement " _
-            & "INNER JOIN Emplacement ON ContratEmplacement.EmpId = Emplacement.empId" _
-            & " where contratId=" & Me.gContrat.Rows(i).Cells("COntratId").Value
-            lers = sqlLit(sSql, conSql)
-            While lers.Read
-                appXL.Workbooks.Add(My.Settings.ChemModeleOffice & "Etiquette.xlsx")
-                appXL.Visible = True
-                'recherche la cellule Client
-                appXL.Range("NumClient").Value = "'" & Me.lCLient.SelectedItem.value
-                appXL.Range("NomClient").Value = "'" & Me.lCLient.SelectedItem.text
-                appXL.Range("Contrat").Value = "'" & "E" & lers("contratId").ToString.PadLeft(5, "0")
-                appXL.Range("ContratCode").Value = "'" & code128("E" & lers("contratId").ToString.PadRight(5, "0"))
-                appXL.Range("Emplacement").Value = "'" & lers("emplacement").ToString
-                appXL.Range("EmplacementCode").Value = "'" & code128("E" & lers("contratId").ToString.PadRight(5, "0") & "- " & lers("emplacement").ToString)
-                appXL.Range("A1").Select()
-            End While
-        Next
-
-        appXL.Visible = True
-        appXL.UserControl = True
-
-    End Sub
-
 
 End Class

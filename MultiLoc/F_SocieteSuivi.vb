@@ -30,31 +30,58 @@ Public Class F_SocieteSuivi
         End While
     End Sub
 
-    Sub comptaSociete_Old()
+    'Sub comptaSociete_Old()
+    '    Dim sSql As String
+    '    Dim lers As OleDb.OleDbDataReader
+    '    Dim debit As Double
+    '    Dim credit As Double
+    '    Dim ladate As Date
+
+    '    Try
+    '        sSql = "SELECT  numpiece,journal, numfacture, journal,ecrDate, ecrLib, ecrMontantTTC FROM ComptaGene" _
+    '        & " wheretiers='SOCIETE' and  socId= " & Me.lSociete.SelectedItem.value & " order by ecrDate desc"
+
+    '        Me.gCompta.Rows.Clear()
+    '        lers = sqlLit(sSql, conSql)
+    '        While lers.Read
+    '            debit = IIf(lers("ecrmontantTTC") < 0, -lers("ecrmontantTTC"), 0)
+    '            credit = IIf(lers("ecrmontantTTC") >= 0, lers("ecrmontantTTC"), 0)
+    '            ladate = lers("ecrDate")
+    '            Me.gCompta.Rows.Add(lers("numpiece"), lers("journal").ToString, ladate.ToString("yyyy-MM-dd"), lers("numFacture").ToString, lers("ecrLib").ToString, debit, credit)
+    '        End While
+    '        lers.Close()
+
+    '        If Me.gCompta.Rows.Count > 0 Then Call Gridcalculsolde(Me.gCompta)
+    '    Catch ex As Exception
+    '        If debug Then MessageBox.Show(ex.Message)
+    '    End Try
+    'End Sub
+    Sub affichePlanC()
         Dim sSql As String
         Dim lers As OleDb.OleDbDataReader
-        Dim debit As Double
-        Dim credit As Double
-        Dim ladate As Date
 
-        Try
-            sSql = "SELECT  numpiece,journal, numfacture, journal,ecrDate, ecrLib, ecrMontantTTC FROM ComptaGene" _
-            & " where rubrique='SOCIETE' and  socId= " & Me.lSociete.SelectedItem.value & " order by ecrDate desc"
+        sSql = "select pcid, r.RubNom,A.Nom, cptnum,cptnom from ComptaPlan C " _
+            & " inner Join locataire L on C.locid=L.LocId " _
+            & " inner Join Annuaire A on A.PersId = L.PersId" _
+            & " inner Join ComptaRubrique r on r.RubId = c.rubid" _
+            & " where c.socid = " & laSocId & " order by cptnum"
 
-            Me.gCompta.Rows.Clear()
-            lers = sqlLit(sSql, conSql)
-            While lers.Read
-                debit = IIf(lers("ecrmontantTTC") < 0, -lers("ecrmontantTTC"), 0)
-                credit = IIf(lers("ecrmontantTTC") >= 0, lers("ecrmontantTTC"), 0)
-                ladate = lers("ecrDate")
-                Me.gCompta.Rows.Add(lers("numpiece"), lers("journal").ToString, ladate.ToString("yyyy-MM-dd"), lers("numFacture").ToString, lers("ecrLib").ToString, debit, credit)
-            End While
-            lers.Close()
+        Me.gPlanC.Rows.Clear()
+        lers = sqlLit(sSql, conSql)
+        While lers.Read
+            Me.gPlanC.Rows.Add(lers("pcid"), lers("RubNom").ToString, lers("Nom").ToString, lers("cptnum").ToString, lers("cptnom").ToString)
+        End While
+    End Sub
 
-            If Me.gCompta.Rows.Count > 0 Then Call Gridcalculsolde(Me.gCompta)
-        Catch ex As Exception
-            If debug Then MessageBox.Show(ex.Message)
-        End Try
+    Sub afficheonglet()
+        Select Case oOnglet.SelectedIndex
+            Case 0 : Call GrandLivreSoc()
+            Case 1 : Call listeBien()
+            Case 2 : Call DocListe(docType.Societe, laSocId, Me.gDoc)
+            Case 3
+            Case 4 : Call affichePlanC()
+        End Select
+
     End Sub
 
     Sub afficheSociete()
@@ -69,10 +96,6 @@ Public Class F_SocieteSuivi
         End While
         lers.Close()
 
-        Call listeBien()
-        Call GrandLivreSoc()
-        Call DocListe(docType.Societe, laSocId, Me.gDoc)
-
         sSql = "select modelefacture,modeleAppel from societe where socid=" & Me.laSocId
         lers = sqlLit(sSql, conSql)
         While lers.Read
@@ -81,10 +104,12 @@ Public Class F_SocieteSuivi
         End While
         lers.Close()
 
-        sSql = "select socid,persid,datecrea,capital,siren,codenaf,registrecommerce,gerant1,gerant2,pouvoir,cptClient from societe" _
+        sSql = "select socid,persid,datecrea,capital,siren,codenaf,registrecommerce,gerant1,gerant2,pouvoir,cptClient,SocCode from societe" _
             & " where socid=" & Me.laSocId
         Call FormRempli(Me.gSociete, sSql, conSql)
         Me.oOnglet.Enabled = True
+
+        Call afficheonglet()
     End Sub
 
     Private Sub F_Societe_load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
@@ -164,14 +189,6 @@ Public Class F_SocieteSuivi
         If e.ColumnIndex = 3 Then
             System.Diagnostics.Process.Start(Me.gDoc.Rows(e.RowIndex).Cells(e.ColumnIndex).Value)
         End If
-    End Sub
-
-
-    Private Sub Button9_Click(sender As System.Object, e As System.EventArgs) Handles Button9.Click
-        If Me.laSocId = 0 Then Exit Sub
-        F_SocieteCharge.laSocId = laSocId
-        If F_SocieteCharge.ShowDialog = Windows.Forms.DialogResult.OK Then GrandLivreSoc()
-        F_SocieteCharge.Dispose()
     End Sub
 
 
@@ -260,7 +277,7 @@ Public Class F_SocieteSuivi
             & " FROM ComptaGene " _
             & " inner join locataire on ComptaGene.locId = locataire.locId " _
             & " left join annuaire as l on locataire.persId= l.persId " _
-            & " WHERE ComptaGene.Rubrique='LOCATAIRE' " _
+            & " WHERE ComptaGene.tiers='SOCIETE' " _
             & " and comptagene.socid=" & laSocId _
             & " and year(ecrecheance)=" & Me.lAnnee.Text
 
@@ -287,7 +304,49 @@ Public Class F_SocieteSuivi
         If e.KeyCode = Keys.Enter Then Call GrandLivreSoc()
     End Sub
 
-    Private Sub lAnnee_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles lAnnee.SelectedIndexChanged
-        Call GrandLivreSoc()
+    Private Sub gPlanC_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gPlanC.CellDoubleClick
+        If e.RowIndex >= 0 Then
+            f_ComptaPlan.leSocId = Me.laSocId
+            f_ComptaPlan.lePcId = Me.gPlanC.Rows(e.RowIndex).Cells("pcid").Value
+            If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanC()
+            f_ComptaPlan.Dispose()
+        End If
+    End Sub
+
+    Private Sub gPlanC_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gPlanC.CellContentClick
+
+    End Sub
+
+    Private Sub bAddCpt_Click(sender As Object, e As EventArgs) Handles bAddCpt.Click
+        f_ComptaPlan.leSocId = Me.laSocId
+        f_ComptaPlan.lePcId = 0
+        If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanC()
+        f_ComptaPlan.Dispose()
+    End Sub
+
+    Private Sub bDelCpt_Click(sender As Object, e As EventArgs) Handles bDelCpt.Click
+        If Me.gPlanC.SelectedRows(0).Index >= 0 Then
+            If MsgBox("Supprimer le compte " & Me.gPlanC.SelectedRows(0).Cells("cptnum").Value.ToString & " ?", MsgBoxStyle.OkCancel, "Attention") = DialogResult.OK Then
+                sqlDo("Delete from ComptaPlan where pcid=" & Me.gPlanC.SelectedRows(0).Cells("pcid").Value.ToString, conSql)
+                affichePlanC()
+            End If
+        End If
+    End Sub
+
+    Private Sub TabPage1_TabIndexChanged(sender As Object, e As EventArgs) Handles oOnglet.SelectedIndexChanged
+        Call afficheonglet()
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        If Me.laSocId = 0 Then Exit Sub
+        F_FactureSociete.laSocId = Me.laSocId
+        If F_FactureSociete.ShowDialog = Windows.Forms.DialogResult.OK Then
+            GrandLivreSoc()
+        End If
+        F_FactureSociete.Dispose()
+    End Sub
+
+    Private Sub PlanCompta_Click(sender As Object, e As EventArgs) Handles PlanCompta.Click
+
     End Sub
 End Class

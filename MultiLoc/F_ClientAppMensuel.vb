@@ -22,21 +22,21 @@ Public Class F_ClientAppMensuel
 
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles bOK.Click
-        Me.ErrorProvider1.Clear()
-        Dim lapiece As Integer
-        Dim laFActure As String
+        'Me.ErrorProvider1.Clear()
+        'Dim lapiece As Integer
+        'Dim laFActure As String
 
-        lapiece = NextNumPiece()
-        laFActure = nextFactInterne(0, Me.dEntre.Value.Year)
-
-
-        Dim lecrLoyer As New EcritureCompta(Me.dEntre.Value, Me.dEntre.Value, lapiece, 0, 0, 0, Me.leCliId, 0, 0, 0, 0, "Contrat E" & Me.leContratID.ToString.PadLeft(5, "0") & " " & Me.dEntre.Value.Month & "/" & Me.dEntre.Value.Year, txt2num(Me.tMontantAppHT.Text), txt2num(Me.tMontantAppTTC.Text), 100, laFActure, Now, Now, 0, "", Me.dEntre.Value.Year, 0)
-        lIndexPiece = 0
-        Call EnregCompta(lecrLoyer, ecrType.ClientStockage)
+        'lapiece = NextNumPiece()
+        'laFActure = nextFactInterne(0, Me.dEntre.Value.Year)
 
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
-        Me.Close()
+        'Dim lecrLoyer As New EcritureCompta(Me.dEntre.Value, Me.dEntre.Value, lapiece, 0, 0, 0, Me.leCliId, 0, 0, 0, 0, "Contrat E" & Me.leContratID.ToString.PadLeft(5, "0") & " " & Me.dEntre.Value.Month & "/" & Me.dEntre.Value.Year, txt2num(Me.tMontantAppHT.Text), txt2num(Me.tMontantAppTTC.Text), 100, laFActure, Now, Now, 0, "", Me.dEntre.Value.Year, 0)
+        'lIndexPiece = 0
+        'Call EnregCompta(lecrLoyer, ecrType.ClientStockage)
+
+
+        'Me.DialogResult = Windows.Forms.DialogResult.OK
+        'Me.Close()
 
 
     End Sub

@@ -19,7 +19,7 @@ Public Class F_GrandLivre
                     & " left join annuaire as l on locataire.persId= l.persId " _
                     & " left join societe on locataire.socid=societe.socid" _
                     & " left join annuaire as s on societe.persid=s.persid" _
-                    & " WHERE ComptaGene.Rubrique='LOCATAIRE' " _
+                    & " WHERE ComptaGene.tiers='LOCATAIRE' " _
                     & " and ecrdate>=" & SqlDate(Me.dDebut) & " and ecrdate<=" & SqlDate(Me.dFin) _
                     & " UNION" _
                     & " SELECT l.nom as tiers,'' as numfacture ,'" & Me.dDebut.Value.Year & "'  as AnneeEffet, '411' + cptsuffixe as cpt,  'Solde au " & Me.dDebut.Value.ToString("dd/MM/yy") & "' as ecrlib " _
@@ -29,7 +29,7 @@ Public Class F_GrandLivre
                     & " left join annuaire as l on locataire.persId= l.persId " _
                     & " left join societe on locataire.socid=societe.socid" _
                     & " left join annuaire as s on societe.persid=s.persid" _
-                    & " WHERE ComptaGene.Rubrique='LOCATAIRE' " _
+                    & " WHERE ComptaGene.tiers='LOCATAIRE' " _
                     & " and ecrdate<" & SqlDate(Me.dDebut) _
                     & " group by  l.nom , cptsuffixe , lotlib,s.nom ) t " _
                     & " order by  tiers,cpt,societe,ecrdate,numfacture,ecrlib"

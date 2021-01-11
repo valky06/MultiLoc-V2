@@ -13,7 +13,7 @@ Public Class F_LocaBalance
             sSql = "SELECT Locataire.LocId, Client.cliid, Annuaire_1.Nom as client, Annuaire.nom as locataire, Sum(comptaGene.ecrMontantTTC) AS solde" _
             & " FROM ((comptaGene LEFT JOIN (Annuaire RIGHT JOIN Locataire ON Annuaire.PersId = Locataire.PersId) ON comptaGene.LocId = Locataire.LocId)" _
             & " LEFT JOIN Client ON comptaGene.CliId = Client.cliId) LEFT JOIN Annuaire AS Annuaire_1 ON Client.PersId = Annuaire_1.PersId" _
-            & " WHERE comptaGene.Rubrique='LOCATAIRE' OR comptaGene.Rubrique='CLIENT'" _
+            & " WHERE comptaGene.tiers='LOCATAIRE' OR comptaGene.tiers='CLIENT'" _
             & " GROUP BY Locataire.LocId, Client.cliId, Annuaire_1.Nom, Annuaire.nom"
 
             Me.gCompta.Rows.Clear()
@@ -52,7 +52,7 @@ Public Class F_LocaBalance
                 Call F_main.Locataire_Click(Nothing, Nothing)
                 Me.Dispose()
             Else
-                F_ClientSuivi.leCliId = Me.gCompta.Rows(e.RowIndex).Cells("cliId").Value
+                F_ClientSuivi.leTiersId = Me.gCompta.Rows(e.RowIndex).Cells("cliId").Value
                 Call F_main.mnuClient(Nothing, Nothing)
                 Me.Dispose()
             End If

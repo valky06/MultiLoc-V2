@@ -23,10 +23,6 @@ Partial Class F_ClientNew
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.lTypePer = New System.Windows.Forms.ComboBox()
-        Me.lTypeRgt = New System.Windows.Forms.ComboBox()
         Me.tPersNom = New System.Windows.Forms.TextBox()
         Me.tPersId = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -36,48 +32,9 @@ Partial Class F_ClientNew
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.tTypeLoc = New System.Windows.Forms.TextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LinkLabel3
-        '
-        Me.LinkLabel3.AutoSize = True
-        Me.LinkLabel3.Location = New System.Drawing.Point(29, 77)
-        Me.LinkLabel3.Name = "LinkLabel3"
-        Me.LinkLabel3.Size = New System.Drawing.Size(85, 13)
-        Me.LinkLabel3.TabIndex = 47
-        Me.LinkLabel3.TabStop = True
-        Me.LinkLabel3.Text = "Type Règlement"
-        '
-        'LinkLabel2
-        '
-        Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(71, 50)
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(43, 13)
-        Me.LinkLabel2.TabIndex = 46
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "Période"
-        '
-        'lTypePer
-        '
-        Me.lTypePer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lTypePer.FormattingEnabled = True
-        Me.lTypePer.Location = New System.Drawing.Point(120, 47)
-        Me.lTypePer.Name = "lTypePer"
-        Me.lTypePer.Size = New System.Drawing.Size(146, 21)
-        Me.lTypePer.TabIndex = 7
-        Me.lTypePer.Tag = "TperId,no"
-        '
-        'lTypeRgt
-        '
-        Me.lTypeRgt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lTypeRgt.FormattingEnabled = True
-        Me.lTypeRgt.Location = New System.Drawing.Point(120, 74)
-        Me.lTypeRgt.Name = "lTypeRgt"
-        Me.lTypeRgt.Size = New System.Drawing.Size(146, 21)
-        Me.lTypeRgt.TabIndex = 8
-        Me.lTypeRgt.Tag = "TRgtId,no"
         '
         'tPersNom
         '
@@ -92,7 +49,7 @@ Partial Class F_ClientNew
         '
         'tPersId
         '
-        Me.tPersId.Location = New System.Drawing.Point(166, 142)
+        Me.tPersId.Location = New System.Drawing.Point(166, 99)
         Me.tPersId.Name = "tPersId"
         Me.tPersId.ReadOnly = True
         Me.tPersId.Size = New System.Drawing.Size(37, 20)
@@ -103,7 +60,7 @@ Partial Class F_ClientNew
         'Button2
         '
         Me.Button2.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Button2.Location = New System.Drawing.Point(30, 142)
+        Me.Button2.Location = New System.Drawing.Point(30, 99)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 31)
         Me.Button2.TabIndex = 2
@@ -112,7 +69,7 @@ Partial Class F_ClientNew
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(318, 142)
+        Me.Button3.Location = New System.Drawing.Point(318, 99)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 31)
         Me.Button3.TabIndex = 1
@@ -136,7 +93,7 @@ Partial Class F_ClientNew
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(36, 104)
+        Me.Label5.Location = New System.Drawing.Point(36, 50)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(78, 13)
         Me.Label5.TabIndex = 62
@@ -144,7 +101,7 @@ Partial Class F_ClientNew
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(120, 101)
+        Me.TextBox3.Location = New System.Drawing.Point(120, 47)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(40, 20)
         Me.TextBox3.TabIndex = 61
@@ -152,31 +109,39 @@ Partial Class F_ClientNew
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(209, 142)
+        Me.TextBox1.Location = New System.Drawing.Point(209, 99)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(37, 20)
         Me.TextBox1.TabIndex = 31
-        Me.TextBox1.Tag = "cliId,k"
+        Me.TextBox1.Tag = "LocId,k"
         Me.TextBox1.Visible = False
+        '
+        'tTypeLoc
+        '
+        Me.tTypeLoc.Location = New System.Drawing.Point(252, 99)
+        Me.tTypeLoc.Name = "tTypeLoc"
+        Me.tTypeLoc.ReadOnly = True
+        Me.tTypeLoc.Size = New System.Drawing.Size(37, 20)
+        Me.tTypeLoc.TabIndex = 63
+        Me.tTypeLoc.Tag = "TypeLoc,t"
+        Me.tTypeLoc.Text = "2"
+        Me.tTypeLoc.Visible = False
         '
         'F_ClientNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(414, 189)
+        Me.ClientSize = New System.Drawing.Size(414, 149)
+        Me.Controls.Add(Me.tTypeLoc)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.LinkLabel1)
-        Me.Controls.Add(Me.LinkLabel3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.LinkLabel2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.tPersNom)
         Me.Controls.Add(Me.tPersId)
-        Me.Controls.Add(Me.lTypePer)
-        Me.Controls.Add(Me.lTypeRgt)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.Name = "F_ClientNew"
@@ -188,16 +153,13 @@ Partial Class F_ClientNew
 
     End Sub
     Friend WithEvents tPersNom As System.Windows.Forms.TextBox
-    Friend WithEvents lTypePer As System.Windows.Forms.ComboBox
-    Friend WithEvents lTypeRgt As System.Windows.Forms.ComboBox
     Friend WithEvents tPersId As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents ErrorProvider1 As System.Windows.Forms.ErrorProvider
-    Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
-    Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents TextBox3 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents tTypeLoc As TextBox
 End Class

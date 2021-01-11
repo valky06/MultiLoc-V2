@@ -51,4 +51,8 @@
     Private Sub gAnnuaire_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gAnnuaire.CellContentClick
 
     End Sub
+
+    Private Sub F_AnnuRech_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

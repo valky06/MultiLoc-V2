@@ -16,7 +16,7 @@
         Call ComboRempli("select rubid,rubnom from comptarubrique", Me.lRubrique, conSql)
         Call ComboSelectValue(larubid, Me.lRubrique)
         If Me.lePCId <> 0 Then
-            Call FormRempli(Me, "select pcid,rubid,locid,cptNUm,cptNom from planComptable where pcid=" & lePCId, conSql)
+            Call FormRempli(Me, "select pcid,rubid,locid,cptNUm,cptNom from ComptaPlan where pcid=" & lePCId, conSql)
         End If
         Me.tLocId.Text = Me.leLocId
 
@@ -26,7 +26,7 @@
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles bOK.Click
         Me.ErrorProvider1.Clear()
         If FormVerif(Me, Me.ErrorProvider1) Then
-            lePCId = FormEnreg(Me, "PlanComptable", conSql)
+            lePCId = FormEnreg(Me, "ComptaPlan", conSql)
             Me.DialogResult = Windows.Forms.DialogResult.OK
             Me.Close()
         End If

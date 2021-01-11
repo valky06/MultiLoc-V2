@@ -10,7 +10,7 @@
         Me.lCptBk.SelectedIndex = 0
 
 
-        lers = sqlLit("select sum(ecrMontantHT), sum(ecrMontantTTC) from comptagene where rubrique='LOCATAIRE' and locid=" & Me.leLocid, conSql)
+        lers = sqlLit("select sum(ecrMontantHT), sum(ecrMontantTTC) from comptagene where tiers='LOCATAIRE' and locid=" & Me.leLocid, conSql)
         While lers.Read
             Me.sHT.Text = num2txt(lers(0))
             Me.sTTC.Text = num2txt(lers(1))

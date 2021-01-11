@@ -13,13 +13,13 @@ Public Class F_LocaListeAppel
 
             sSql = "select locid,numpiece,numfacture,ecrecheance, ecrLib,ecrmontantHT as loyerHT,0 as chargeHT" _
             & " , ecrmontantTVA, ecrmontantTTC  into #Q1 from comptagene " _
-            & " where rubrique='LOCATAIRE' and Categorie='LOYER'" _
+            & " where tiers='LOCATAIRE' and Categorie='LOYER'" _
             & " and ecrecheance>=" & SqlDate(Me.dDebut) & " and ecrecheance<=" & SqlDate(Me.dFin)
             sqlDo(sSql, conSql)
 
             sSql = "select locid,numpiece,numfacture,ecrecheance, ecrLib,0 as loyerHT,ecrmontantHT as chargeHT" _
             & ", ecrmontantTVA, ecrmontantTTC  into #Q2 from comptagene" _
-            & " where rubrique='LOCATAIRE' and Categorie='PROVCHARGE'" _
+            & " where tiers='LOCATAIRE' and Categorie='PROVCHARGE'" _
             & " and ecrecheance>=" & SqlDate(Me.dDebut) & " and ecrecheance<=" & SqlDate(Me.dFin)
             sqlDo(sSql, conSql)
 
@@ -32,7 +32,7 @@ Public Class F_LocaListeAppel
             & " left join annuaire as l on locataire.persId= l.persId " _
             & " left join societe on locataire.socid=societe.socid" _
             & " left join annuaire as s on societe.persid=s.persid" _
-            & " group by l.nom ,numfacture,cptsuffixe ,lotlib,s.nom ,ecrecheance" _
+            & " group by t.locid,l.nom ,numfacture,cptsuffixe ,lotlib,s.nom ,ecrecheance" _
             & " order by  tiers,cpt,societe,ecrecheance,numfacture"
 
             Me.gCompta.Rows.Clear()

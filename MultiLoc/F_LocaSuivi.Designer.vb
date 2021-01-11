@@ -33,14 +33,14 @@ Partial Class F_LocaSuivi
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.bWord = New System.Windows.Forms.ToolStripButton()
         Me.bXL = New System.Windows.Forms.ToolStripButton()
@@ -90,6 +90,15 @@ Partial Class F_LocaSuivi
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.gCompta = New System.Windows.Forms.DataGridView()
+        Me.numPiece = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numfacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numFactureInterne = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Bail = New System.Windows.Forms.TabPage()
         Me.bRegul = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
@@ -166,15 +175,6 @@ Partial Class F_LocaSuivi
         Me.CptNom = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NumCompte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NomCpt = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numPiece = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numfacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numFactureInterne = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         Me.Document.SuspendLayout()
         CType(Me.gDoc, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,6 +223,7 @@ Partial Class F_LocaSuivi
         '
         'tRech
         '
+        Me.tRech.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tRech.Name = "tRech"
         Me.tRech.Size = New System.Drawing.Size(100, 28)
         '
@@ -305,7 +306,7 @@ Partial Class F_LocaSuivi
         Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
-        Me.Button3.Location = New System.Drawing.Point(879, 57)
+        Me.Button3.Location = New System.Drawing.Point(1019, 57)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(29, 23)
         Me.Button3.TabIndex = 48
@@ -318,7 +319,7 @@ Partial Class F_LocaSuivi
         Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Image = Global.MultiLoc.My.Resources.Resources.smallplus
-        Me.Button6.Location = New System.Drawing.Point(879, 6)
+        Me.Button6.Location = New System.Drawing.Point(1019, 6)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(29, 23)
         Me.Button6.TabIndex = 47
@@ -350,7 +351,7 @@ Partial Class F_LocaSuivi
         Me.gDoc.ReadOnly = True
         Me.gDoc.RowHeadersVisible = False
         Me.gDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gDoc.Size = New System.Drawing.Size(867, 412)
+        Me.gDoc.Size = New System.Drawing.Size(1007, 412)
         Me.gDoc.TabIndex = 4
         '
         'id
@@ -441,7 +442,7 @@ Partial Class F_LocaSuivi
         Me.gGrandLivre.ReadOnly = True
         Me.gGrandLivre.RowHeadersVisible = False
         Me.gGrandLivre.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gGrandLivre.Size = New System.Drawing.Size(956, 385)
+        Me.gGrandLivre.Size = New System.Drawing.Size(1045, 385)
         Me.gGrandLivre.TabIndex = 10
         '
         'ecrID
@@ -587,7 +588,7 @@ Partial Class F_LocaSuivi
         Me.Compte.Padding = New System.Windows.Forms.Padding(3)
         Me.Compte.Size = New System.Drawing.Size(1054, 424)
         Me.Compte.TabIndex = 0
-        Me.Compte.Text = "Compte"
+        Me.Compte.Text = "Compta Loc."
         Me.Compte.UseVisualStyleBackColor = True
         '
         'Button16
@@ -595,7 +596,7 @@ Partial Class F_LocaSuivi
         Me.Button16.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button16.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button16.Location = New System.Drawing.Point(810, 79)
+        Me.Button16.Location = New System.Drawing.Point(950, 79)
         Me.Button16.Name = "Button16"
         Me.Button16.Size = New System.Drawing.Size(98, 32)
         Me.Button16.TabIndex = 52
@@ -608,7 +609,7 @@ Partial Class F_LocaSuivi
         Me.Button15.BackColor = System.Drawing.Color.Transparent
         Me.Button15.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button15.Location = New System.Drawing.Point(810, 307)
+        Me.Button15.Location = New System.Drawing.Point(950, 307)
         Me.Button15.Name = "Button15"
         Me.Button15.Size = New System.Drawing.Size(98, 39)
         Me.Button15.TabIndex = 51
@@ -621,7 +622,7 @@ Partial Class F_LocaSuivi
         Me.Button13.BackColor = System.Drawing.Color.Transparent
         Me.Button13.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Location = New System.Drawing.Point(810, 253)
+        Me.Button13.Location = New System.Drawing.Point(950, 253)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(98, 29)
         Me.Button13.TabIndex = 50
@@ -634,7 +635,7 @@ Partial Class F_LocaSuivi
         Me.Button10.BackColor = System.Drawing.Color.Transparent
         Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(810, 6)
+        Me.Button10.Location = New System.Drawing.Point(950, 6)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(98, 29)
         Me.Button10.TabIndex = 49
@@ -646,7 +647,7 @@ Partial Class F_LocaSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(810, 41)
+        Me.bEditFActure.Location = New System.Drawing.Point(950, 41)
         Me.bEditFActure.Name = "bEditFActure"
         Me.bEditFActure.Size = New System.Drawing.Size(98, 32)
         Me.bEditFActure.TabIndex = 21
@@ -658,7 +659,7 @@ Partial Class F_LocaSuivi
         Me.Button14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button14.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button14.Location = New System.Drawing.Point(810, 166)
+        Me.Button14.Location = New System.Drawing.Point(950, 166)
         Me.Button14.Name = "Button14"
         Me.Button14.Size = New System.Drawing.Size(98, 27)
         Me.Button14.TabIndex = 20
@@ -670,7 +671,7 @@ Partial Class F_LocaSuivi
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(810, 391)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(950, 391)
         Me.bsuppEcrit.Name = "bsuppEcrit"
         Me.bsuppEcrit.Size = New System.Drawing.Size(98, 27)
         Me.bsuppEcrit.TabIndex = 16
@@ -683,7 +684,7 @@ Partial Class F_LocaSuivi
         Me.Button7.Enabled = False
         Me.Button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(810, 199)
+        Me.Button7.Location = New System.Drawing.Point(950, 199)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(98, 27)
         Me.Button7.TabIndex = 14
@@ -696,7 +697,7 @@ Partial Class F_LocaSuivi
         Me.Button11.BackColor = System.Drawing.Color.Transparent
         Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(810, 133)
+        Me.Button11.Location = New System.Drawing.Point(950, 133)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(98, 27)
         Me.Button11.TabIndex = 13
@@ -728,8 +729,86 @@ Partial Class F_LocaSuivi
         Me.gCompta.ReadOnly = True
         Me.gCompta.RowHeadersVisible = False
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gCompta.Size = New System.Drawing.Size(761, 412)
+        Me.gCompta.Size = New System.Drawing.Size(938, 412)
         Me.gCompta.TabIndex = 3
+        '
+        'numPiece
+        '
+        Me.numPiece.HeaderText = "numPiece"
+        Me.numPiece.Name = "numPiece"
+        Me.numPiece.ReadOnly = True
+        Me.numPiece.Visible = False
+        '
+        'numfacture
+        '
+        Me.numfacture.HeaderText = "numfacture"
+        Me.numfacture.Name = "numfacture"
+        Me.numfacture.ReadOnly = True
+        Me.numfacture.Visible = False
+        '
+        'dateEch
+        '
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.Format = "d"
+        Me.dateEch.DefaultCellStyle = DataGridViewCellStyle11
+        Me.dateEch.FillWeight = 40.0!
+        Me.dateEch.HeaderText = "Echéance"
+        Me.dateEch.Name = "dateEch"
+        Me.dateEch.ReadOnly = True
+        '
+        'dateEcr
+        '
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle12.Format = "d"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle12
+        Me.dateEcr.FillWeight = 40.0!
+        Me.dateEcr.HeaderText = "Date"
+        Me.dateEcr.Name = "dateEcr"
+        Me.dateEcr.ReadOnly = True
+        '
+        'Libelle
+        '
+        Me.Libelle.HeaderText = "Libellé"
+        Me.Libelle.Name = "Libelle"
+        Me.Libelle.ReadOnly = True
+        '
+        'debit
+        '
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle13.Format = "N2"
+        Me.debit.DefaultCellStyle = DataGridViewCellStyle13
+        Me.debit.FillWeight = 40.0!
+        Me.debit.HeaderText = "Débit"
+        Me.debit.Name = "debit"
+        Me.debit.ReadOnly = True
+        '
+        'credit
+        '
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle14.Format = "N2"
+        Me.credit.DefaultCellStyle = DataGridViewCellStyle14
+        Me.credit.FillWeight = 40.0!
+        Me.credit.HeaderText = "Crédit"
+        Me.credit.Name = "credit"
+        Me.credit.ReadOnly = True
+        '
+        'solde
+        '
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle15.Format = "N2"
+        Me.solde.DefaultCellStyle = DataGridViewCellStyle15
+        Me.solde.FillWeight = 40.0!
+        Me.solde.HeaderText = "Solde"
+        Me.solde.Name = "solde"
+        Me.solde.ReadOnly = True
+        '
+        'numFactureInterne
+        '
+        Me.numFactureInterne.HeaderText = "numFactureInterne"
+        Me.numFactureInterne.Name = "numFactureInterne"
+        Me.numFactureInterne.ReadOnly = True
+        Me.numFactureInterne.Visible = False
         '
         'Bail
         '
@@ -817,7 +896,6 @@ Partial Class F_LocaSuivi
         '
         Me.bFacture.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bFacture.BackColor = System.Drawing.Color.Transparent
-        Me.bFacture.Enabled = False
         Me.bFacture.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bFacture.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bFacture.Location = New System.Drawing.Point(948, 336)
@@ -1561,84 +1639,6 @@ Partial Class F_LocaSuivi
         Me.NomCpt.HeaderText = "Nom Compte"
         Me.NomCpt.Name = "NomCpt"
         Me.NomCpt.ReadOnly = True
-        '
-        'numPiece
-        '
-        Me.numPiece.HeaderText = "numPiece"
-        Me.numPiece.Name = "numPiece"
-        Me.numPiece.ReadOnly = True
-        Me.numPiece.Visible = False
-        '
-        'numfacture
-        '
-        Me.numfacture.HeaderText = "numfacture"
-        Me.numfacture.Name = "numfacture"
-        Me.numfacture.ReadOnly = True
-        Me.numfacture.Visible = False
-        '
-        'dateEch
-        '
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.Format = "d"
-        Me.dateEch.DefaultCellStyle = DataGridViewCellStyle11
-        Me.dateEch.FillWeight = 40.0!
-        Me.dateEch.HeaderText = "Echéance"
-        Me.dateEch.Name = "dateEch"
-        Me.dateEch.ReadOnly = True
-        '
-        'dateEcr
-        '
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle12.Format = "d"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle12
-        Me.dateEcr.FillWeight = 40.0!
-        Me.dateEcr.HeaderText = "Date"
-        Me.dateEcr.Name = "dateEcr"
-        Me.dateEcr.ReadOnly = True
-        '
-        'Libelle
-        '
-        Me.Libelle.HeaderText = "Libellé"
-        Me.Libelle.Name = "Libelle"
-        Me.Libelle.ReadOnly = True
-        '
-        'debit
-        '
-        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle13.Format = "N2"
-        Me.debit.DefaultCellStyle = DataGridViewCellStyle13
-        Me.debit.FillWeight = 40.0!
-        Me.debit.HeaderText = "Débit"
-        Me.debit.Name = "debit"
-        Me.debit.ReadOnly = True
-        '
-        'credit
-        '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle14.Format = "N2"
-        Me.credit.DefaultCellStyle = DataGridViewCellStyle14
-        Me.credit.FillWeight = 40.0!
-        Me.credit.HeaderText = "Crédit"
-        Me.credit.Name = "credit"
-        Me.credit.ReadOnly = True
-        '
-        'solde
-        '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle15.Format = "N2"
-        Me.solde.DefaultCellStyle = DataGridViewCellStyle15
-        Me.solde.FillWeight = 40.0!
-        Me.solde.HeaderText = "Solde"
-        Me.solde.Name = "solde"
-        Me.solde.ReadOnly = True
-        '
-        'numFactureInterne
-        '
-        Me.numFactureInterne.HeaderText = "numFactureInterne"
-        Me.numFactureInterne.Name = "numFactureInterne"
-        Me.numFactureInterne.ReadOnly = True
-        Me.numFactureInterne.Visible = False
         '
         'F_LocaSuivi
         '

@@ -29,6 +29,7 @@ Partial Class F_SocieteSuivi
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compta = New System.Windows.Forms.TabPage()
         Me.gCompta = New System.Windows.Forms.DataGridView()
@@ -74,6 +75,8 @@ Partial Class F_SocieteSuivi
         Me.tModeleAppel = New System.Windows.Forms.TextBox()
         Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.gSociete = New System.Windows.Forms.GroupBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -96,6 +99,15 @@ Partial Class F_SocieteSuivi
         Me.Label2 = New System.Windows.Forms.Label()
         Me.tModeleFacture = New System.Windows.Forms.TextBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.PlanCompta = New System.Windows.Forms.TabPage()
+        Me.bDelCpt = New System.Windows.Forms.Button()
+        Me.bAddCpt = New System.Windows.Forms.Button()
+        Me.gPlanC = New System.Windows.Forms.DataGridView()
+        Me.pcid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rubrique = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeTiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cptnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cptnom = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.bWord = New System.Windows.Forms.ToolStripButton()
         Me.bXL = New System.Windows.Forms.ToolStripButton()
@@ -103,7 +115,6 @@ Partial Class F_SocieteSuivi
         Me.lSociete = New System.Windows.Forms.ComboBox()
         Me.kSociete = New System.Windows.Forms.LinkLabel()
         Me.oDial = New System.Windows.Forms.OpenFileDialog()
-        Me.PlanCompta = New System.Windows.Forms.TabPage()
         Me.oOnglet.SuspendLayout()
         Me.Compta.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,6 +124,8 @@ Partial Class F_SocieteSuivi
         CType(Me.gDoc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.gSociete.SuspendLayout()
+        Me.PlanCompta.SuspendLayout()
+        CType(Me.gPlanC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -130,7 +143,7 @@ Partial Class F_SocieteSuivi
         Me.oOnglet.Location = New System.Drawing.Point(12, 67)
         Me.oOnglet.Name = "oOnglet"
         Me.oOnglet.SelectedIndex = 0
-        Me.oOnglet.Size = New System.Drawing.Size(863, 445)
+        Me.oOnglet.Size = New System.Drawing.Size(854, 445)
         Me.oOnglet.TabIndex = 2
         '
         'Compta
@@ -145,7 +158,7 @@ Partial Class F_SocieteSuivi
         Me.Compta.Controls.Add(Me.Button9)
         Me.Compta.Location = New System.Drawing.Point(4, 22)
         Me.Compta.Name = "Compta"
-        Me.Compta.Size = New System.Drawing.Size(855, 419)
+        Me.Compta.Size = New System.Drawing.Size(846, 419)
         Me.Compta.TabIndex = 3
         Me.Compta.Text = "Compte"
         Me.Compta.UseVisualStyleBackColor = True
@@ -175,7 +188,7 @@ Partial Class F_SocieteSuivi
         Me.gCompta.ReadOnly = True
         Me.gCompta.RowHeadersVisible = False
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gCompta.Size = New System.Drawing.Size(549, 266)
+        Me.gCompta.Size = New System.Drawing.Size(730, 384)
         Me.gCompta.TabIndex = 55
         '
         'dateEcr
@@ -287,7 +300,7 @@ Partial Class F_SocieteSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(561, 70)
+        Me.bEditFActure.Location = New System.Drawing.Point(742, 133)
         Me.bEditFActure.Name = "bEditFActure"
         Me.bEditFActure.Size = New System.Drawing.Size(93, 32)
         Me.bEditFActure.TabIndex = 13
@@ -297,26 +310,27 @@ Partial Class F_SocieteSuivi
         '
         'bsuppEcrit
         '
-        Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(561, 282)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 171)
         Me.bsuppEcrit.Name = "bsuppEcrit"
         Me.bsuppEcrit.Size = New System.Drawing.Size(93, 32)
         Me.bsuppEcrit.TabIndex = 12
         Me.bsuppEcrit.Text = "Supprimer Ecrit."
         Me.bsuppEcrit.UseVisualStyleBackColor = True
+        Me.bsuppEcrit.Visible = False
         '
         'Button9
         '
         Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(561, 32)
+        Me.Button9.Location = New System.Drawing.Point(742, 80)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(93, 32)
         Me.Button9.TabIndex = 10
-        Me.Button9.Text = "Charge Externe"
+        Me.Button9.Text = "Facture Client"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'Bien
@@ -326,7 +340,7 @@ Partial Class F_SocieteSuivi
         Me.Bien.Location = New System.Drawing.Point(4, 22)
         Me.Bien.Name = "Bien"
         Me.Bien.Padding = New System.Windows.Forms.Padding(3)
-        Me.Bien.Size = New System.Drawing.Size(855, 419)
+        Me.Bien.Size = New System.Drawing.Size(846, 419)
         Me.Bien.TabIndex = 0
         Me.Bien.Text = "Biens"
         Me.Bien.UseVisualStyleBackColor = True
@@ -336,7 +350,7 @@ Partial Class F_SocieteSuivi
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(578, 6)
+        Me.Button1.Location = New System.Drawing.Point(569, 6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(76, 41)
         Me.Button1.TabIndex = 11
@@ -360,7 +374,7 @@ Partial Class F_SocieteSuivi
         Me.gLot.ReadOnly = True
         Me.gLot.RowHeadersVisible = False
         Me.gLot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gLot.Size = New System.Drawing.Size(566, 305)
+        Me.gLot.Size = New System.Drawing.Size(557, 407)
         Me.gLot.TabIndex = 1
         '
         'lotId
@@ -455,7 +469,7 @@ Partial Class F_SocieteSuivi
         Me.Document.Location = New System.Drawing.Point(4, 22)
         Me.Document.Name = "Document"
         Me.Document.Padding = New System.Windows.Forms.Padding(3)
-        Me.Document.Size = New System.Drawing.Size(855, 419)
+        Me.Document.Size = New System.Drawing.Size(846, 419)
         Me.Document.TabIndex = 2
         Me.Document.Text = "Documents"
         Me.Document.UseVisualStyleBackColor = True
@@ -466,7 +480,7 @@ Partial Class F_SocieteSuivi
         Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
-        Me.Button3.Location = New System.Drawing.Point(623, 57)
+        Me.Button3.Location = New System.Drawing.Point(614, 57)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(29, 23)
         Me.Button3.TabIndex = 51
@@ -479,7 +493,7 @@ Partial Class F_SocieteSuivi
         Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Image = Global.MultiLoc.My.Resources.Resources.smallplus
-        Me.Button6.Location = New System.Drawing.Point(623, 6)
+        Me.Button6.Location = New System.Drawing.Point(614, 6)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(29, 23)
         Me.Button6.TabIndex = 50
@@ -511,7 +525,7 @@ Partial Class F_SocieteSuivi
         Me.gDoc.ReadOnly = True
         Me.gDoc.RowHeadersVisible = False
         Me.gDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gDoc.Size = New System.Drawing.Size(611, 305)
+        Me.gDoc.Size = New System.Drawing.Size(602, 407)
         Me.gDoc.TabIndex = 49
         '
         'id
@@ -555,7 +569,7 @@ Partial Class F_SocieteSuivi
         Me.TabPage1.Controls.Add(Me.LinkLabel1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(855, 419)
+        Me.TabPage1.Size = New System.Drawing.Size(846, 419)
         Me.TabPage1.TabIndex = 4
         Me.TabPage1.Text = "Paramètres"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -567,7 +581,7 @@ Partial Class F_SocieteSuivi
         Me.tModeleAppel.Location = New System.Drawing.Point(100, 37)
         Me.tModeleAppel.Name = "tModeleAppel"
         Me.tModeleAppel.ReadOnly = True
-        Me.tModeleAppel.Size = New System.Drawing.Size(752, 20)
+        Me.tModeleAppel.Size = New System.Drawing.Size(743, 20)
         Me.tModeleAppel.TabIndex = 4
         '
         'LinkLabel2
@@ -582,6 +596,8 @@ Partial Class F_SocieteSuivi
         '
         'gSociete
         '
+        Me.gSociete.Controls.Add(Me.Label10)
+        Me.gSociete.Controls.Add(Me.TextBox9)
         Me.gSociete.Controls.Add(Me.Button2)
         Me.gSociete.Controls.Add(Me.Label9)
         Me.gSociete.Controls.Add(Me.Label7)
@@ -604,17 +620,34 @@ Partial Class F_SocieteSuivi
         Me.gSociete.Controls.Add(Me.Label2)
         Me.gSociete.Location = New System.Drawing.Point(16, 79)
         Me.gSociete.Name = "gSociete"
-        Me.gSociete.Size = New System.Drawing.Size(438, 274)
+        Me.gSociete.Size = New System.Drawing.Size(438, 294)
         Me.gSociete.TabIndex = 2
         Me.gSociete.TabStop = False
         Me.gSociete.Text = "Informations"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(26, 105)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(85, 13)
+        Me.Label10.TabIndex = 100
+        Me.Label10.Text = "Code Comptable"
+        '
+        'TextBox9
+        '
+        Me.TextBox9.Location = New System.Drawing.Point(117, 102)
+        Me.TextBox9.Name = "TextBox9"
+        Me.TextBox9.Size = New System.Drawing.Size(126, 20)
+        Me.TextBox9.TabIndex = 99
+        Me.TextBox9.Tag = "SocCode,to"
         '
         'Button2
         '
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Image = Global.MultiLoc.My.Resources.Resources.MC_MiniSave
-        Me.Button2.Location = New System.Drawing.Point(381, 224)
+        Me.Button2.Location = New System.Drawing.Point(381, 247)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(41, 34)
         Me.Button2.TabIndex = 98
@@ -623,7 +656,7 @@ Partial Class F_SocieteSuivi
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(39, 235)
+        Me.Label9.Location = New System.Drawing.Point(39, 261)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(72, 13)
         Me.Label9.TabIndex = 97
@@ -632,7 +665,7 @@ Partial Class F_SocieteSuivi
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(68, 209)
+        Me.Label7.Location = New System.Drawing.Point(68, 235)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(43, 13)
         Me.Label7.TabIndex = 97
@@ -640,7 +673,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(117, 232)
+        Me.TextBox8.Location = New System.Drawing.Point(117, 258)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(195, 20)
         Me.TextBox8.TabIndex = 96
@@ -648,7 +681,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(117, 206)
+        Me.TextBox7.Location = New System.Drawing.Point(117, 232)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(195, 20)
         Me.TextBox7.TabIndex = 96
@@ -657,7 +690,7 @@ Partial Class F_SocieteSuivi
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(63, 183)
+        Me.Label6.Location = New System.Drawing.Point(63, 209)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(48, 13)
         Me.Label6.TabIndex = 95
@@ -665,7 +698,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(117, 180)
+        Me.TextBox5.Location = New System.Drawing.Point(117, 206)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(195, 20)
         Me.TextBox5.TabIndex = 94
@@ -674,7 +707,7 @@ Partial Class F_SocieteSuivi
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(63, 157)
+        Me.Label5.Location = New System.Drawing.Point(63, 183)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(48, 13)
         Me.Label5.TabIndex = 93
@@ -682,7 +715,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(117, 154)
+        Me.TextBox4.Location = New System.Drawing.Point(117, 180)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(195, 20)
         Me.TextBox4.TabIndex = 92
@@ -691,7 +724,7 @@ Partial Class F_SocieteSuivi
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(55, 105)
+        Me.Label3.Location = New System.Drawing.Point(55, 131)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(56, 13)
         Me.Label3.TabIndex = 91
@@ -699,7 +732,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(117, 102)
+        Me.TextBox2.Location = New System.Drawing.Point(117, 128)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(305, 20)
         Me.TextBox2.TabIndex = 90
@@ -708,7 +741,7 @@ Partial Class F_SocieteSuivi
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 131)
+        Me.Label4.Location = New System.Drawing.Point(12, 157)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(99, 13)
         Me.Label4.TabIndex = 89
@@ -725,7 +758,7 @@ Partial Class F_SocieteSuivi
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(117, 128)
+        Me.TextBox3.Location = New System.Drawing.Point(117, 151)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(126, 20)
         Me.TextBox3.TabIndex = 86
@@ -791,7 +824,7 @@ Partial Class F_SocieteSuivi
         Me.tModeleFacture.Location = New System.Drawing.Point(100, 11)
         Me.tModeleFacture.Name = "tModeleFacture"
         Me.tModeleFacture.ReadOnly = True
-        Me.tModeleFacture.Size = New System.Drawing.Size(752, 20)
+        Me.tModeleFacture.Size = New System.Drawing.Size(743, 20)
         Me.tModeleFacture.TabIndex = 1
         '
         'LinkLabel1
@@ -804,12 +837,111 @@ Partial Class F_SocieteSuivi
         Me.LinkLabel1.TabStop = True
         Me.LinkLabel1.Text = "Modèle Facture"
         '
+        'PlanCompta
+        '
+        Me.PlanCompta.Controls.Add(Me.bDelCpt)
+        Me.PlanCompta.Controls.Add(Me.bAddCpt)
+        Me.PlanCompta.Controls.Add(Me.gPlanC)
+        Me.PlanCompta.Location = New System.Drawing.Point(4, 22)
+        Me.PlanCompta.Name = "PlanCompta"
+        Me.PlanCompta.Size = New System.Drawing.Size(846, 419)
+        Me.PlanCompta.TabIndex = 5
+        Me.PlanCompta.Text = "Plan Compta"
+        Me.PlanCompta.UseVisualStyleBackColor = True
+        '
+        'bDelCpt
+        '
+        Me.bDelCpt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bDelCpt.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bDelCpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bDelCpt.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
+        Me.bDelCpt.Location = New System.Drawing.Point(536, 54)
+        Me.bDelCpt.Name = "bDelCpt"
+        Me.bDelCpt.Size = New System.Drawing.Size(29, 23)
+        Me.bDelCpt.TabIndex = 58
+        Me.bDelCpt.TabStop = False
+        Me.bDelCpt.UseVisualStyleBackColor = True
+        '
+        'bAddCpt
+        '
+        Me.bAddCpt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bAddCpt.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bAddCpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bAddCpt.Image = Global.MultiLoc.My.Resources.Resources.smallplus
+        Me.bAddCpt.Location = New System.Drawing.Point(536, 3)
+        Me.bAddCpt.Name = "bAddCpt"
+        Me.bAddCpt.Size = New System.Drawing.Size(29, 23)
+        Me.bAddCpt.TabIndex = 57
+        Me.bAddCpt.TabStop = False
+        Me.bAddCpt.UseVisualStyleBackColor = True
+        '
+        'gPlanC
+        '
+        Me.gPlanC.AllowUserToAddRows = False
+        Me.gPlanC.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gPlanC.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.gPlanC.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.gPlanC.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gPlanC.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
+        Me.gPlanC.ColumnHeadersHeight = 21
+        Me.gPlanC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.pcid, Me.Rubrique, Me.LeTiers, Me.cptnum, Me.cptnom})
+        Me.gPlanC.Location = New System.Drawing.Point(3, 3)
+        Me.gPlanC.MultiSelect = False
+        Me.gPlanC.Name = "gPlanC"
+        Me.gPlanC.ReadOnly = True
+        Me.gPlanC.RowHeadersVisible = False
+        Me.gPlanC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.gPlanC.Size = New System.Drawing.Size(527, 413)
+        Me.gPlanC.TabIndex = 56
+        '
+        'pcid
+        '
+        Me.pcid.HeaderText = "pcid"
+        Me.pcid.Name = "pcid"
+        Me.pcid.ReadOnly = True
+        Me.pcid.Visible = False
+        '
+        'Rubrique
+        '
+        Me.Rubrique.FillWeight = 60.0!
+        Me.Rubrique.HeaderText = "Rubrique"
+        Me.Rubrique.Name = "Rubrique"
+        Me.Rubrique.ReadOnly = True
+        '
+        'LeTiers
+        '
+        Me.LeTiers.HeaderText = "Tiers"
+        Me.LeTiers.Name = "LeTiers"
+        Me.LeTiers.ReadOnly = True
+        '
+        'cptnum
+        '
+        Me.cptnum.FillWeight = 60.0!
+        Me.cptnum.HeaderText = "N° Compte"
+        Me.cptnum.Name = "cptnum"
+        Me.cptnum.ReadOnly = True
+        '
+        'cptnom
+        '
+        Me.cptnom.HeaderText = "Compte"
+        Me.cptnom.Name = "cptnom"
+        Me.cptnom.ReadOnly = True
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bWord, Me.bXL, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(887, 28)
+        Me.ToolStrip1.Size = New System.Drawing.Size(878, 28)
         Me.ToolStrip1.TabIndex = 8
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -866,21 +998,12 @@ Partial Class F_SocieteSuivi
         Me.oDial.FileName = "OpenFileDialog1"
         Me.oDial.Filter = "Excel|*.xls;*.xlsx"
         '
-        'PlanCompta
-        '
-        Me.PlanCompta.Location = New System.Drawing.Point(4, 22)
-        Me.PlanCompta.Name = "PlanCompta"
-        Me.PlanCompta.Size = New System.Drawing.Size(855, 419)
-        Me.PlanCompta.TabIndex = 5
-        Me.PlanCompta.Text = "Plan Compta"
-        Me.PlanCompta.UseVisualStyleBackColor = True
-        '
         'F_SocieteSuivi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(887, 524)
+        Me.ClientSize = New System.Drawing.Size(878, 524)
         Me.ControlBox = False
         Me.Controls.Add(Me.kSociete)
         Me.Controls.Add(Me.lSociete)
@@ -901,6 +1024,8 @@ Partial Class F_SocieteSuivi
         Me.TabPage1.PerformLayout()
         Me.gSociete.ResumeLayout(False)
         Me.gSociete.PerformLayout()
+        Me.PlanCompta.ResumeLayout(False)
+        CType(Me.gPlanC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -982,4 +1107,14 @@ End Sub
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents PlanCompta As TabPage
+    Friend WithEvents bDelCpt As Button
+    Friend WithEvents bAddCpt As Button
+    Friend WithEvents gPlanC As DataGridView
+    Friend WithEvents pcid As DataGridViewTextBoxColumn
+    Friend WithEvents Rubrique As DataGridViewTextBoxColumn
+    Friend WithEvents LeTiers As DataGridViewTextBoxColumn
+    Friend WithEvents cptnum As DataGridViewTextBoxColumn
+    Friend WithEvents cptnom As DataGridViewTextBoxColumn
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TextBox9 As TextBox
 End Class

@@ -241,7 +241,7 @@ Public Class F_CoproSuivi
 
         Try
             sSql = "SELECT ecrId, numpiece,numfacture, ecrDate, ecrLib, ecrMontantTTC FROM ComptaGene" _
-            & " where rubrique='COPRO' and coproId= " & Me.lCopro.SelectedItem.value & " order by ecrDate desc"
+            & " where tiers='COPRO' and coproId= " & Me.lCopro.SelectedItem.value & " order by ecrDate desc"
 
             Me.gChargeCopro.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -1115,13 +1115,13 @@ Public Class F_CoproSuivi
 
             StatutBar("Calcul des loyers")
             sSql = "update TempRepartCharge set loyerht= ( select sum(ecrmontantHT) from comptagene" _
-            & " where rubrique='SOCIETE' and categorie='LOYER' and year(ecrEcheance)= " & Me.lBudget.Text _
+            & " where tiers='SOCIETE' and categorie='LOYER' and year(ecrEcheance)= " & Me.lBudget.Text _
             & " and comptagene.locid=temprepartcharge.locid group by locid )"
             sqlDo(sSql, conSql)
 
             StatutBar("Calcul des charges")
             sSql = "update TempRepartCharge set chargeht= ( select sum(ecrmontantHT) from comptagene" _
-            & " where rubrique='SOCIETE' and categorie='PROVCHARGE' and year(ecrEcheance)= " & Me.lBudget.Text _
+            & " where tiers='SOCIETE' and categorie='PROVCHARGE' and year(ecrEcheance)= " & Me.lBudget.Text _
             & " and comptagene.locid=temprepartcharge.locid group by locid )"
             sqlDo(sSql, conSql)
 
@@ -1768,13 +1768,13 @@ Public Class F_CoproSuivi
 
                 StatutBar("Calcul des loyers")
                 sSql = "update TempRepartCharge set loyerht= ( select -sum(ecrmontantHT) from comptagene" _
-                & " where rubrique='LOCATAIRE' and categorie='LOYER' and AnneeEffet= " & Me.lBudget.Text _
+                & " where tiers='LOCATAIRE' and categorie='LOYER' and AnneeEffet= " & Me.lBudget.Text _
                 & " and comptagene.locid=temprepartcharge.locid group by locid )"
                 sqlDo(sSql, conSql)
 
                 StatutBar("Calcul des charges")
                 sSql = "update TempRepartCharge set chargeht= ( select -sum(ecrmontantHT) from comptagene" _
-                & " where rubrique='LOCATAIRE' and categorie='PROVCHARGE' and AnneeEffet = " & Me.lBudget.Text _
+                & " where tiers='LOCATAIRE' and categorie='PROVCHARGE' and AnneeEffet = " & Me.lBudget.Text _
                 & " and comptagene.locid=temprepartcharge.locid group by locid )"
                 sqlDo(sSql, conSql)
             Else
@@ -2265,7 +2265,7 @@ Public Class F_CoproSuivi
                 sSql = "select nom,ecrecheance, ecrlib, -ecrmontantHT as montant,categorie,soumishono from comptagene" _
                     & " inner join locataire on locataire.locid=comptagene.locid" _
                     & " inner join annuaire on annuaire.persid=locataire.persid" _
-                    & " where rubrique='LOCATAIRE'  and year(ecrEcheance)= " & Me.lBudget.Text _
+                    & " where tiers='LOCATAIRE'  and year(ecrEcheance)= " & Me.lBudget.Text _
                     & " and locataire.locid in  (select distinct locid from temprepartcharge where locid <>0 or locid is not null)" _
                     & " order by nom, ecrecheance,ecrlib "
                 lers = sqlLit(sSql, conSql)
@@ -2883,13 +2883,13 @@ Public Class F_CoproSuivi
 
             StatutBar("Calcul des loyers")
             sSql = "update TempRepartCharge set loyerht= ( select -sum(ecrmontantHT) from comptagene" _
-            & " where rubrique='LOCATAIRE' and categorie='LOYER' and year(ecrEcheance)= " & Me.lBudget.Text _
+            & " where tiers='LOCATAIRE' and categorie='LOYER' and year(ecrEcheance)= " & Me.lBudget.Text _
             & " and comptagene.locid=temprepartcharge.locid group by locid )"
             sqlDo(sSql, conSql)
 
             StatutBar("Calcul des charges")
             sSql = "update TempRepartCharge set chargeht= ( select -sum(ecrmontantHT) from comptagene" _
-            & " where rubrique='LOCATAIRE' and categorie='PROVCHARGE' and year(ecrEcheance)= " & Me.lBudget.Text _
+            & " where tiers='LOCATAIRE' and categorie='PROVCHARGE' and year(ecrEcheance)= " & Me.lBudget.Text _
             & " and comptagene.locid=temprepartcharge.locid group by locid )"
             sqlDo(sSql, conSql)
 
@@ -3334,7 +3334,7 @@ Public Class F_CoproSuivi
             sSql = "select nom,ecrecheance, ecrlib, -ecrmontantHT as montant,categorie,soumishono from comptagene" _
                 & " inner join locataire on locataire.locid=comptagene.locid" _
                 & " inner join annuaire on annuaire.persid=locataire.persid" _
-                & " where rubrique='LOCATAIRE'  and year(ecrEcheance)= " & Me.lBudget.Text _
+                & " where tiers='LOCATAIRE'  and year(ecrEcheance)= " & Me.lBudget.Text _
                 & " and locataire.locid in  (select distinct locid from temprepartloc)" _
                 & " order by nom, ecrecheance,ecrlib "
             lers = sqlLit(sSql, conSql)

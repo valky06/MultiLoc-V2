@@ -23,13 +23,13 @@
         Me.ErrorProvider1.Clear()
         Call formVide(Me)
         Call ComboRempli("SELECT cleId, cleNom from cleRepart where coproId= " & lacoproId, Me.lCleRepart, conSql)
-        Call ComboRempli("SELECT CptId, CptNum + ' - ' + cptNom AS COmpte FROM PlanComptable wHERE CptNum Like '6%'", Me.lCompte, conSql)
+        Call ComboRempli("SELECT CptId, CptNum + ' - ' + cptNom AS COmpte FROM ComptaPlan wHERE CptNum Like '6%'", Me.lCompte, conSql)
         Me.tTauxTVA.Text = My.Settings.TVADefaut
         Call rubriqueBUdget()
 
         If Me.laPiece <> "" Then
             ssql = "SELECT ecrId, numpiece,numfacture, numfactureInterne, ecrDate,ecrEcheance, ecrLib,-ecrMontantHT as ecrMontantHT, -ecrMontantTTC as ecrMontantTTC,cptid,cleid FROM ComptaGene" _
-            & " where rubrique='COPRO' and coproId= " & Me.lacoproId & " and numpiece ='" & laPiece & "'"
+            & " where tiers='COPRO' and coproId= " & Me.lacoproId & " and numpiece ='" & laPiece & "'"
             Call FormRempli(Me, ssql, conSql)
             If Me.tNUmFactureINterne.Text <> "" Then FactInterne = True
         End If

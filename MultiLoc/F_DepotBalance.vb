@@ -11,7 +11,7 @@ Public Class F_DepotBalance
             & "  FROM Annuaire AS Annuaire_1 INNER JOIN ((Annuaire  INNER JOIN (ComptaGene INNER JOIN Locataire " _
             & " ON ComptaGene.LocId = Locataire.LocId)  ON Annuaire.PersId = Locataire.PersId)  INNER JOIN Societe ON ComptaGene.SocId = Societe.SocId)" _
             & " ON Annuaire_1.PersId = Societe.PersId WHERE ComptaGene.Journal='DEPOT' " _
-            & " and rubrique = 'SOCIETE'" _
+            & " and tiers = 'SOCIETE'" _
             & " group by Annuaire_1.Nom, Annuaire.Nom" _
             & " having(sum(ComptaGene.ecrMontantTTC) <> 0) "
 

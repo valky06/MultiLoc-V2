@@ -10,11 +10,11 @@ Imports Microsoft.Office.Interop
 
 'SELECT    ComptaGene.ecrDate, ComptaGene.Journal, ComptaGene.categorie,  
 '                         ComptaGene.ecrLib, ComptaGene.ecrMontantHT, ComptaGene.ecrMontantTVA, ComptaGene.ecrMontantTTC, ComptaGene.NumFacture, 
-'						 ComptaGene.numfactureInterne, locataire.CptSuffixe, PlanComptable.CptNum, 
-'						 PlanComptable.CptNom
+'						 ComptaGene.numfactureInterne, locataire.CptSuffixe, ComptaPlan.CptNum, 
+'						 ComptaPlan.CptNom
 'FROM            ComptaGene INNER JOIN
 '                         locataire ON ComptaGene.LocId = locataire.LocId LEFT OUTER JOIN
-'                         PlanComptable ON ComptaGene.RubId = PlanComptable.RubId AND ComptaGene.LocId = PlanComptable.LocId
+'                         ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId AND ComptaGene.LocId = ComptaPlan.LocId
 'WHERE        (ComptaGene.Rubrique = 'Locataire') AND (ComptaGene.LocId = 111)
 'ORDER BY ComptaGene.ecrDate, ComptaGene.ecrid
 
@@ -410,7 +410,7 @@ Public Module Common
     Function loclotlib(lelocat As Integer, ladateDeb As Date, laDateFin As Date) As String
         Dim sSql As String
         Dim leRs As OleDb.OleDbDataReader
-        Dim LesLots As String = ""
+
 
         'Recherche liste des biens
         sSql = "select tlocalnom,lotnom,batiment, coproNom,copro.Adr1,copro.codePostal, Copro.localite,location.surface,datefin" _
@@ -435,7 +435,7 @@ Public Module Common
         End While
         leRs.Close()
 
-        Return LesLots
+        Return lesBiens
     End Function
 
     Sub locLotLibMAJ(leLocat As Integer)
@@ -463,10 +463,6 @@ Public Module Common
         CoprochargeExt = 7
         CoprochargeInt = 8
         LocEncaisse = 9
-        ClientStockage = 10
-        ClientFourniture = 11
-        ClientArchivage = 12
-        ClientEncaisse = 13
         FourPaiement = 14
         LocChargeExt = 15
         LocRemboursement = 16
@@ -476,6 +472,8 @@ Public Module Common
         ChargeReprise = 20
         ChargeReel = 21
         locAvoirDG = 22
+        ClientFacture = 23
+        ClientEncaisse = 24
     End Enum
 
     Class EcritureCompta
@@ -555,22 +553,53 @@ Public Module Common
     End Function
 
     Function nextFactInterne(laSocId As Integer, lAnnee As Integer) As String
+        'Dim ssql As String
+        'Dim lers As OleDb.OleDbDataReader
+        'Dim NumFact As Integer
+        'ssql = "select max(numFactureInterne) as numfact from ComptaGene where Tiers='SOCIETE' and socid= " & laSocId & " and numfactureInterne like '" & lAnnee & "%'"
+        'lers = sqlLit(ssql, conSql)
+        'NumFact = 0
+        'While lers.Read
+        '    If nz(lers("numfact").ToString, "") <> "" Then
+        '        NumFact = Val(lers("numfact").ToString.Substring(5, 5))
+        '    End If
+        'End While
+        'lers.Close()
+        'NumFact += 1
+        'Return lAnnee & "-" & NumFact.ToString.PadLeft(5, "0")
+
         Dim ssql As String
         Dim lers As OleDb.OleDbDataReader
         Dim NumFact As Integer
-        ssql = "select max(numFactureInterne) as numfact from ComptaGene where Rubrique='SOCIETE' and socid= " & laSocId & " and numfactureInterne like '" & lAnnee & "%'"
+        ssql = "select max(numFactureInterne) as numfact from ComptaGene where Tiers='SOCIETE' and socid= " & laSocId & " and year(ecrdate)=" & lAnnee
         lers = sqlLit(ssql, conSql)
-        NumFact = 0
+        NumFact = lAnnee * 10000
+        While lers.Read
+            If nz(lers("numfact").ToString, "") <> "" Then NumFact = lers("numfact")
+        End While
+        lers.Close()
+        NumFact += 1
+        Return NumFact.ToString
+    End Function
+
+    Function nextFacture(laSocId As Integer, lAnnee As Integer) As String
+        Dim ssql As String
+        Dim lers As OleDb.OleDbDataReader
+        Dim NumFact As Integer
+        ssql = "select max(numFacture) as numfact from ComptaGene where Tiers='SOCIETE' and socid= " & laSocId & " and numfacture like 'FA" & lAnnee & "%'"
+        lers = sqlLit(ssql, conSql)
+        NumFact = lAnnee * 10000
         While lers.Read
             If nz(lers("numfact").ToString, "") <> "" Then
-                NumFact = Val(lers("numfact").ToString.Substring(5, 5))
+                NumFact = Val(lers("numfact").ToString.Substring(2, 8))
             End If
         End While
         lers.Close()
         NumFact += 1
-        Return lAnnee & "-" & NumFact.ToString.PadLeft(5, "0")
+        Return "FA" & NumFact.ToString.PadLeft(3, "0")
 
     End Function
+
 
     Sub Gridcalculsolde(laGrid As Windows.Forms.DataGridView)
         Dim leSolde As Double = 0
@@ -591,86 +620,66 @@ Public Module Common
     Sub EnregCompta(lEcr As EcritureCompta, leType As ecrType)
         Dim sSql1 As String = "", sSql2 As String
         Dim leJournal As String = ""
-        Dim larubrique As String = ""
+        Dim leTiers As String = ""
         Dim laCategorie As String = ""
 
         Select Case leType
-            Case ecrType.LocAppelLoyer : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "LOYER"
-            Case ecrType.locAvoirLoyer : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "LOYER"
-            Case ecrType.LocAppelCharge : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "PROVCHARGE"
-            Case ecrType.locAvoirCharge : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "PROVCHARGE"
-            Case ecrType.LocAppelDG : leJournal = "DEPOT" : larubrique = "SOCIETE" : laCategorie = "APPELDG"
-            Case ecrType.LocRepriseDG : leJournal = "DEPOT" : larubrique = "LOCATAIRE" : laCategorie = "REPRISEDG"
-            Case ecrType.locAvoirDG : leJournal = "DEPOT" : larubrique = "LOCATAIRE" : laCategorie = "AVOIRDG"
-            Case ecrType.LocRemboursement : leJournal = "BANQUE" : larubrique = "BANQUE" : laCategorie = "DECAISSEMENT"
-            Case ecrType.LocEncaisse : leJournal = "BANQUE" : larubrique = "LOCATAIRE" : laCategorie = "ENCAISSEMENT"
-            Case ecrType.LocChargeExt : leJournal = "ACHATS" : larubrique = "FOURNISSEUR" : laCategorie = "CHARGE"
-            Case ecrType.LocChargeInt : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "CHARGE"
-            Case ecrType.SocChargeExt : leJournal = "ACHATS" : larubrique = "FOURNISSEUR" : laCategorie = "CHARGE"
-            Case ecrType.CoprochargeExt : leJournal = "ACHATS" : larubrique = "FOURNISSEUR" : laCategorie = "CHARGE"
-            Case ecrType.CoprochargeInt : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "CHARGE"
-            Case ecrType.ClientArchivage : leJournal = "VENTES" : larubrique = "STOCKAGE" : laCategorie = "ARCHIVAGE" : lEcr.SocId = 0
-            Case ecrType.ClientFourniture : leJournal = "VENTES" : larubrique = "STOCKAGE" : laCategorie = "FOURNITURE" : lEcr.SocId = 0
-            Case ecrType.ClientStockage : leJournal = "VENTES" : larubrique = "STOCKAGE" : laCategorie = "STOCKAGE" : lEcr.SocId = 0
-            Case ecrType.ClientEncaisse : leJournal = "BANQUE" : larubrique = "CLIENT" : laCategorie = "ENCAISSEMENT" : lEcr.SocId = 0
-            Case ecrType.FourPaiement : leJournal = "BANQUE" : larubrique = "BANQUE" : laCategorie = "DECAISSEMENT"
-            Case ecrType.locRevLoyer : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "LOYER"
-            Case ecrType.ChargeReprise : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "REGULPROV"
-            Case ecrType.ChargeReel : leJournal = "VENTES" : larubrique = "SOCIETE" : laCategorie = "REGULREEL"
+            Case ecrType.LocAppelLoyer : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "LOYER"
+            Case ecrType.locAvoirLoyer : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "LOYER"
+            Case ecrType.LocAppelCharge : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "PROVCHARGE"
+            Case ecrType.locAvoirCharge : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "PROVCHARGE"
+            Case ecrType.LocAppelDG : leJournal = "DEPOT" : leTiers = "SOCIETE" : laCategorie = "APPELDG"
+            Case ecrType.LocRepriseDG : leJournal = "DEPOT" : leTiers = "LOCATAIRE" : laCategorie = "REPRISEDG"
+            Case ecrType.locAvoirDG : leJournal = "DEPOT" : leTiers = "LOCATAIRE" : laCategorie = "AVOIRDG"
+            Case ecrType.LocRemboursement : leJournal = "BANQUE" : leTiers = "BANQUE" : laCategorie = "DECAISSEMENT"
+            Case ecrType.LocEncaisse : leJournal = "BANQUE" : leTiers = "LOCATAIRE" : laCategorie = "ENCAISSEMENT"
+            Case ecrType.LocChargeExt : leJournal = "ACHATS" : leTiers = "FOURNISSEUR" : laCategorie = "CHARGE"
+            Case ecrType.LocChargeInt : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "CHARGE"
+            Case ecrType.SocChargeExt : leJournal = "ACHATS" : leTiers = "FOURNISSEUR" : laCategorie = "CHARGE"
+            Case ecrType.CoprochargeExt : leJournal = "ACHATS" : leTiers = "FOURNISSEUR" : laCategorie = "CHARGE"
+            Case ecrType.CoprochargeInt : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "CHARGE"
+            Case ecrType.FourPaiement : leJournal = "BANQUE" : leTiers = "BANQUE" : laCategorie = "DECAISSEMENT"
+            Case ecrType.locRevLoyer : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "LOYER"
+            Case ecrType.ChargeReprise : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "REGULPROV"
+            Case ecrType.ChargeReel : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "REGULREEL"
+            Case ecrType.ClientFacture : leJournal = "VENTES" : leTiers = "SOCIETE" : laCategorie = "VENTE"
+            Case ecrType.ClientEncaisse : leJournal = "BANQUE" : leTiers = "CLIENT" : laCategorie = "ENCAISSEMENT"
         End Select
 
         lIndexPiece += 1
 
         sSql1 = "insert into comptagene (ecrDate, ecrEcheance, numpiece, socId, locId, coproId, fourId, cliId, cptBkid " _
-        & " , cleId, cptId, numFacture, partLocataire, partProprio, indRevisionId, DateDebut, dateFin,NumFactureInterne,AnneeEffet,IndexPiece,journal, rubrique, categorie, ecrlib, ecrmontantHt, ecrMontantTVA, ecrMontantTTC,rubId) " _
+        & " , cleId, cptId, numFacture, partLocataire, partProprio, indRevisionId, DateDebut, dateFin,NumFactureInterne,AnneeEffet,IndexPiece,journal, Tiers, categorie, ecrlib, ecrmontantHt, ecrMontantTVA, ecrMontantTTC,rubId) " _
         & " values (" & Date2sql(lEcr.DateEcr) & "," & Date2sql(lEcr.Echeance) & "," & lEcr.Piece & "," & lEcr.SocId & "," & lEcr.LocId & "," & lEcr.CoproId & "," & lEcr.FourId & "," & lEcr.CliId & "," & lEcr.CptBkid _
         & "," & lEcr.cleId & "," & lEcr.CompteId & ",'" & txt2sql(lEcr.NumFacture) & "'," & num2sql(lEcr.PartLoc) & "," & num2sql(lEcr.PartProprio) & "," & num2sql(lEcr.IndiceRevision) & "," & Date2sql(lEcr.DateDeb) _
         & "," & Date2sql(lEcr.DateFin) & ",'" & lEcr.NumFactInterne & "'," & lEcr.AnneeEffet & "," & lIndexPiece
 
-        sSql2 = ",'" & leJournal & "','" & larubrique & "','" & laCategorie & "','" & txt2sql(lEcr.Libelle) _
+        sSql2 = ",'" & leJournal & "','" & leTiers & "','" & laCategorie & "','" & txt2sql(lEcr.Libelle) _
         & "','" & num2sql(lEcr.MontantHT) & "','" & num2sql(lEcr.montantTVA) & "','" & num2sql(lEcr.MontantTTC) & "'," & lEcr.rubId & ")"
 
         sqlDo(sSql1 & sSql2, conSql)
 
 
         'ON ecrit la contrepartie negative
-        larubrique = "LOCATAIRE" ' par defaut
+        leTiers = "LOCATAIRE" ' par defaut
         Select Case leType
-            Case ecrType.LocRepriseDG : larubrique = "SOCIETE"
-            Case ecrType.LocEncaisse : larubrique = "BANQUE"
-            Case ecrType.SocChargeExt : larubrique = "SOCIETE"
-            Case ecrType.CoprochargeExt : larubrique = "COPRO"
-            Case ecrType.CoprochargeInt : larubrique = "COPRO"
-            Case ecrType.ClientArchivage : larubrique = "CLIENT"
-            Case ecrType.ClientFourniture : larubrique = "CLIENT"
-            Case ecrType.ClientStockage : larubrique = "CLIENT"
-            Case ecrType.ClientEncaisse : larubrique = "BANQUE"
-            Case ecrType.FourPaiement : larubrique = "FOURNISSEUR"
-            Case ecrType.locAvoirDG : larubrique = "SOCIETE"
+            Case ecrType.LocRepriseDG : leTiers = "SOCIETE"
+            Case ecrType.LocEncaisse : leTiers = "BANQUE"
+            Case ecrType.SocChargeExt : leTiers = "SOCIETE"
+            Case ecrType.CoprochargeExt : leTiers = "COPRO"
+            Case ecrType.CoprochargeInt : leTiers = "COPRO"
+            Case ecrType.FourPaiement : leTiers = "FOURNISSEUR"
+            Case ecrType.locAvoirDG : leTiers = "SOCIETE"
+            Case ecrType.ClientFacture : leTiers = "CLIENT"
+            Case ecrType.ClientEncaisse : leTiers = "BANQUE"
         End Select
 
-        sSql2 = ",'" & leJournal & "','" & larubrique & "','" & laCategorie & "','" & txt2sql(lEcr.Libelle) _
+        sSql2 = ",'" & leJournal & "','" & leTiers & "','" & laCategorie & "','" & txt2sql(lEcr.Libelle) _
         & "','" & num2sql(-lEcr.MontantHT) & "','" & num2sql(-lEcr.montantTVA) & "','" & num2sql(-lEcr.MontantTTC) & "'," & lEcr.rubId & ")"
 
         sqlDo(sSql1 & sSql2, conSql)
 
     End Sub
-
-    'Sub EnregComptaLocat(lEcr As EcritureCompta, leType As ecrType)
-    '    Dim sSql1 As String = ""
-    '    Dim leJournal As String = ""
-    '    Dim larubrique As String = ""
-    '    Dim laCategorie As String = ""
-
-    '    sSql1 = "insert into comptagene (ecrDate, ecrEcheance, numpiece,  locId,clidId" _
-    '    & " , numFacture, ecrlib, ecrmontantHt, ecrMontantTVA, ecrMontantTTC) " _
-    '    & " values (" & Date2sql(lEcr.DateEcr) & "," & Date2sql(lEcr.Echeance) & "," & lEcr.Piece & "," & lEcr.LocId & "," & lEcr.CliId _
-    '    & ",'" & txt2sql(lEcr.NumFacture) & "','" & txt2sql(lEcr.Libelle) _
-    '    & "','" & num2sql(lEcr.MontantHT) & "','" & num2sql(lEcr.montantTVA) & "','" & num2sql(lEcr.MontantTTC) & "')"
-
-    '    sqlDo(sSql1, conSql)
-
-    'End Sub
 
     Public Sub SupprEcr(lapiece As Integer)
         Try
@@ -682,10 +691,11 @@ Public Module Common
         End Try
     End Sub
 
-    Sub FactureEdition(laFacture As String, leType As docType, laSocId As Integer, lid As Integer)
+    Sub FactureEdition(laFacture As String)
         Dim ssql As String = ""
         Dim lers As OleDb.OleDbDataReader
         Dim ladate As Date
+        Dim lEcheance As Date
         Dim colArticle As Integer
         Dim colHT As Integer
         Dim colTVA As Integer
@@ -693,107 +703,84 @@ Public Module Common
         Dim laLigne As Integer
         Dim leModele As String = ""
         Dim appXL As New Microsoft.Office.Interop.Excel.Application
+        Dim laSocid As Integer = 0
+        Dim leTiersId As Integer = 0
+
 
         Try
-            'Recherche le modele de la societe
-            If laSocId <> 0 Then
-                ssql = "Select modeleFacture from societe where socid=" & laSocId
-                lers = sqlLit(ssql, conSql)
-                While lers.Read
-                    leModele = nz(lers(0).ToString, "")
-                End While
-                lers.Close()
-            End If
 
-            If leModele = "" Then leModele = My.Settings.ChemModeleOffice & "Facture.xlsx"
-
-            appXL.Workbooks.Add(leModele)
-            appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
-            appXL.Visible = True
-
-            'Recherche les données à facturer
-            ssql = "select "
-            Select Case leType
-                Case docType.Copro : ssql &= "coproId as id,socid"
-                Case docType.Client : ssql &= "cliId as id,0 as socId"
-                Case docType.Societe : ssql &= "socid as id"
-                Case docType.Loc : ssql &= "locId as id,socid"
-            End Select
-            ssql &= " ,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate from comptaGene where  numfacture='" & laFacture & "'"
-            Select Case leType
-                Case docType.Copro : ssql &= " and rubrique='COPRO' and coproid=" & lid
-                Case docType.Client : ssql &= " and rubrique ='STOCKAGE'"
-                Case docType.Societe : ssql &= " and rubrique='SOCIETE' and socid = " & lid
-                Case docType.Loc : ssql &= " and rubrique='LOCATAIRE' and locid = " & lid
-            End Select
-
-            'recherche la cellule Article1
-            colArticle = appXL.Range("Article1").Column
-            colHT = appXL.Range("montantHT1").Column
-            colTVA = appXL.Range("montanttva1").Column
-            colTTC = appXL.Range("montantTTC1").Column
-
-            laLigne = appXL.Range("Article1").Row
-
-            lers = sqlLit(ssql, conSql)
+            lers = sqlLit("select distinct locid, socid from comptagene where tiers='CLIENT' and categorie='VENTE' and numfacture='" & laFacture & "'", conSql)
             While lers.Read
-                lid = lers(0)
-                ladate = lers("ecrdate")
-                laSocId = lers("socid")
-                appXL.Cells(laLigne, colArticle).value = "'" & lers("ecrlib").ToString
-                appXL.Cells(laLigne, colHT).value = num2sql(-lers("ecrMontantHT").ToString)
-                appXL.Cells(laLigne, colTVA).value = num2sql(-lers("ecrMontantTVA").ToString)
-                appXL.Cells(laLigne, colTTC).value = num2sql(-lers("ecrMontantTTC").ToString)
-                laLigne += 1
+                leTiersId = lers("locid")
+                laSocid = lers("socid")
             End While
             lers.Close()
 
-            appXL.Range("NumFacture").Value = "'" & laFacture
-            appXL.Range("DateFacture").Value = "'" & ladate.ToString("yyyy-MM-dd")
+            If laSocid <> 0 Then
+                'Recherche le modele de la societe
+                If laSocId <> 0 Then
+                    ssql = "Select modeleFacture from societe where socid=" & laSocId
+                    lers = sqlLit(ssql, conSql)
+                    While lers.Read
+                        leModele = nz(lers(0).ToString, "")
+                    End While
+                    lers.Close()
+                End If
 
+                If leModele = "" Then leModele = My.Settings.ChemModeleOffice & "Facture.xlsx"
 
-            'recherche les coordonnées du bénéficiaire
-            Select Case leType
-                Case docType.Client
-                    ssql = "SELECT  Nom, Adr1, CodePostal, Localite FROM Annuaire INNER JOIN Client ON Annuaire.PersId = Client.PersId where cliId=" & lid
-                Case docType.Copro
-                    ssql = "select copronom as nom,adr1,codePostal,localite from copro where coproId=" & lid
-                Case docType.Societe, docType.Loc
-                    ssql = "SELECT  Nom, Adr1, CodePostal, Localite FROM Annuaire INNER JOIN locataire ON Annuaire.PersId = locataire.PersId where locId=" & lid
-            End Select
-            lers = sqlLit(ssql, conSql)
-            While lers.Read
-                appXL.Range("Nom").Value = "'" & lers("Nom")
-                appXL.Range("Adresse").Value = "'" & lers("Adr1")
-                appXL.Range("CP").Value = lers("CodePostal").ToString & " " & lers("localite").ToString
-            End While
-            lers.Close()
+                appXL.Workbooks.Add(leModele)
+                appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
+                appXL.Visible = True
 
-            'recherche les coordonnées du prestataire
-            If laSocId <> 0 Then
-                laLigne = appXL.Range("societe").Row
-                colArticle = appXL.Range("societe").Column
-                ssql = "SELECT  Nom, Adr1, CodePostal, Localite FROM Annuaire INNER JOIN Societe ON Annuaire.PersId = societe.PersId where socid=" & laSocId
+                'Recherche les données à facturer
+                ssql = "select locid,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrecheance from comptaGene where  numfacture='" & laFacture & "' and Tiers='SOCIETE' and categorie='VENTE'"
+
+                'recherche la cellule Article1
+                colArticle = appXL.Range("Article1").Column
+                colHT = appXL.Range("montantHT1").Column
+                colTVA = appXL.Range("montanttva1").Column
+                colTTC = appXL.Range("montantTTC1").Column
+
+                laLigne = appXL.Range("Article1").Row
+
                 lers = sqlLit(ssql, conSql)
                 While lers.Read
-                    appXL.Cells(laLigne, colArticle).value = "'" & lers("Nom")
-                    appXL.Cells(laLigne + 1, colArticle).value = "'" & lers("Adr1")
-                    appXL.Cells(laLigne + 2, colArticle) = lers("CodePostal").ToString & " " & lers("localite").ToString
+                    ladate = lers("ecrdate")
+                    lEcheance = lers("ecrecheance")
+                    appXL.Cells(laLigne, colArticle).value = "'" & lers("ecrlib").ToString
+
+                    appXL.Cells(laLigne, colHT).value = num2sql(lers("ecrMontantHT").ToString)
+                    appXL.Cells(laLigne, colTVA).value = num2sql(lers("ecrMontantTVA").ToString)
+                    appXL.Cells(laLigne, colTTC).value = num2sql(lers("ecrMontantTTC").ToString)
+
+                    laLigne += 1
                 End While
                 lers.Close()
+
+                appXL.Range("NumFacture").Value = "'" & laFacture
+                appXL.Range("DateFacture").Value = "'" & ladate.ToString("dd/MM/yyyy")
+                appXL.Range("ecrEcheance").Value = "'" & lEcheance.ToString("dd/MM/yyyy")
+
+
+                'recherche les coordonnées du bénéficiaire
+                ssql = "SELECT  Nom, Adr1, CodePostal, Localite FROM Annuaire INNER JOIN locataire ON Annuaire.PersId = locataire.PersId where locid=" & leTiersId
+                lers = sqlLit(ssql, conSql)
+                While lers.Read
+                    appXL.Range("Nom").Value = "'" & lers("Nom")
+                    appXL.Range("Adresse").Value = "'" & lers("Adr1")
+                    appXL.Range("CP").Value = lers("CodePostal").ToString & " " & lers("localite").ToString
+                End While
+                lers.Close()
+
+                'Facture Excel
+                appXL.Range("A1").Select()
+                appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationAutomatic
+                appXL.UserControl = True
+
+                ' Make sure that you release object references.
+
             End If
-
-            'Facture Excel
-            appXL.Range("A1").Select()
-            appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationAutomatic
-            appXL.activate()
-
-            appXL.Visible = True
-            appXL.UserControl = True
-
-            ' Make sure that you release object references.
-
-
 
         Catch ex As Exception
             MessageBox.Show(ex.Message)
@@ -839,7 +826,7 @@ Public Module Common
             'Recherche les données à facturer
             ssql = "select locId as id,socid, datedebut, datefin"
             ssql &= " ,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrEcheance from comptaGene where locid=" & lid & " and  numfactureInterne='" & lafactureinterne & "'"
-            ssql &= " and rubrique='LOCATAIRE'"
+            ssql &= " and Tiers='LOCATAIRE'"
 
             'recherche la cellule Article1
             colArticle = appXL.Range("Article1").Column

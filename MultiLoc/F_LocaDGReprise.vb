@@ -8,12 +8,12 @@
 
         Me.ErrorProvider1.Clear()
         ssql = "select sum(ecrMontantHT ) as depotHT,sum(ecrMontantTTC ) as depotTTC " _
-            & " FROM  ComptaGene where  rubrique='LOCATAIRE' and  journal='DEPOT' and locid=" & Me.leLocId _
+            & " FROM  ComptaGene where  tiers='LOCATAIRE' and  journal='DEPOT' and locid=" & Me.leLocId _
             & " and numfacture <>'T" & leLocId & "'" _
             & " group by locid"
 
         ssql = "select ecrMontantHT from comptagene where locid=" & Me.leLocId _
-            & " and rubrique='LOCATAIRE' and categorie='APPELDG' order by ecrdate asc"
+            & " and tiers='LOCATAIRE' and categorie='APPELDG' order by ecrdate asc"
         lers = sqlLit(ssql, conSql)
         While lers.Read
             Me.tDGHT.Text = num2txt(-lers(0))

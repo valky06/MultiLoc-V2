@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class F_LocaCharge
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class F_FactureSociete
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class F_LocaCharge
     'REMARQUE : la procédure suivante est requise par le Concepteur Windows Form
     'Elle peut être modifiée à l'aide du Concepteur Windows Form.  
     'Ne la modifiez pas à l'aide de l'éditeur de code.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -38,18 +38,20 @@ Partial Class F_LocaCharge
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.tTauxTVA = New System.Windows.Forms.TextBox()
-        Me.liFour = New System.Windows.Forms.LinkLabel()
-        Me.tFourNom = New System.Windows.Forms.TextBox()
-        Me.tFourId = New System.Windows.Forms.TextBox()
         Me.lRubrique = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.tNumFacture = New System.Windows.Forms.TextBox()
+        Me.lClient = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.tNum = New System.Windows.Forms.TextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(27, 120)
+        Me.Label6.Location = New System.Drawing.Point(7, 124)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 13)
         Me.Label6.TabIndex = 35
@@ -57,7 +59,7 @@ Partial Class F_LocaCharge
         '
         'tMontantHT
         '
-        Me.tMontantHT.Location = New System.Drawing.Point(97, 117)
+        Me.tMontantHT.Location = New System.Drawing.Point(77, 121)
         Me.tMontantHT.Name = "tMontantHT"
         Me.tMontantHT.Size = New System.Drawing.Size(68, 20)
         Me.tMontantHT.TabIndex = 5
@@ -66,7 +68,7 @@ Partial Class F_LocaCharge
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(58, 69)
+        Me.Label2.Location = New System.Drawing.Point(41, 99)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(30, 13)
         Me.Label2.TabIndex = 32
@@ -74,17 +76,21 @@ Partial Class F_LocaCharge
         '
         'tLibelle
         '
+        Me.tLibelle.AcceptsReturn = True
+        Me.tLibelle.AcceptsTab = True
         Me.tLibelle.BackColor = System.Drawing.Color.White
-        Me.tLibelle.Location = New System.Drawing.Point(97, 91)
+        Me.tLibelle.Location = New System.Drawing.Point(77, 147)
+        Me.tLibelle.MaxLength = 2000
+        Me.tLibelle.Multiline = True
         Me.tLibelle.Name = "tLibelle"
-        Me.tLibelle.Size = New System.Drawing.Size(272, 20)
+        Me.tLibelle.Size = New System.Drawing.Size(272, 114)
         Me.tLibelle.TabIndex = 4
         Me.tLibelle.Tag = "ecrLib,to"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(54, 94)
+        Me.Label7.Location = New System.Drawing.Point(34, 150)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(37, 13)
         Me.Label7.TabIndex = 23
@@ -93,7 +99,7 @@ Partial Class F_LocaCharge
         'bAnnul
         '
         Me.bAnnul.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.bAnnul.Location = New System.Drawing.Point(16, 161)
+        Me.bAnnul.Location = New System.Drawing.Point(16, 276)
         Me.bAnnul.Name = "bAnnul"
         Me.bAnnul.Size = New System.Drawing.Size(75, 31)
         Me.bAnnul.TabIndex = 9
@@ -102,7 +108,7 @@ Partial Class F_LocaCharge
         '
         'bOK
         '
-        Me.bOK.Location = New System.Drawing.Point(294, 161)
+        Me.bOK.Location = New System.Drawing.Point(274, 276)
         Me.bOK.Name = "bOK"
         Me.bOK.Size = New System.Drawing.Size(75, 31)
         Me.bOK.TabIndex = 8
@@ -116,7 +122,7 @@ Partial Class F_LocaCharge
         'dDate
         '
         Me.dDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dDate.Location = New System.Drawing.Point(97, 65)
+        Me.dDate.Location = New System.Drawing.Point(77, 95)
         Me.dDate.Name = "dDate"
         Me.dDate.Size = New System.Drawing.Size(101, 20)
         Me.dDate.TabIndex = 2
@@ -125,7 +131,7 @@ Partial Class F_LocaCharge
         'dEcheance
         '
         Me.dEcheance.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dEcheance.Location = New System.Drawing.Point(268, 65)
+        Me.dEcheance.Location = New System.Drawing.Point(248, 95)
         Me.dEcheance.Name = "dEcheance"
         Me.dEcheance.Size = New System.Drawing.Size(101, 20)
         Me.dEcheance.TabIndex = 3
@@ -134,7 +140,7 @@ Partial Class F_LocaCharge
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(206, 69)
+        Me.Label1.Location = New System.Drawing.Point(186, 99)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(56, 13)
         Me.Label1.TabIndex = 50
@@ -143,7 +149,7 @@ Partial Class F_LocaCharge
         'tMontantTTC
         '
         Me.tMontantTTC.BackColor = System.Drawing.Color.White
-        Me.tMontantTTC.Location = New System.Drawing.Point(290, 117)
+        Me.tMontantTTC.Location = New System.Drawing.Point(270, 121)
         Me.tMontantTTC.Name = "tMontantTTC"
         Me.tMontantTTC.ReadOnly = True
         Me.tMontantTTC.Size = New System.Drawing.Size(79, 20)
@@ -153,7 +159,7 @@ Partial Class F_LocaCharge
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(256, 120)
+        Me.Label3.Location = New System.Drawing.Point(236, 124)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(28, 13)
         Me.Label3.TabIndex = 73
@@ -162,7 +168,7 @@ Partial Class F_LocaCharge
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(172, 120)
+        Me.Label4.Location = New System.Drawing.Point(152, 124)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(28, 13)
         Me.Label4.TabIndex = 71
@@ -172,47 +178,17 @@ Partial Class F_LocaCharge
         '
         Me.tTauxTVA.BackColor = System.Drawing.Color.White
         Me.tTauxTVA.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.tTauxTVA.Location = New System.Drawing.Point(206, 117)
+        Me.tTauxTVA.Location = New System.Drawing.Point(186, 121)
         Me.tTauxTVA.Name = "tTauxTVA"
         Me.tTauxTVA.Size = New System.Drawing.Size(44, 20)
         Me.tTauxTVA.TabIndex = 6
         Me.tTauxTVA.Tag = ""
         '
-        'liFour
-        '
-        Me.liFour.AutoSize = True
-        Me.liFour.Location = New System.Drawing.Point(30, 15)
-        Me.liFour.Name = "liFour"
-        Me.liFour.Size = New System.Drawing.Size(61, 13)
-        Me.liFour.TabIndex = 74
-        Me.liFour.TabStop = True
-        Me.liFour.Text = "Fournisseur"
-        '
-        'tFourNom
-        '
-        Me.tFourNom.BackColor = System.Drawing.Color.White
-        Me.tFourNom.Location = New System.Drawing.Point(97, 12)
-        Me.tFourNom.Name = "tFourNom"
-        Me.tFourNom.ReadOnly = True
-        Me.tFourNom.Size = New System.Drawing.Size(272, 20)
-        Me.tFourNom.TabIndex = 75
-        Me.tFourNom.TabStop = False
-        Me.tFourNom.Tag = "nom"
-        '
-        'tFourId
-        '
-        Me.tFourId.Location = New System.Drawing.Point(375, 12)
-        Me.tFourId.Name = "tFourId"
-        Me.tFourId.ReadOnly = True
-        Me.tFourId.Size = New System.Drawing.Size(21, 20)
-        Me.tFourId.TabIndex = 76
-        Me.tFourId.Tag = "fourId,no"
-        Me.tFourId.Visible = False
-        '
         'lRubrique
         '
+        Me.lRubrique.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.lRubrique.FormattingEnabled = True
-        Me.lRubrique.Location = New System.Drawing.Point(97, 38)
+        Me.lRubrique.Location = New System.Drawing.Point(77, 65)
         Me.lRubrique.Name = "lRubrique"
         Me.lRubrique.Size = New System.Drawing.Size(272, 21)
         Me.lRubrique.TabIndex = 90
@@ -221,25 +197,77 @@ Partial Class F_LocaCharge
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(41, 41)
+        Me.Label5.Location = New System.Drawing.Point(21, 71)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(50, 13)
         Me.Label5.TabIndex = 91
         Me.Label5.Text = "Rubrique"
         '
-        'F_LocaCharge
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(13, 42)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(58, 13)
+        Me.Label8.TabIndex = 93
+        Me.Label8.Text = "N° Facture"
+        '
+        'tNumFacture
+        '
+        Me.tNumFacture.Location = New System.Drawing.Point(77, 39)
+        Me.tNumFacture.Name = "tNumFacture"
+        Me.tNumFacture.ReadOnly = True
+        Me.tNumFacture.Size = New System.Drawing.Size(153, 20)
+        Me.tNumFacture.TabIndex = 92
+        Me.tNumFacture.Tag = ""
+        '
+        'lClient
+        '
+        Me.lClient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.lClient.FormattingEnabled = True
+        Me.lClient.Location = New System.Drawing.Point(77, 12)
+        Me.lClient.Name = "lClient"
+        Me.lClient.Size = New System.Drawing.Size(272, 21)
+        Me.lClient.TabIndex = 94
+        Me.lClient.Tag = "socid,co"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(28, 15)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(33, 13)
+        Me.Label9.TabIndex = 95
+        Me.Label9.Text = "Client"
+        '
+        'tNum
+        '
+        Me.tNum.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.tNum.Enabled = False
+        Me.tNum.Location = New System.Drawing.Point(236, 39)
+        Me.tNum.Name = "tNum"
+        Me.tNum.ReadOnly = True
+        Me.tNum.Size = New System.Drawing.Size(113, 20)
+        Me.tNum.TabIndex = 96
+        Me.tNum.Tag = ""
+        Me.tNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.tNum.Visible = False
+        '
+        'F_FactureSociete
         '
         Me.AcceptButton = Me.bOK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.bAnnul
-        Me.ClientSize = New System.Drawing.Size(399, 207)
+        Me.ClientSize = New System.Drawing.Size(367, 323)
         Me.ControlBox = False
+        Me.Controls.Add(Me.tNum)
+        Me.Controls.Add(Me.lClient)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.tNumFacture)
         Me.Controls.Add(Me.lRubrique)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.tFourId)
-        Me.Controls.Add(Me.liFour)
-        Me.Controls.Add(Me.tFourNom)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.tTauxTVA)
@@ -256,9 +284,10 @@ Partial Class F_LocaCharge
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.Name = "F_LocaCharge"
+        Me.Name = "F_FactureSociete"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Charge Locataire"
+        Me.Text = "Facturation"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -279,9 +308,11 @@ Partial Class F_LocaCharge
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents tTauxTVA As System.Windows.Forms.TextBox
-    Friend WithEvents liFour As System.Windows.Forms.LinkLabel
-    Friend WithEvents tFourNom As System.Windows.Forms.TextBox
-    Friend WithEvents tFourId As System.Windows.Forms.TextBox
     Friend WithEvents lRubrique As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents tNumFacture As TextBox
+    Friend WithEvents lClient As ComboBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents tNum As TextBox
 End Class

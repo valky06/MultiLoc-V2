@@ -60,9 +60,9 @@ Partial Class F_TypeCptRub
         Me.Label7.AutoSize = True
         Me.Label7.Location = New System.Drawing.Point(19, 15)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(50, 13)
+        Me.Label7.Size = New System.Drawing.Size(52, 13)
         Me.Label7.TabIndex = 23
-        Me.Label7.Text = "Rubrique"
+        Me.Label7.Text = "Catégorie"
         '
         'tNom
         '
@@ -101,7 +101,7 @@ Partial Class F_TypeCptRub
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Tag = "ComptaRubrique"
-        Me.Text = "Rubrique Comptable"
+        Me.Text = "Catégorie Comptable"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

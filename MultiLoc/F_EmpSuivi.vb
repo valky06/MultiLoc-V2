@@ -49,7 +49,7 @@
         Try
             sSql = "SELECT ecrId, numPiece, ecrDate, ecrEcheance, ecrLib, ecrMontantTTC,numfacture" _
             & " FROM ComptaGene " _
-            & " where rubrique='STOCKAGE' order by ecrDate desc"
+            & " where tiers='STOCKAGE' order by ecrDate desc"
 
             Me.gCompta.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -135,7 +135,7 @@
     Private Sub gContrat_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles gContrat.CellContentClick
         Select Case e.ColumnIndex
             Case Me.gContrat.Columns("client").Index
-                F_ClientSuivi.leCliId = Me.gContrat.SelectedRows(0).Cells("cliId").Value
+                F_ClientSuivi.leTiersId = Me.gContrat.SelectedRows(0).Cells("cliId").Value
                 Call F_main.mnuClient(Nothing, Nothing)
                 Me.Dispose()
         End Select

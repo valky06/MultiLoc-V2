@@ -29,17 +29,12 @@ Partial Class F_ClientSuivi
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_ClientSuivi))
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compte = New System.Windows.Forms.TabPage()
         Me.bEditFActure = New System.Windows.Forms.Button()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.bsuppEcrit = New System.Windows.Forms.Button()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.gCompta = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,30 +45,6 @@ Partial Class F_ClientSuivi
         Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Contrats = New System.Windows.Forms.TabPage()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.gBail = New System.Windows.Forms.GroupBox()
-        Me.tPersId = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel()
-        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
-        Me.tLocId = New System.Windows.Forms.TextBox()
-        Me.lTypePer = New System.Windows.Forms.ComboBox()
-        Me.lTypeRgt = New System.Windows.Forms.ComboBox()
-        Me.gContrat = New System.Windows.Forms.DataGridView()
-        Me.contratId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.contratNom = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateDebut = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateFinPrev = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MontantHT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NBEmplacement = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Document = New System.Windows.Forms.TabPage()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -82,6 +53,13 @@ Partial Class F_ClientSuivi
         Me.dateCrea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.docNom = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.docPath = New System.Windows.Forms.DataGridViewLinkColumn()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.gClient = New System.Windows.Forms.GroupBox()
+        Me.tPersId = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.tCompte = New System.Windows.Forms.TextBox()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.bWord = New System.Windows.Forms.ToolStripButton()
         Me.bXL = New System.Windows.Forms.ToolStripButton()
@@ -94,11 +72,10 @@ Partial Class F_ClientSuivi
         Me.oOnglet.SuspendLayout()
         Me.Compte.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Contrats.SuspendLayout()
-        Me.gBail.SuspendLayout()
-        CType(Me.gContrat, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Document.SuspendLayout()
         CType(Me.gDoc, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage1.SuspendLayout()
+        Me.gClient.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -108,8 +85,8 @@ Partial Class F_ClientSuivi
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.oOnglet.Controls.Add(Me.Compte)
-        Me.oOnglet.Controls.Add(Me.Contrats)
         Me.oOnglet.Controls.Add(Me.Document)
+        Me.oOnglet.Controls.Add(Me.TabPage1)
         Me.oOnglet.Enabled = False
         Me.oOnglet.Location = New System.Drawing.Point(12, 67)
         Me.oOnglet.Name = "oOnglet"
@@ -122,8 +99,6 @@ Partial Class F_ClientSuivi
         Me.Compte.Controls.Add(Me.bEditFActure)
         Me.Compte.Controls.Add(Me.Button9)
         Me.Compte.Controls.Add(Me.bsuppEcrit)
-        Me.Compte.Controls.Add(Me.Button12)
-        Me.Compte.Controls.Add(Me.Button7)
         Me.Compte.Controls.Add(Me.Button11)
         Me.Compte.Controls.Add(Me.gCompta)
         Me.Compte.Location = New System.Drawing.Point(4, 22)
@@ -139,9 +114,9 @@ Partial Class F_ClientSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(815, 95)
+        Me.bEditFActure.Location = New System.Drawing.Point(815, 49)
         Me.bEditFActure.Name = "bEditFActure"
-        Me.bEditFActure.Size = New System.Drawing.Size(93, 28)
+        Me.bEditFActure.Size = New System.Drawing.Size(93, 38)
         Me.bEditFActure.TabIndex = 19
         Me.bEditFActure.Text = "Edition Facture"
         Me.bEditFActure.UseVisualStyleBackColor = True
@@ -151,11 +126,11 @@ Partial Class F_ClientSuivi
         Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(815, 52)
+        Me.Button9.Location = New System.Drawing.Point(815, 6)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(93, 37)
         Me.Button9.TabIndex = 18
-        Me.Button9.Text = "Facture Interne"
+        Me.Button9.Text = "Facture"
         Me.Button9.UseVisualStyleBackColor = True
         '
         'bsuppEcrit
@@ -163,51 +138,23 @@ Partial Class F_ClientSuivi
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(815, 312)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(815, 306)
         Me.bsuppEcrit.Name = "bsuppEcrit"
-        Me.bsuppEcrit.Size = New System.Drawing.Size(93, 28)
+        Me.bsuppEcrit.Size = New System.Drawing.Size(93, 34)
         Me.bsuppEcrit.TabIndex = 16
         Me.bsuppEcrit.Text = "Supprimer Ecrit."
         Me.bsuppEcrit.UseVisualStyleBackColor = True
-        '
-        'Button12
-        '
-        Me.Button12.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button12.Enabled = False
-        Me.Button12.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Location = New System.Drawing.Point(815, 246)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(93, 38)
-        Me.Button12.TabIndex = 15
-        Me.Button12.Text = "Relance Impayé"
-        Me.Button12.UseVisualStyleBackColor = False
-        Me.Button12.Visible = False
-        '
-        'Button7
-        '
-        Me.Button7.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button7.Enabled = False
-        Me.Button7.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(815, 202)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(93, 38)
-        Me.Button7.TabIndex = 14
-        Me.Button7.Text = "Reprise de solde"
-        Me.Button7.UseVisualStyleBackColor = False
-        Me.Button7.Visible = False
         '
         'Button11
         '
         Me.Button11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(815, 6)
+        Me.Button11.Location = New System.Drawing.Point(815, 104)
         Me.Button11.Name = "Button11"
         Me.Button11.Size = New System.Drawing.Size(93, 40)
         Me.Button11.TabIndex = 13
-        Me.Button11.Text = "Encaissement"
+        Me.Button11.Text = "Règlement Facture"
         Me.Button11.UseVisualStyleBackColor = False
         '
         'gCompta
@@ -306,261 +253,6 @@ Partial Class F_ClientSuivi
         Me.solde.Name = "solde"
         Me.solde.ReadOnly = True
         '
-        'Contrats
-        '
-        Me.Contrats.Controls.Add(Me.Button10)
-        Me.Contrats.Controls.Add(Me.Button8)
-        Me.Contrats.Controls.Add(Me.gBail)
-        Me.Contrats.Controls.Add(Me.gContrat)
-        Me.Contrats.Controls.Add(Me.Button5)
-        Me.Contrats.Controls.Add(Me.Button4)
-        Me.Contrats.Controls.Add(Me.Button1)
-        Me.Contrats.Location = New System.Drawing.Point(4, 22)
-        Me.Contrats.Name = "Contrats"
-        Me.Contrats.Size = New System.Drawing.Size(914, 346)
-        Me.Contrats.TabIndex = 2
-        Me.Contrats.Text = "Contrats"
-        Me.Contrats.UseVisualStyleBackColor = True
-        '
-        'Button10
-        '
-        Me.Button10.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(818, 287)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(85, 35)
-        Me.Button10.TabIndex = 50
-        Me.Button10.Text = "Etiquette"
-        Me.Button10.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(818, 168)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(85, 40)
-        Me.Button8.TabIndex = 49
-        Me.Button8.Text = "Facture Mensuelle"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'gBail
-        '
-        Me.gBail.Controls.Add(Me.tPersId)
-        Me.gBail.Controls.Add(Me.Label3)
-        Me.gBail.Controls.Add(Me.TextBox1)
-        Me.gBail.Controls.Add(Me.Button2)
-        Me.gBail.Controls.Add(Me.LinkLabel3)
-        Me.gBail.Controls.Add(Me.LinkLabel2)
-        Me.gBail.Controls.Add(Me.tLocId)
-        Me.gBail.Controls.Add(Me.lTypePer)
-        Me.gBail.Controls.Add(Me.lTypeRgt)
-        Me.gBail.Location = New System.Drawing.Point(3, 9)
-        Me.gBail.Name = "gBail"
-        Me.gBail.Size = New System.Drawing.Size(799, 54)
-        Me.gBail.TabIndex = 48
-        Me.gBail.TabStop = False
-        '
-        'tPersId
-        '
-        Me.tPersId.Location = New System.Drawing.Point(531, 19)
-        Me.tPersId.Name = "tPersId"
-        Me.tPersId.ReadOnly = True
-        Me.tPersId.Size = New System.Drawing.Size(16, 20)
-        Me.tPersId.TabIndex = 73
-        Me.tPersId.Tag = "PersId,n"
-        Me.tPersId.Visible = False
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(388, 23)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(78, 13)
-        Me.Label3.TabIndex = 72
-        Me.Label3.Text = "Suffixe Compte"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(472, 20)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(42, 20)
-        Me.TextBox1.TabIndex = 71
-        Me.TextBox1.Tag = "CptSuffixe,t"
-        '
-        'Button2
-        '
-        Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Image = Global.MultiLoc.My.Resources.Resources.MC_MiniSave
-        Me.Button2.Location = New System.Drawing.Point(707, 14)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(41, 31)
-        Me.Button2.TabIndex = 44
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'LinkLabel3
-        '
-        Me.LinkLabel3.AutoSize = True
-        Me.LinkLabel3.Location = New System.Drawing.Point(209, 23)
-        Me.LinkLabel3.Name = "LinkLabel3"
-        Me.LinkLabel3.Size = New System.Drawing.Size(58, 13)
-        Me.LinkLabel3.TabIndex = 52
-        Me.LinkLabel3.TabStop = True
-        Me.LinkLabel3.Text = "Règlement"
-        '
-        'LinkLabel2
-        '
-        Me.LinkLabel2.AutoSize = True
-        Me.LinkLabel2.Location = New System.Drawing.Point(11, 23)
-        Me.LinkLabel2.Name = "LinkLabel2"
-        Me.LinkLabel2.Size = New System.Drawing.Size(43, 13)
-        Me.LinkLabel2.TabIndex = 51
-        Me.LinkLabel2.TabStop = True
-        Me.LinkLabel2.Text = "Période"
-        '
-        'tLocId
-        '
-        Me.tLocId.Location = New System.Drawing.Point(553, 19)
-        Me.tLocId.Name = "tLocId"
-        Me.tLocId.ReadOnly = True
-        Me.tLocId.Size = New System.Drawing.Size(16, 20)
-        Me.tLocId.TabIndex = 43
-        Me.tLocId.Tag = "cliid,k"
-        Me.tLocId.Visible = False
-        '
-        'lTypePer
-        '
-        Me.lTypePer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lTypePer.FormattingEnabled = True
-        Me.lTypePer.Location = New System.Drawing.Point(60, 20)
-        Me.lTypePer.Name = "lTypePer"
-        Me.lTypePer.Size = New System.Drawing.Size(126, 21)
-        Me.lTypePer.TabIndex = 2
-        Me.lTypePer.Tag = "TperId,no"
-        '
-        'lTypeRgt
-        '
-        Me.lTypeRgt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.lTypeRgt.FormattingEnabled = True
-        Me.lTypeRgt.Location = New System.Drawing.Point(273, 20)
-        Me.lTypeRgt.Name = "lTypeRgt"
-        Me.lTypeRgt.Size = New System.Drawing.Size(101, 21)
-        Me.lTypeRgt.TabIndex = 4
-        Me.lTypeRgt.Tag = "TRgtId,no"
-        '
-        'gContrat
-        '
-        Me.gContrat.AllowUserToAddRows = False
-        Me.gContrat.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gContrat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.gContrat.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.gContrat.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.gContrat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gContrat.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.contratId, Me.contratNom, Me.DateDebut, Me.dateFinPrev, Me.dateFin, Me.MontantHT, Me.NBEmplacement})
-        Me.gContrat.Location = New System.Drawing.Point(3, 69)
-        Me.gContrat.MultiSelect = False
-        Me.gContrat.Name = "gContrat"
-        Me.gContrat.ReadOnly = True
-        Me.gContrat.RowHeadersVisible = False
-        Me.gContrat.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gContrat.Size = New System.Drawing.Size(799, 274)
-        Me.gContrat.TabIndex = 2
-        '
-        'contratId
-        '
-        Me.contratId.HeaderText = "Id"
-        Me.contratId.Name = "contratId"
-        Me.contratId.ReadOnly = True
-        Me.contratId.Visible = False
-        '
-        'contratNom
-        '
-        Me.contratNom.HeaderText = "Contrat"
-        Me.contratNom.Name = "contratNom"
-        Me.contratNom.ReadOnly = True
-        '
-        'DateDebut
-        '
-        DataGridViewCellStyle6.Format = "d"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.DateDebut.DefaultCellStyle = DataGridViewCellStyle6
-        Me.DateDebut.HeaderText = "Début"
-        Me.DateDebut.Name = "DateDebut"
-        Me.DateDebut.ReadOnly = True
-        '
-        'dateFinPrev
-        '
-        DataGridViewCellStyle7.Format = "d"
-        Me.dateFinPrev.DefaultCellStyle = DataGridViewCellStyle7
-        Me.dateFinPrev.HeaderText = "Fin Prév"
-        Me.dateFinPrev.Name = "dateFinPrev"
-        Me.dateFinPrev.ReadOnly = True
-        '
-        'dateFin
-        '
-        DataGridViewCellStyle8.Format = "d"
-        Me.dateFin.DefaultCellStyle = DataGridViewCellStyle8
-        Me.dateFin.HeaderText = "Fin"
-        Me.dateFin.Name = "dateFin"
-        Me.dateFin.ReadOnly = True
-        '
-        'MontantHT
-        '
-        Me.MontantHT.HeaderText = "Montant HT"
-        Me.MontantHT.Name = "MontantHT"
-        Me.MontantHT.ReadOnly = True
-        '
-        'NBEmplacement
-        '
-        Me.NBEmplacement.HeaderText = "Nb Emplacements"
-        Me.NBEmplacement.Name = "NBEmplacement"
-        Me.NBEmplacement.ReadOnly = True
-        '
-        'Button5
-        '
-        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
-        Me.Button5.Location = New System.Drawing.Point(818, 109)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(85, 34)
-        Me.Button5.TabIndex = 46
-        Me.Button5.TabStop = False
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Image = Global.MultiLoc.My.Resources.Resources.smallplus
-        Me.Button4.Location = New System.Drawing.Point(818, 69)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(85, 34)
-        Me.Button4.TabIndex = 45
-        Me.Button4.TabStop = False
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Image = Global.MultiLoc.My.Resources.Resources.word
-        Me.Button1.Location = New System.Drawing.Point(818, 15)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(85, 35)
-        Me.Button1.TabIndex = 42
-        Me.Button1.Text = "Contrat"
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Document
         '
         Me.Document.Controls.Add(Me.Button3)
@@ -609,14 +301,14 @@ Partial Class F_ClientSuivi
         Me.gDoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gDoc.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.gDoc.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.gDoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gDoc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.dateCrea, Me.docNom, Me.docPath})
         Me.gDoc.Location = New System.Drawing.Point(6, 6)
@@ -637,10 +329,10 @@ Partial Class F_ClientSuivi
         '
         'dateCrea
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Format = "d"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.dateCrea.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.dateCrea.DefaultCellStyle = DataGridViewCellStyle7
         Me.dateCrea.FillWeight = 20.0!
         Me.dateCrea.HeaderText = "Date"
         Me.dateCrea.Name = "dateCrea"
@@ -659,6 +351,77 @@ Partial Class F_ClientSuivi
         Me.docPath.ReadOnly = True
         Me.docPath.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.docPath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'TabPage1
+        '
+        Me.TabPage1.Controls.Add(Me.Button7)
+        Me.TabPage1.Controls.Add(Me.gClient)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Size = New System.Drawing.Size(914, 346)
+        Me.TabPage1.TabIndex = 4
+        Me.TabPage1.Text = "Paramètres"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Button7
+        '
+        Me.Button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.Image = Global.MultiLoc.My.Resources.Resources.MC_MiniSave
+        Me.Button7.Location = New System.Drawing.Point(180, 10)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(97, 41)
+        Me.Button7.TabIndex = 19
+        Me.Button7.UseVisualStyleBackColor = True
+        '
+        'gClient
+        '
+        Me.gClient.Controls.Add(Me.tPersId)
+        Me.gClient.Controls.Add(Me.Label1)
+        Me.gClient.Controls.Add(Me.tCompte)
+        Me.gClient.Controls.Add(Me.TextBox3)
+        Me.gClient.Location = New System.Drawing.Point(3, 3)
+        Me.gClient.Name = "gClient"
+        Me.gClient.Size = New System.Drawing.Size(171, 88)
+        Me.gClient.TabIndex = 2
+        Me.gClient.TabStop = False
+        '
+        'tPersId
+        '
+        Me.tPersId.Location = New System.Drawing.Point(74, 40)
+        Me.tPersId.Name = "tPersId"
+        Me.tPersId.ReadOnly = True
+        Me.tPersId.Size = New System.Drawing.Size(16, 20)
+        Me.tPersId.TabIndex = 73
+        Me.tPersId.Tag = "PersId,n"
+        Me.tPersId.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.TabIndex = 72
+        Me.Label1.Text = "Suffixe Compte"
+        '
+        'tCompte
+        '
+        Me.tCompte.Location = New System.Drawing.Point(96, 14)
+        Me.tCompte.Name = "tCompte"
+        Me.tCompte.Size = New System.Drawing.Size(52, 20)
+        Me.tCompte.TabIndex = 17
+        Me.tCompte.Tag = "CptSuffixe,t"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(23, 40)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.ReadOnly = True
+        Me.TextBox3.Size = New System.Drawing.Size(16, 20)
+        Me.TextBox3.TabIndex = 43
+        Me.TextBox3.Tag = "Locid,k"
+        Me.TextBox3.Visible = False
         '
         'ToolStrip1
         '
@@ -693,6 +456,7 @@ Partial Class F_ClientSuivi
         '
         'tRech
         '
+        Me.tRech.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tRech.Name = "tRech"
         Me.tRech.Size = New System.Drawing.Size(100, 28)
         '
@@ -738,11 +502,11 @@ Partial Class F_ClientSuivi
         '
         'F_ClientSuivi
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.AutoSize = true
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(946, 451)
-        Me.ControlBox = false
+        Me.ControlBox = False
         Me.Controls.Add(Me.kLocataire)
         Me.Controls.Add(Me.lCLient)
         Me.Controls.Add(Me.ToolStrip1)
@@ -751,18 +515,17 @@ Partial Class F_ClientSuivi
         Me.Tag = "nbMoisDG,no"
         Me.Text = "Client"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.oOnglet.ResumeLayout(false)
-        Me.Compte.ResumeLayout(false)
-        CType(Me.gCompta,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Contrats.ResumeLayout(false)
-        Me.gBail.ResumeLayout(false)
-        Me.gBail.PerformLayout
-        CType(Me.gContrat,System.ComponentModel.ISupportInitialize).EndInit
-        Me.Document.ResumeLayout(false)
-        CType(Me.gDoc,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ToolStrip1.ResumeLayout(false)
-        Me.ToolStrip1.PerformLayout
-        Me.ResumeLayout(false)
+        Me.oOnglet.ResumeLayout(False)
+        Me.Compte.ResumeLayout(False)
+        CType(Me.gCompta, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Document.ResumeLayout(False)
+        CType(Me.gDoc, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage1.ResumeLayout(False)
+        Me.gClient.ResumeLayout(False)
+        Me.gClient.PerformLayout()
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
+        Me.ResumeLayout(False)
         Me.PerformLayout
 
 End Sub
@@ -773,14 +536,9 @@ End Sub
     Friend WithEvents bXL As System.Windows.Forms.ToolStripButton
     Friend WithEvents lCLient As System.Windows.Forms.ComboBox
     Friend WithEvents gCompta As System.Windows.Forms.DataGridView
-    Friend WithEvents Contrats As System.Windows.Forms.TabPage
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents gContrat As System.Windows.Forms.DataGridView
     Friend WithEvents tRech As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents bRech As System.Windows.Forms.ToolStripButton
     Friend WithEvents mnuNouveau As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Document As System.Windows.Forms.TabPage
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
@@ -791,8 +549,6 @@ End Sub
     Friend WithEvents docPath As System.Windows.Forms.DataGridViewLinkColumn
     Friend WithEvents Button11 As System.Windows.Forms.Button
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents Button7 As System.Windows.Forms.Button
-    Friend WithEvents Button12 As System.Windows.Forms.Button
     Friend WithEvents kLocataire As System.Windows.Forms.LinkLabel
     Friend WithEvents bsuppEcrit As System.Windows.Forms.Button
     Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -803,25 +559,13 @@ End Sub
     Friend WithEvents debit As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents credit As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents solde As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents gBail As System.Windows.Forms.GroupBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
-    Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
-    Friend WithEvents tLocId As System.Windows.Forms.TextBox
-    Friend WithEvents lTypePer As System.Windows.Forms.ComboBox
-    Friend WithEvents lTypeRgt As System.Windows.Forms.ComboBox
-    Friend WithEvents tPersId As System.Windows.Forms.TextBox
-    Friend WithEvents contratId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents contratNom As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateDebut As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dateFinPrev As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dateFin As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MontantHT As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NBEmplacement As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents bEditFActure As System.Windows.Forms.Button
-    Friend WithEvents Button10 As System.Windows.Forms.Button
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents gClient As GroupBox
+    Friend WithEvents tPersId As TextBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents tCompte As TextBox
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents Button7 As Button
 End Class

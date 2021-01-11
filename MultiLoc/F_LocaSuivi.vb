@@ -14,8 +14,8 @@ Public Class F_LocaSuivi
 
     Sub AffPlanCpt()
         Try
-            sSql = "SELECT  PlanComptable.PcId, ComptaRubrique.RubId, ComptaRubrique.RubNom, PlanComptable.CptNum, PlanComptable.CptNom" _
-            & " FROM ComptaRubrique LEFT OUTER JOIN PlanComptable ON ComptaRubrique.RubId = PlanComptable.RubId and locid=" & Me.leLocId & " order by RubNom"
+            sSql = "SELECT  ComptaPlan.PcId, ComptaRubrique.RubId, ComptaRubrique.RubNom, ComptaPlan.CptNum, ComptaPlan.CptNom" _
+            & " FROM ComptaRubrique LEFT OUTER JOIN ComptaPlan ON ComptaRubrique.RubId = ComptaPlan.RubId and locid=" & Me.leLocId & " order by RubNom"
 
             Me.gPlanCpt.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -37,7 +37,7 @@ Public Class F_LocaSuivi
             & " inner join locataire on ComptaGene.locId = locataire.locId " _
             & " left join societe on locataire.socid=societe.socid" _
             & " left join annuaire as s on societe.persid=s.persid" _
-            & " WHERE ComptaGene.Rubrique='LOCATAIRE' " _
+            & " WHERE Tiers in  ('LOCATAIRE','CLIENT')  " _
             & " and locataire.locid=" & Me.leLocId _
             & " and year(ecrEcheance)=" & Me.lAnnee.Text
             If Me.tRechCat.Text <> "" Then sSql &= " and categorie like '%" & Me.tRechCat.Text & "%'"
@@ -59,7 +59,7 @@ Public Class F_LocaSuivi
         Dim sSql As String
         sSql = "SELECT locId, nom" _
         & " FROM locataire INNER JOIN Annuaire ON locataire.PersId = Annuaire.PersId" _
-        & " where nom like '%" & Me.tRech.Text & "%'"
+        & " where nom like '%" & Me.tRech.Text & "%' and typeLoc=1"
         If Me.cAncien.Checked = False Then
             sSql &= "  and (datesortie is null or datesortie >= getdate() )"
         Else
@@ -122,7 +122,7 @@ Public Class F_LocaSuivi
 
             sSql = "select ecrEcheance, ecrdate, min(ecrlib) as ecrlib, sum(ecrMontantHT) as ecrMontantHT, sum(ecrMontantTTC) as ecrMontantTTC" _
                 & ",numfacture,max(numpiece) as numpiece, numFactureInterne" _
-                & " from comptagene where rubrique='LOCATAIRE' and locId= " & Me.leLocId _
+                & " from comptagene where Tiers='LOCATAIRE' and locId= " & Me.leLocId _
                 & " group by ecrecheance,ecrdate,numfacture, numFactureInterne" _
                 & " order by ecrecheance desc,ecrDate desc,numfacture desc "
 
@@ -403,7 +403,7 @@ Public Class F_LocaSuivi
         F_LocaDGAppel.Dispose()
     End Sub
 
-    Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles bFacture.Click, Button10.Click, Button8.Click
+    Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles Button10.Click, Button8.Click
         If Me.leLocId = 0 Then Exit Sub
 
         F_LocaAppel.leLocId = Me.leLocId
@@ -898,6 +898,19 @@ Public Class F_LocaSuivi
 
         If F_LocaPlanC.ShowDialog = Windows.Forms.DialogResult.OK Then
             Call AffPlanCpt()
+        End If
+    End Sub
+
+    Private Sub bFacture_Click(sender As Object, e As EventArgs) Handles bFacture.Click
+
+        If Me.leLocId = 0 Then Exit Sub
+
+        F_FactureClient.leTiersid = Me.leLocId
+        F_FactureClient.laSocId = Me.tSocId.Text
+        If F_FactureClient.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Call affcomptalocat()
+            Call afficheLocat()
+            Me.oOnglet.SelectTab("Compte")
         End If
     End Sub
 

@@ -19,14 +19,14 @@ Public Class F_BanqueSuivi
         Dim leTypeTiers As String = ""
 
         Try
-            sSql = "SELECT ecrId, NumPIece, ecrDate, ecrEcheance, ecrLib, ecrMontantTTC, NumFacture, Annuaire_1.Nom AS Client, Annuaire_2.Nom AS Locataire, Annuaire.Nom AS Fournisseur, Rubrique" _
+            sSql = "SELECT ecrId, NumPIece, ecrDate, ecrEcheance, ecrLib, ecrMontantTTC, NumFacture, Annuaire_1.Nom AS Client, Annuaire_2.Nom AS Locataire, Annuaire.Nom AS Fournisseur, Tiers" _
             & " FROM ComptaGene " _
             & " LEFT JOIN Annuaire ON comptagene.fourid = Annuaire.PersId " _
             & " left join Client on ComptaGene.CliId = Client.cliId " _
             & " left join Annuaire AS Annuaire_1 ON Client.PersId = Annuaire_1.PersId" _
             & " left join locataire on ComptaGene.LocId = Locataire.LocId" _
             & " LEFT JOIN Annuaire AS Annuaire_2  ON Annuaire_2.PersId = Locataire.PersId " _
-            & " WHERE  Rubrique <> 'BANQUE' AND JOURNAL = 'BANQUE' " _
+            & " WHERE  Tiers <> 'BANQUE' AND JOURNAL = 'BANQUE' " _
             & " and cptBkId = " & Me.leCptBkId _
             & " and ecrDate>=" & Date2sql(Me.dDate.Value) & " and ecrDate<=" & Date2sql(Me.dEcheance.Value) _
             & " ORDER BY ecrDate DESC"
@@ -35,14 +35,14 @@ Public Class F_BanqueSuivi
             lers = sqlLit(sSql, conSql)
             While lers.Read
                 leTiers = ""
-                If lers("rubrique").ToString = "CLIENT" Then leTiers = nz(lers("client"), "")
-                If lers("rubrique").ToString = "LOCATAIRE" Then leTiers = nz(lers("locataire"), "")
-                If lers("rubrique").ToString = "FOURNISSEUR" Then leTiers = nz(lers("fournisseur"), "")
+                If lers("Tiers").ToString = "CLIENT" Then leTiers = nz(lers("client"), "")
+                If lers("Tiers").ToString = "LOCATAIRE" Then leTiers = nz(lers("locataire"), "")
+                If lers("Tiers").ToString = "FOURNISSEUR" Then leTiers = nz(lers("fournisseur"), "")
 
                 debit = IIf(lers("ecrmontantTTC") < 0, -lers("ecrmontantTTC"), 0)
                 credit = IIf(lers("ecrmontantTTC") > 0, lers("ecrmontantTTC"), 0)
                 ladate = lers("ecrDate")
-                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPIece").ToString, lers("rubrique").ToString, leTiers, ladate.ToString("yyyy-MM-dd"), lers("ecrLib").ToString, debit, credit)
+                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPIece").ToString, lers("Tiers").ToString, leTiers, ladate.ToString("yyyy-MM-dd"), lers("ecrLib").ToString, debit, credit)
             End While
             lers.Close()
 

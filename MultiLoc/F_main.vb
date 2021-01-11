@@ -83,13 +83,6 @@ Public Class F_main
 
     End Sub
 
-
-    Private Sub RevisionDeLoyerToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RevisionDeLoyerToolStripMenuItem.Click
-        Call fermeToutFenetre()
-        F_LoyerRevision.MdiParent = Me
-        F_LoyerRevision.Show()
-    End Sub
-
     Public Sub mnuCopro_Click(sender As System.Object, e As System.EventArgs) Handles CoproToolStripMenuItem.Click
         Call fermeToutFenetre()
         F_CoproSuivi.MdiParent = Me
@@ -161,13 +154,6 @@ Public Class F_main
     End Sub
 
 
-    Private Sub RévisionDépôtGarToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles RévisionDépôtGarToolStripMenuItem.Click
-        Call fermeToutFenetre()
-        F_DepotRevision.MdiParent = Me
-        F_DepotRevision.Show()
-    End Sub
-
-
     Public Sub mnuClient(sender As System.Object, e As System.EventArgs)
         Call fermeToutFenetre()
         F_ClientSuivi.MdiParent = Me
@@ -180,17 +166,6 @@ Public Class F_main
         F_DepotSuivi.Show()
     End Sub
 
-    Private Sub EmplacementsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles EmplacementsToolStripMenuItem.Click
-        Call fermeToutFenetre()
-        F_EmpSuivi.MdiParent = Me
-        F_EmpSuivi.Show()
-    End Sub
-
-    Private Sub ClientsToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles ClientsToolStripMenuItem.Click
-        Call fermeToutFenetre()
-        F_ClientSuivi.MdiParent = Me
-        F_ClientSuivi.Show()
-    End Sub
 
     Private Sub MiseÀJourToolStripMenuItem_Click(sender As System.Object, e As System.EventArgs) Handles MiseÀJourToolStripMenuItem.Click
         System.Diagnostics.Process.Start("http://www.asyst.fr/MultiLoc/")
@@ -242,5 +217,17 @@ Public Class F_main
         F_Requete.leNOm = "Liste des Baux"
         F_Requete.MdiParent = Me
         F_Requete.Show()
+    End Sub
+
+    Private Sub ClientMnu_Click(sender As Object, e As EventArgs) Handles ClientMnu.Click
+        Call fermeToutFenetre()
+        F_ClientSuivi.MdiParent = Me
+        F_ClientSuivi.Show()
+    End Sub
+
+    Private Sub FacturationSociétéToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FacturationSociétéToolStripMenuItem.Click
+        Call fermeToutFenetre()
+        F_FacturationSociete.MdiParent = Me
+        F_FacturationSociete.Show()
     End Sub
 End Class

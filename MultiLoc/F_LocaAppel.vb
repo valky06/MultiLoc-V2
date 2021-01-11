@@ -17,7 +17,7 @@ Public Class F_LocaAppel
 
         Try
             sSql = "SELECT ecrId,numPiece, numfacture,  ecrLib, ecrMontantHT, journal,indRevisionId FROM ComptaGene" _
-            & " where rubrique='LOCATAIRE' and locId= " & Me.leLocId & " and numfacture ='" & Me.lafacture & "' order by ecrDate asc, ecrid asc"
+            & " where Tiers='LOCATAIRE' and locId= " & Me.leLocId & " and numfacture ='" & Me.lafacture & "' order by ecrDate asc, ecrid asc"
 
             Me.gCompta.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -73,6 +73,7 @@ Public Class F_LocaAppel
             Me.dFin.Value = Me.dDeb.Value.AddMonths(NbmoisAppel).AddDays(-1)
 
             lafacture = "T" & Me.leLocId
+
             Call comptalocat()
 
             If F_LocaSuivi.lTypePer.Text.ToUpper.Contains("TRIM") Then
@@ -117,25 +118,26 @@ Public Class F_LocaAppel
         End If
     End Sub
 
-    Private Sub bChargeExterne_Click(sender As System.Object, e As System.EventArgs) Handles bChargeExterne.Click
-        If Me.leLocId = 0 Then Exit Sub
-        F_LocaCharge.laSocId = Me.tSocId.Text
-        F_LocaCharge.leLocId = Me.leLocId
-        F_LocaCharge.factInterne = False
-        F_LocaCharge.laFacture = Me.lafacture
-        If F_LocaCharge.ShowDialog = Windows.Forms.DialogResult.OK Then comptalocat()
-        F_LocaCharge.Dispose()
-    End Sub
+    'TODO : V3
+    'Private Sub bChargeExterne_Click(sender As System.Object, e As System.EventArgs) Handles bChargeExterne.Click
+    '    If Me.leLocId = 0 Then Exit Sub
+    '    F_Facture.laSocId = Me.tSocId.Text
+    '    F_Facture.leLocId = Me.leLocId
+    '    F_Facture.factInterne = False
+    '    F_Facture.laFacture = Me.lafacture
+    '    If F_Facture.ShowDialog = Windows.Forms.DialogResult.OK Then comptalocat()
+    '    F_Facture.Dispose()
+    'End Sub
 
-    Private Sub bFactInterne_Click(sender As System.Object, e As System.EventArgs) Handles bFactInterne.Click
-        If Me.leLocId = 0 Then Exit Sub
-        F_LocaCharge.laSocId = Me.tSocId.Text
-        F_LocaCharge.leLocId = Me.leLocId
-        F_LocaCharge.factInterne = True
-        F_LocaCharge.laFacture = Me.lafacture
-        If F_LocaCharge.ShowDialog = Windows.Forms.DialogResult.OK Then comptalocat()
-        F_LocaCharge.Dispose()
-    End Sub
+    'Private Sub bFactInterne_Click(sender As System.Object, e As System.EventArgs) Handles bFactInterne.Click
+    '    If Me.leLocId = 0 Then Exit Sub
+    '    F_Facture.laSocId = Me.tSocId.Text
+    '    F_Facture.leLocId = Me.leLocId
+    '    F_Facture.factInterne = True
+    '    F_Facture.laFacture = Me.lafacture
+    '    If F_Facture.ShowDialog = Windows.Forms.DialogResult.OK Then comptalocat()
+    '    F_Facture.Dispose()
+    'End Sub
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles Button8.Click
         F_LocaDGAppel.leLocId = leLocId
@@ -194,4 +196,10 @@ Public Class F_LocaAppel
         lers.Close()
         Call comptalocat()
     End Sub
+
+    Private Sub bFactInterne_Click(sender As Object, e As EventArgs) Handles bFactInterne.Click
+
+    End Sub
+
+
 End Class

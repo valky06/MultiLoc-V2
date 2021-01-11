@@ -27,7 +27,7 @@ Public Class F_FacturationLoc
             & " left join annuaire on annuaire.persid=locataire.persId" _
             & " left join societe on societe.socId=comptagene.socid" _
             & " left join annuaire as annuaire2 on annuaire2.persid=societe.persid" _
-            & " where rubrique='LOCATAIRE' " _
+            & " where tiers='LOCATAIRE' " _
             & " and ecrdate>=" & SqlDate(Me.dDebut) & " and ecrdate<=" & SqlDate(Me.dFin) _
             & " group by annuaire2.nom,cptsuffixe,annuaire.nom,comptagene.locid,comptagene.socid,ecrDATE,ecrEcheance,numfacture" _
             & " order by annuaire2.nom,cptsuffixe,annuaire.nom,ecrdate"
@@ -88,7 +88,7 @@ Public Class F_FacturationLoc
 
 
         Try
-            lersSoc = sqlLit("SELECT distinct SocId FROM ComptaGene WHERE  Rubrique='LOCATAIRE' " _
+            lersSoc = sqlLit("SELECT distinct SocId FROM ComptaGene WHERE  tiers='LOCATAIRE' " _
                  & " And ecrdate >= " & SqlDate(Me.dDebut) & " And ecrdate <= " & SqlDate(Me.dFin), conSql)
 
             While lersSoc.Read
@@ -117,13 +117,13 @@ Public Class F_FacturationLoc
                 appXL.Cells(laLigne, 12).value = "Lots"
 
                 sSql = "SELECT Annuaire.Nom, ComptaGene.ecrDate, locataire.CptSuffixe, ComptaGene.ecrLib, ComptaGene.ecrMontantHT, ComptaGene.ecrMontantTVA, ComptaGene.ecrMontantTTC, " _
-                 & " ComptaGene.NumFacture, PlanComptable.CptNum, PlanComptable.CptNom, locataire.LotLib,  Annuaire_1.Nom AS LocNom ,  ComptaGene.LocId,societe.CptClient" _
+                 & " ComptaGene.NumFacture, ComptaPlan.CptNum, ComptaPlan.CptNom, locataire.LotLib,  Annuaire_1.Nom AS LocNom ,  ComptaGene.LocId,societe.CptClient" _
                  & " FROM ComptaGene INNER JOIN locataire ON ComptaGene.LocId = locataire.LocId " _
                  & " LEFT JOIN Societe ON locataire.SocId = Societe.SocId" _
                  & " LEFT JOIN Annuaire ON Societe.PersId = Annuaire.PersId " _
                  & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
-                 & " LEFT OUTER JOIN PlanComptable ON ComptaGene.RubId = PlanComptable.RubId AND ComptaGene.LocId = PlanComptable.LocId " _
-                 & " WHERE   Journal in ('VENTES','DEPOT')  and Rubrique='LOCATAIRE' " _
+                 & " LEFT OUTER JOIN ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId AND ComptaGene.LocId = ComptaPlan.LocId " _
+                 & " WHERE   Journal in ('VENTES','DEPOT')  and tiers='LOCATAIRE' " _
                  & " And ecrdate >= " & SqlDate(Me.dDebut) & " And ecrdate <= " & SqlDate(Me.dFin) _
                  & " and comptagene.socid=" & lersSoc(0) _
                  & " ORDER BY Annuaire.Nom,ComptaGene.ecrDate, comptagene.locid,CptSuffixe,numfacture"
@@ -229,8 +229,8 @@ Public Class F_FacturationLoc
                 & " LEFT JOIN Societe ON locataire.SocId = Societe.SocId" _
                 & " LEFT JOIN Annuaire ON Societe.PersId = Annuaire.PersId " _
                 & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
-                & " LEFT OUTER JOIN PlanComptable ON ComptaGene.RubId = PlanComptable.RubId AND ComptaGene.LocId = PlanComptable.LocId " _
-                & " WHERE   Journal in ('BANQUE')  and Rubrique='LOCATAIRE' " _
+                & " LEFT OUTER JOIN ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId AND ComptaGene.LocId = ComptaPlan.LocId " _
+                & " WHERE   Journal in ('BANQUE')  and tiers='LOCATAIRE' " _
                 & " And ecrdate >= " & SqlDate(Me.dDebut) & " And ecrdate <= " & SqlDate(Me.dFin) _
                 & " and comptagene.socid=" & lersSoc(0) _
                 & " ORDER BY Annuaire.Nom,ComptaGene.ecrDate, comptagene.locid,CptSuffixe,numfacture"
