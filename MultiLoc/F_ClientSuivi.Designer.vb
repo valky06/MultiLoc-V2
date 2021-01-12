@@ -23,13 +23,13 @@ Partial Class F_ClientSuivi
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_ClientSuivi))
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_ClientSuivi))
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compte = New System.Windows.Forms.TabPage()
         Me.bEditFActure = New System.Windows.Forms.Button()
@@ -37,14 +37,6 @@ Partial Class F_ClientSuivi
         Me.bsuppEcrit = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.gCompta = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numPiece = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Document = New System.Windows.Forms.TabPage()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
@@ -69,6 +61,15 @@ Partial Class F_ClientSuivi
         Me.mnuNouveau = New System.Windows.Forms.ToolStripMenuItem()
         Me.lCLient = New System.Windows.Forms.ComboBox()
         Me.kLocataire = New System.Windows.Forms.LinkLabel()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numPiece = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SocId = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.oOnglet.SuspendLayout()
         Me.Compte.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,7 +176,7 @@ Partial Class F_ClientSuivi
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gCompta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gCompta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.numPiece, Me.dateEcr, Me.numFacture, Me.Libelle, Me.debit, Me.credit, Me.solde})
+        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.numPiece, Me.dateEcr, Me.numFacture, Me.Libelle, Me.debit, Me.credit, Me.solde, Me.SocId})
         Me.gCompta.Location = New System.Drawing.Point(6, 6)
         Me.gCompta.MultiSelect = False
         Me.gCompta.Name = "gCompta"
@@ -184,74 +185,6 @@ Partial Class F_ClientSuivi
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gCompta.Size = New System.Drawing.Size(798, 334)
         Me.gCompta.TabIndex = 3
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'numPiece
-        '
-        Me.numPiece.HeaderText = "numPiece"
-        Me.numPiece.Name = "numPiece"
-        Me.numPiece.ReadOnly = True
-        Me.numPiece.Visible = False
-        '
-        'dateEcr
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dateEcr.FillWeight = 40.0!
-        Me.dateEcr.HeaderText = "Date"
-        Me.dateEcr.Name = "dateEcr"
-        Me.dateEcr.ReadOnly = True
-        '
-        'numFacture
-        '
-        Me.numFacture.FillWeight = 50.0!
-        Me.numFacture.HeaderText = "Facture"
-        Me.numFacture.Name = "numFacture"
-        Me.numFacture.ReadOnly = True
-        '
-        'Libelle
-        '
-        Me.Libelle.HeaderText = "Libellé"
-        Me.Libelle.Name = "Libelle"
-        Me.Libelle.ReadOnly = True
-        '
-        'debit
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        Me.debit.DefaultCellStyle = DataGridViewCellStyle3
-        Me.debit.FillWeight = 40.0!
-        Me.debit.HeaderText = "Débit"
-        Me.debit.Name = "debit"
-        Me.debit.ReadOnly = True
-        '
-        'credit
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        Me.credit.DefaultCellStyle = DataGridViewCellStyle4
-        Me.credit.FillWeight = 40.0!
-        Me.credit.HeaderText = "Crédit"
-        Me.credit.Name = "credit"
-        Me.credit.ReadOnly = True
-        '
-        'solde
-        '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N2"
-        Me.solde.DefaultCellStyle = DataGridViewCellStyle5
-        Me.solde.FillWeight = 40.0!
-        Me.solde.HeaderText = "Solde"
-        Me.solde.Name = "solde"
-        Me.solde.ReadOnly = True
         '
         'Document
         '
@@ -500,6 +433,81 @@ Partial Class F_ClientSuivi
         Me.kLocataire.TabStop = True
         Me.kLocataire.Text = "Client"
         '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.ReadOnly = True
+        Me.DataGridViewTextBoxColumn1.Visible = False
+        '
+        'numPiece
+        '
+        Me.numPiece.HeaderText = "numPiece"
+        Me.numPiece.Name = "numPiece"
+        Me.numPiece.ReadOnly = True
+        Me.numPiece.Visible = False
+        '
+        'dateEcr
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dateEcr.FillWeight = 40.0!
+        Me.dateEcr.HeaderText = "Date"
+        Me.dateEcr.Name = "dateEcr"
+        Me.dateEcr.ReadOnly = True
+        '
+        'numFacture
+        '
+        Me.numFacture.FillWeight = 50.0!
+        Me.numFacture.HeaderText = "Facture"
+        Me.numFacture.Name = "numFacture"
+        Me.numFacture.ReadOnly = True
+        '
+        'Libelle
+        '
+        Me.Libelle.HeaderText = "Libellé"
+        Me.Libelle.Name = "Libelle"
+        Me.Libelle.ReadOnly = True
+        '
+        'debit
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
+        Me.debit.DefaultCellStyle = DataGridViewCellStyle3
+        Me.debit.FillWeight = 40.0!
+        Me.debit.HeaderText = "Débit"
+        Me.debit.Name = "debit"
+        Me.debit.ReadOnly = True
+        '
+        'credit
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N2"
+        Me.credit.DefaultCellStyle = DataGridViewCellStyle4
+        Me.credit.FillWeight = 40.0!
+        Me.credit.HeaderText = "Crédit"
+        Me.credit.Name = "credit"
+        Me.credit.ReadOnly = True
+        '
+        'solde
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N2"
+        Me.solde.DefaultCellStyle = DataGridViewCellStyle5
+        Me.solde.FillWeight = 40.0!
+        Me.solde.HeaderText = "Solde"
+        Me.solde.Name = "solde"
+        Me.solde.ReadOnly = True
+        '
+        'SocId
+        '
+        Me.SocId.HeaderText = "SocId"
+        Me.SocId.Name = "SocId"
+        Me.SocId.ReadOnly = True
+        Me.SocId.Visible = False
+        '
         'F_ClientSuivi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -551,14 +559,6 @@ End Sub
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents kLocataire As System.Windows.Forms.LinkLabel
     Friend WithEvents bsuppEcrit As System.Windows.Forms.Button
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents numPiece As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dateEcr As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents numFacture As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Libelle As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents debit As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents credit As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents solde As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Button9 As System.Windows.Forms.Button
     Friend WithEvents bEditFActure As System.Windows.Forms.Button
     Friend WithEvents TabPage1 As TabPage
@@ -568,4 +568,13 @@ End Sub
     Friend WithEvents tCompte As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Button7 As Button
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents numPiece As DataGridViewTextBoxColumn
+    Friend WithEvents dateEcr As DataGridViewTextBoxColumn
+    Friend WithEvents numFacture As DataGridViewTextBoxColumn
+    Friend WithEvents Libelle As DataGridViewTextBoxColumn
+    Friend WithEvents debit As DataGridViewTextBoxColumn
+    Friend WithEvents credit As DataGridViewTextBoxColumn
+    Friend WithEvents solde As DataGridViewTextBoxColumn
+    Friend WithEvents SocId As DataGridViewTextBoxColumn
 End Class

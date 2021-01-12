@@ -27,7 +27,7 @@ Public Class F_ClientSuivi
         Dim ladate As Date
 
         Try
-            sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC FROM ComptaGene" _
+            sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC, socid FROM ComptaGene" _
             & " where Tiers='CLIENT' and locid= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc"
 
             Me.gCompta.Rows.Clear()
@@ -36,7 +36,7 @@ Public Class F_ClientSuivi
                 debit = IIf(lers("ecrmontantTTC") < 0, -lers("ecrmontantTTC"), 0)
                 credit = IIf(lers("ecrmontantTTC") >= 0, lers("ecrmontantTTC"), 0)
                 ladate = lers("ecrDate")
-                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPiece").ToString, ladate.ToString("yyyy-MM-dd"), lers("NumFacture").ToString, lers("ecrLib").ToString, debit, credit)
+                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPiece").ToString, ladate.ToString("yyyy-MM-dd"), lers("NumFacture").ToString, lers("ecrLib").ToString, debit, credit, "", lers("socid").ToString)
             End While
             lers.Close()
 
@@ -175,7 +175,7 @@ Public Class F_ClientSuivi
         If Me.gCompta.SelectedRows.Count = 0 Then Exit Sub
         If Me.gCompta.SelectedRows(0).Cells("numFacture").Value = "" Then Exit Sub
         If MessageBox.Show("Editer la Facture '" & Me.gCompta.SelectedRows(0).Cells("numFacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
-            Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numfacture").Value)
+            Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numfacture").Value, Me.gCompta.SelectedRows(0).Cells("SocId").Value)
         End If
     End Sub
 

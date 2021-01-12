@@ -37,6 +37,7 @@ Partial Class F_main
         Me.ClientMnu = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.AppelDeLoyerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FacturationSociétéToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FacturesMensuellesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
         Me.GrandLivreLocataireToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -60,7 +61,6 @@ Partial Class F_main
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.mParam = New System.Windows.Forms.ToolStripMenuItem()
         Me.MiseÀJourToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.FacturationSociétéToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -138,64 +138,70 @@ Partial Class F_main
         'AppelDeLoyerToolStripMenuItem
         '
         Me.AppelDeLoyerToolStripMenuItem.Name = "AppelDeLoyerToolStripMenuItem"
-        Me.AppelDeLoyerToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.AppelDeLoyerToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.AppelDeLoyerToolStripMenuItem.Text = "Appels de Loyer"
+        '
+        'FacturationSociétéToolStripMenuItem
+        '
+        Me.FacturationSociétéToolStripMenuItem.Name = "FacturationSociétéToolStripMenuItem"
+        Me.FacturationSociétéToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.FacturationSociétéToolStripMenuItem.Text = "Facturation Société"
         '
         'FacturesMensuellesToolStripMenuItem
         '
         Me.FacturesMensuellesToolStripMenuItem.Name = "FacturesMensuellesToolStripMenuItem"
-        Me.FacturesMensuellesToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
-        Me.FacturesMensuellesToolStripMenuItem.Text = "Facturation Locataire / Client"
+        Me.FacturesMensuellesToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
+        Me.FacturesMensuellesToolStripMenuItem.Text = "Facturation Locataire"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(224, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(215, 6)
         '
         'GrandLivreLocataireToolStripMenuItem
         '
         Me.GrandLivreLocataireToolStripMenuItem.Name = "GrandLivreLocataireToolStripMenuItem"
-        Me.GrandLivreLocataireToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.GrandLivreLocataireToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.GrandLivreLocataireToolStripMenuItem.Text = "Grand Livre Locataire"
         '
         'GrandLiToolStripMenuItem
         '
         Me.GrandLiToolStripMenuItem.Name = "GrandLiToolStripMenuItem"
-        Me.GrandLiToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.GrandLiToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.GrandLiToolStripMenuItem.Text = "Grand Livre Dépôt"
         '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(224, 6)
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(215, 6)
         '
         'RèglementFournisseurToolStripMenuItem
         '
         Me.RèglementFournisseurToolStripMenuItem.Name = "RèglementFournisseurToolStripMenuItem"
-        Me.RèglementFournisseurToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.RèglementFournisseurToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.RèglementFournisseurToolStripMenuItem.Text = "Balance Fournisseurs"
         '
         'BilanLocataireToolStripMenuItem
         '
         Me.BilanLocataireToolStripMenuItem.Name = "BilanLocataireToolStripMenuItem"
-        Me.BilanLocataireToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.BilanLocataireToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.BilanLocataireToolStripMenuItem.Text = "Balance Clients / Locataires"
         '
         'CompteDépôtToolStripMenuItem
         '
         Me.CompteDépôtToolStripMenuItem.Name = "CompteDépôtToolStripMenuItem"
-        Me.CompteDépôtToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.CompteDépôtToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.CompteDépôtToolStripMenuItem.Text = "Balance Dépôt Gar."
         '
         'ToolStripSeparator2
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(224, 6)
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(215, 6)
         '
         'FinDeBailToolStripMenuItem
         '
         Me.FinDeBailToolStripMenuItem.Name = "FinDeBailToolStripMenuItem"
-        Me.FinDeBailToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
+        Me.FinDeBailToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.FinDeBailToolStripMenuItem.Text = "Fin de Bail"
         '
         'ToolStripMenuItem1
@@ -277,12 +283,6 @@ Partial Class F_main
         Me.MiseÀJourToolStripMenuItem.Name = "MiseÀJourToolStripMenuItem"
         Me.MiseÀJourToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.MiseÀJourToolStripMenuItem.Text = "Mise à jour"
-        '
-        'FacturationSociétéToolStripMenuItem
-        '
-        Me.FacturationSociétéToolStripMenuItem.Name = "FacturationSociétéToolStripMenuItem"
-        Me.FacturationSociétéToolStripMenuItem.Size = New System.Drawing.Size(227, 22)
-        Me.FacturationSociétéToolStripMenuItem.Text = "Facturation Société"
         '
         'F_main
         '

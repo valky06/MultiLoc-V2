@@ -691,7 +691,7 @@ Public Module Common
         End Try
     End Sub
 
-    Sub FactureEdition(laFacture As String)
+    Sub FactureEdition(laFacture As String, laSocId As Integer)
         Dim ssql As String = ""
         Dim lers As OleDb.OleDbDataReader
         Dim ladate As Date
@@ -703,23 +703,21 @@ Public Module Common
         Dim laLigne As Integer
         Dim leModele As String = ""
         Dim appXL As New Microsoft.Office.Interop.Excel.Application
-        Dim laSocid As Integer = 0
         Dim leTiersId As Integer = 0
-
 
         Try
 
-            lers = sqlLit("select distinct locid, socid from comptagene where tiers='CLIENT' and categorie='VENTE' and numfacture='" & laFacture & "'", conSql)
-            While lers.Read
-                leTiersId = lers("locid")
-                laSocid = lers("socid")
-            End While
-            lers.Close()
+            'lers = sqlLit("select distinct locid, socid from comptagene where tiers='CLIENT' and categorie='VENTE'  and numfacture='" & laFacture & "'", conSql)
+            'While lers.Read
+            '    leTiersId = lers("locid")
+            '    laSocid = lers("socid")
+            'End While
+            'lers.Close()
 
             If laSocid <> 0 Then
                 'Recherche le modele de la societe
-                If laSocId <> 0 Then
-                    ssql = "Select modeleFacture from societe where socid=" & laSocId
+                If laSocid <> 0 Then
+                    ssql = "Select modeleFacture from societe where socid=" & laSocid
                     lers = sqlLit(ssql, conSql)
                     While lers.Read
                         leModele = nz(lers(0).ToString, "")
@@ -734,7 +732,7 @@ Public Module Common
                 appXL.Visible = True
 
                 'Recherche les données à facturer
-                ssql = "select locid,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrecheance from comptaGene where  numfacture='" & laFacture & "' and Tiers='SOCIETE' and categorie='VENTE'"
+                ssql = "select locid,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrecheance from comptaGene where  numfacture='" & laFacture & "' and Tiers='SOCIETE' and categorie='VENTE' and socid=" & laSocId
 
                 'recherche la cellule Article1
                 colArticle = appXL.Range("Article1").Column
@@ -748,6 +746,7 @@ Public Module Common
                 While lers.Read
                     ladate = lers("ecrdate")
                     lEcheance = lers("ecrecheance")
+                    leTiersId = lers("locid")
                     appXL.Cells(laLigne, colArticle).value = "'" & lers("ecrlib").ToString
 
                     appXL.Cells(laLigne, colHT).value = num2sql(lers("ecrMontantHT").ToString)
@@ -755,6 +754,7 @@ Public Module Common
                     appXL.Cells(laLigne, colTTC).value = num2sql(lers("ecrMontantTTC").ToString)
 
                     laLigne += 1
+
                 End While
                 lers.Close()
 

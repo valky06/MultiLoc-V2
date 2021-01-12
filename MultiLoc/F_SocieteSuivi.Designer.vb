@@ -23,25 +23,16 @@ Partial Class F_SocieteSuivi
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compta = New System.Windows.Forms.TabPage()
         Me.gCompta = New System.Windows.Forms.DataGridView()
-        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Compte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lots = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MontantHT = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.tRechCat = New System.Windows.Forms.TextBox()
         Me.lAnnee = New System.Windows.Forms.ComboBox()
@@ -115,6 +106,16 @@ Partial Class F_SocieteSuivi
         Me.lSociete = New System.Windows.Forms.ComboBox()
         Me.kSociete = New System.Windows.Forms.LinkLabel()
         Me.oDial = New System.Windows.Forms.OpenFileDialog()
+        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Compte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lots = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MontantHT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numfact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.oOnglet.SuspendLayout()
         Me.Compta.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -181,7 +182,7 @@ Partial Class F_SocieteSuivi
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gCompta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gCompta.ColumnHeadersHeight = 46
-        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dateEcr, Me.DateEch, Me.Compte, Me.Tiers, Me.Cat, Me.lots, Me.NumFacture, Me.Libelle, Me.MontantHT})
+        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dateEcr, Me.DateEch, Me.Compte, Me.Tiers, Me.Cat, Me.lots, Me.NumFacture, Me.Libelle, Me.MontantHT, Me.numfact})
         Me.gCompta.Location = New System.Drawing.Point(6, 32)
         Me.gCompta.MultiSelect = False
         Me.gCompta.Name = "gCompta"
@@ -190,75 +191,6 @@ Partial Class F_SocieteSuivi
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gCompta.Size = New System.Drawing.Size(730, 384)
         Me.gCompta.TabIndex = 55
-        '
-        'dateEcr
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dateEcr.FillWeight = 40.0!
-        Me.dateEcr.HeaderText = "Date"
-        Me.dateEcr.Name = "dateEcr"
-        Me.dateEcr.ReadOnly = True
-        '
-        'DateEch
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DateEch.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateEch.FillWeight = 40.0!
-        Me.DateEch.HeaderText = "Echéance"
-        Me.DateEch.Name = "DateEch"
-        Me.DateEch.ReadOnly = True
-        '
-        'Compte
-        '
-        Me.Compte.FillWeight = 50.0!
-        Me.Compte.HeaderText = "Compte"
-        Me.Compte.Name = "Compte"
-        Me.Compte.ReadOnly = True
-        '
-        'Tiers
-        '
-        Me.Tiers.HeaderText = "Tiers"
-        Me.Tiers.Name = "Tiers"
-        Me.Tiers.ReadOnly = True
-        '
-        'Cat
-        '
-        Me.Cat.FillWeight = 50.0!
-        Me.Cat.HeaderText = "Catégorie"
-        Me.Cat.Name = "Cat"
-        Me.Cat.ReadOnly = True
-        '
-        'lots
-        '
-        Me.lots.HeaderText = "Lots"
-        Me.lots.Name = "lots"
-        Me.lots.ReadOnly = True
-        '
-        'NumFacture
-        '
-        Me.NumFacture.FillWeight = 50.0!
-        Me.NumFacture.HeaderText = "N°Pièce"
-        Me.NumFacture.Name = "NumFacture"
-        Me.NumFacture.ReadOnly = True
-        '
-        'Libelle
-        '
-        Me.Libelle.HeaderText = "Libellé"
-        Me.Libelle.Name = "Libelle"
-        Me.Libelle.ReadOnly = True
-        '
-        'MontantHT
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        Me.MontantHT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.MontantHT.FillWeight = 50.0!
-        Me.MontantHT.HeaderText = "Montant HT"
-        Me.MontantHT.Name = "MontantHT"
-        Me.MontantHT.ReadOnly = True
         '
         'Label16
         '
@@ -300,26 +232,24 @@ Partial Class F_SocieteSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(742, 133)
+        Me.bEditFActure.Location = New System.Drawing.Point(742, 118)
         Me.bEditFActure.Name = "bEditFActure"
         Me.bEditFActure.Size = New System.Drawing.Size(93, 32)
         Me.bEditFActure.TabIndex = 13
         Me.bEditFActure.Text = "Edition Facture"
         Me.bEditFActure.UseVisualStyleBackColor = True
-        Me.bEditFActure.Visible = False
         '
         'bsuppEcrit
         '
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 171)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 193)
         Me.bsuppEcrit.Name = "bsuppEcrit"
         Me.bsuppEcrit.Size = New System.Drawing.Size(93, 32)
         Me.bsuppEcrit.TabIndex = 12
         Me.bsuppEcrit.Text = "Supprimer Ecrit."
         Me.bsuppEcrit.UseVisualStyleBackColor = True
-        Me.bsuppEcrit.Visible = False
         '
         'Button9
         '
@@ -998,6 +928,82 @@ Partial Class F_SocieteSuivi
         Me.oDial.FileName = "OpenFileDialog1"
         Me.oDial.Filter = "Excel|*.xls;*.xlsx"
         '
+        'dateEcr
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dateEcr.FillWeight = 40.0!
+        Me.dateEcr.HeaderText = "Date"
+        Me.dateEcr.Name = "dateEcr"
+        Me.dateEcr.ReadOnly = True
+        '
+        'DateEch
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DateEch.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DateEch.FillWeight = 40.0!
+        Me.DateEch.HeaderText = "Echéance"
+        Me.DateEch.Name = "DateEch"
+        Me.DateEch.ReadOnly = True
+        '
+        'Compte
+        '
+        Me.Compte.FillWeight = 50.0!
+        Me.Compte.HeaderText = "Compte"
+        Me.Compte.Name = "Compte"
+        Me.Compte.ReadOnly = True
+        '
+        'Tiers
+        '
+        Me.Tiers.HeaderText = "Tiers"
+        Me.Tiers.Name = "Tiers"
+        Me.Tiers.ReadOnly = True
+        '
+        'Cat
+        '
+        Me.Cat.FillWeight = 50.0!
+        Me.Cat.HeaderText = "Catégorie"
+        Me.Cat.Name = "Cat"
+        Me.Cat.ReadOnly = True
+        '
+        'lots
+        '
+        Me.lots.HeaderText = "Lots"
+        Me.lots.Name = "lots"
+        Me.lots.ReadOnly = True
+        '
+        'NumFacture
+        '
+        Me.NumFacture.FillWeight = 50.0!
+        Me.NumFacture.HeaderText = "N°Pièce"
+        Me.NumFacture.Name = "NumFacture"
+        Me.NumFacture.ReadOnly = True
+        '
+        'Libelle
+        '
+        Me.Libelle.HeaderText = "Libellé"
+        Me.Libelle.Name = "Libelle"
+        Me.Libelle.ReadOnly = True
+        '
+        'MontantHT
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N2"
+        Me.MontantHT.DefaultCellStyle = DataGridViewCellStyle4
+        Me.MontantHT.FillWeight = 50.0!
+        Me.MontantHT.HeaderText = "Montant HT"
+        Me.MontantHT.Name = "MontantHT"
+        Me.MontantHT.ReadOnly = True
+        '
+        'numfact
+        '
+        Me.numfact.HeaderText = "numfact"
+        Me.numfact.Name = "numfact"
+        Me.numfact.ReadOnly = True
+        Me.numfact.Visible = False
+        '
         'F_SocieteSuivi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1095,15 +1101,6 @@ End Sub
     Friend WithEvents lAnnee As System.Windows.Forms.ComboBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents gCompta As System.Windows.Forms.DataGridView
-    Friend WithEvents dateEcr As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DateEch As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Compte As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Tiers As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cat As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents lots As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NumFacture As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Libelle As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MontantHT As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents PlanCompta As TabPage
@@ -1117,4 +1114,14 @@ End Sub
     Friend WithEvents cptnom As DataGridViewTextBoxColumn
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents dateEcr As DataGridViewTextBoxColumn
+    Friend WithEvents DateEch As DataGridViewTextBoxColumn
+    Friend WithEvents Compte As DataGridViewTextBoxColumn
+    Friend WithEvents Tiers As DataGridViewTextBoxColumn
+    Friend WithEvents Cat As DataGridViewTextBoxColumn
+    Friend WithEvents lots As DataGridViewTextBoxColumn
+    Friend WithEvents NumFacture As DataGridViewTextBoxColumn
+    Friend WithEvents Libelle As DataGridViewTextBoxColumn
+    Friend WithEvents MontantHT As DataGridViewTextBoxColumn
+    Friend WithEvents numfact As DataGridViewTextBoxColumn
 End Class

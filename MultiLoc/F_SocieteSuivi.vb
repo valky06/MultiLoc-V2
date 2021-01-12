@@ -195,17 +195,12 @@ Public Class F_SocieteSuivi
     Private Sub bsuppEcrit_Click(sender As System.Object, e As System.EventArgs) Handles bsuppEcrit.Click
         If Me.gCompta.SelectedRows.Count = 0 Then Exit Sub
 
-        If Me.gCompta.SelectedRows(0).Cells("journal").Value = "VENTES" Then
-            If MessageBox.Show("Supprimer la facture '" & Me.gCompta.SelectedRows(0).Cells("numfacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
-                sqlDo("delete from comptagene where numfacture='" & gCompta.SelectedRows(0).Cells("numfacture").Value & "' and socid=" & laSocId, conSql)
-                Call GrandLivreSoc()
+
+        If MessageBox.Show("Supprimer la facture '" & Me.gCompta.SelectedRows(0).Cells("numfacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
+            sqlDo("delete from comptagene where numfactureinterne='" & gCompta.SelectedRows(0).Cells("numfact").Value & "' and socid=" & laSocId, conSql)
+            Call GrandLivreSoc()
             End If
-        Else
-            If MessageBox.Show("Supprimer l'écriture '" & Me.gCompta.SelectedRows(0).Cells("libelle").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
-                Call SupprEcr(Me.gCompta.SelectedRows(0).Cells("numpiece").Value)
-                Call GrandLivreSoc()
-            End If
-        End If
+
 
     End Sub
 
@@ -222,6 +217,11 @@ Public Class F_SocieteSuivi
         'If MessageBox.Show("Editer la Facture '" & Me.gCompta.SelectedRows(0).Cells("numFacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
         '    Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numpiece").Value, docType.Societe, "VENTES", Me.laSocId)
         'End If
+        If Me.gCompta.SelectedRows.Count = 0 Then Exit Sub
+        If Me.gCompta.SelectedRows(0).Cells("numFacture").Value = "" Then Exit Sub
+        If MessageBox.Show("Editer la Facture '" & Me.gCompta.SelectedRows(0).Cells("numFacture").Value & "' ?", "Attention", MessageBoxButtons.OKCancel) = Windows.Forms.DialogResult.OK Then
+            Call FactureEdition(Me.gCompta.SelectedRows(0).Cells("numfacture").Value, Me.laSocId)
+        End If
     End Sub
 
 
@@ -273,7 +273,7 @@ Public Class F_SocieteSuivi
         Dim lEch As Date
 
         Try
-            sSql = "SELECT l.nom as tiers,numfacture,'411' + cptsuffixe as cpt,  ecrLib, ecrMontantHT,ecrdate,ecrmontantTVA,ecrMontantTTC,lotlib,categorie,ecrecheance" _
+            sSql = "SELECT l.nom as tiers,numfacture,'411' + cptsuffixe as cpt,  ecrLib, ecrMontantHT,ecrdate,ecrmontantTVA,ecrMontantTTC,lotlib,categorie,ecrecheance,numfactureinterne" _
             & " FROM ComptaGene " _
             & " inner join locataire on ComptaGene.locId = locataire.locId " _
             & " left join annuaire as l on locataire.persId= l.persId " _
@@ -291,7 +291,7 @@ Public Class F_SocieteSuivi
             While lers.Read
                 ladate = lers("ecrdate")
                 lEch = lers("ecrEcheance")
-                Me.gCompta.Rows.Add(ladate.ToString("dd/MM/yyyy"), lEch.ToString("dd/MM/yyyy"), lers("cpt").ToString, lers("tiers").ToString, lers("Categorie").ToString, lers("lotlib").ToString, lers("numfacture").ToString, lers("ecrLIb").ToString, lers("ecrmontantHT"), lers("ecrMontantTVA"), lers("ecrMontantTTC"))
+                Me.gCompta.Rows.Add(ladate.ToString("dd/MM/yyyy"), lEch.ToString("dd/MM/yyyy"), lers("cpt").ToString, lers("tiers").ToString, lers("Categorie").ToString, lers("lotlib").ToString, lers("numfacture").ToString, lers("ecrLIb").ToString, lers("ecrmontantHT"), lers("numfactureinterne"))
             End While
             lers.Close()
 
@@ -348,5 +348,9 @@ Public Class F_SocieteSuivi
 
     Private Sub PlanCompta_Click(sender As Object, e As EventArgs) Handles PlanCompta.Click
 
+    End Sub
+
+    Private Sub lAnnee_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lAnnee.SelectedIndexChanged
+        GrandLivreSoc()
     End Sub
 End Class
