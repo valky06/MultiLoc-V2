@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class F_LocaDGAppel
+Partial Class F_LocaDG
     Inherits System.Windows.Forms.Form
 
     'Form remplace la méthode Dispose pour nettoyer la liste des composants.
@@ -200,7 +200,7 @@ Partial Class F_LocaDGAppel
         Me.tLoyerHTTTC.TabIndex = 72
         Me.tLoyerHTTTC.Text = "HT"
         '
-        'F_LocaDGAppel
+        'F_LocaDG
         '
         Me.AcceptButton = Me.bOK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -227,7 +227,7 @@ Partial Class F_LocaDGAppel
         Me.Controls.Add(Me.Label2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.Name = "F_LocaDGAppel"
+        Me.Name = "F_LocaDG"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dépôt Garantie"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()

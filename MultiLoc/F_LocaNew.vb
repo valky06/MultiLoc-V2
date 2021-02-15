@@ -4,6 +4,8 @@
     Private Sub F_location_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.ErrorProvider1.Clear()
         Call formVide(Me)
+        Me.tTypeLoc.Text = "1"
+        Me.tDurRev.Text = "1"
         Call ComboRempli("select tbailid,tbailNom from typeBail", Me.lTypeBail, conSql)
         Call ComboRempli("select tperId,tperNom from typePEriode", Me.lTypePer, conSql)
         Call ComboRempli("select tRgtId,tRgtNom from typeReglement", Me.lTypeRgt, conSql)
@@ -59,6 +61,10 @@
     End Sub
 
     Private Sub dEntre_ValueChanged(sender As System.Object, e As System.EventArgs) Handles dEntre.ValueChanged
-        Me.dRevision.Value = Me.dEntre.Value.AddYears(1)
+        Me.dRevision.Value = Me.dEntre.Value.AddYears(Val(Me.tDurRev.Text))
+    End Sub
+
+    Private Sub tDurRev_TextChanged(sender As Object, e As EventArgs) Handles tDurRev.TextChanged
+        Me.dRevision.Value = Me.dEntre.Value.AddYears(Val(Me.tDurRev.Text))
     End Sub
 End Class

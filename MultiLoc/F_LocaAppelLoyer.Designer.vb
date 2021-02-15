@@ -709,6 +709,8 @@ Partial Class F_LocaAppelLoyer
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.Name = "F_LocaAppelLoyer"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Appel de Loyer"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()

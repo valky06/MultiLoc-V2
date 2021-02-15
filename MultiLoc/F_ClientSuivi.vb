@@ -27,8 +27,9 @@ Public Class F_ClientSuivi
         Dim ladate As Date
 
         Try
-            sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC, socid FROM ComptaGene" _
-            & " where Tiers='CLIENT' and locid= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc"
+            sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC, C.socid, S.SocCode FROM ComptaGene  C " _
+            & " inner Join Societe S on S.SocId = C.SocId " _
+            & " where Tiers='CLIENT' and locid= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc, numfacture"
 
             Me.gCompta.Rows.Clear()
             lers = sqlLit(sSql, conSql)
@@ -36,7 +37,7 @@ Public Class F_ClientSuivi
                 debit = IIf(lers("ecrmontantTTC") < 0, -lers("ecrmontantTTC"), 0)
                 credit = IIf(lers("ecrmontantTTC") >= 0, lers("ecrmontantTTC"), 0)
                 ladate = lers("ecrDate")
-                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPiece").ToString, ladate.ToString("yyyy-MM-dd"), lers("NumFacture").ToString, lers("ecrLib").ToString, debit, credit, "", lers("socid").ToString)
+                Me.gCompta.Rows.Add(lers("ecrId"), lers("NumPiece").ToString, ladate.ToString("yyyy-MM-dd"), lers("SocCode").ToString, lers("NumFacture").ToString, lers("ecrLib").ToString, debit, credit, "", lers("socid").ToString)
             End While
             lers.Close()
 
@@ -179,4 +180,7 @@ Public Class F_ClientSuivi
         End If
     End Sub
 
+    Private Sub Compte_Click(sender As Object, e As EventArgs) Handles Compte.Click
+
+    End Sub
 End Class

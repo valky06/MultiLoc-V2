@@ -108,7 +108,7 @@ Public Class F_FacturationSociete
             & " left join ComptaRubrique R on R.RubId = ComptaGene.RubId" _
             & " where tiers='SOCIETE' and categorie='VENTE'" _
             & " And ecrdate>=" & SqlDate(Me.dDebut) & " And ecrdate<=" & SqlDate(Me.dFin) _
-            & " order by SocCode,Annuaire.nom,numfacture,ecrdate"
+            & " order by SocCode,numfacture,Annuaire.nom,ecrdate"
 
             lers = sqlLit(sSql, conSql)
 
@@ -119,22 +119,22 @@ Public Class F_FacturationSociete
                     appXL.Cells(laLigne, 1).value = lers("SocCode")
                     appXL.Cells(laLigne, 2).value = date2Xl(lers("ecrDate"))
                     appXL.Cells(laLigne, 3).value = "VT"
-                    appXL.Cells(laLigne, 4).value = lers("numpiece")
+                    appXL.Cells(laLigne, 4).value = lers("numfacture")
                     appXL.Cells(laLigne, 5).value = nz(lers("CptNum"), "")
                     appXL.Cells(laLigne, 6).value = nz(lers("CptNom"), "")
-                    appXL.Cells(laLigne, 9).value = nz(lers("numfacture"), "")
+                    appXL.Cells(laLigne, 9).value = lers("SocCode") & " " & nz(lers("numfacture"), "")
                     appXL.Cells(laLigne, 11).value = lers("ecrMontantHT")
                     laLigne += 1
 
                     appXL.Cells(laLigne, 1).value = lers("SocCode")
                     appXL.Cells(laLigne, 2).value = date2Xl(lers("ecrDate"))
                     appXL.Cells(laLigne, 3).value = "VT"
-                    appXL.Cells(laLigne, 4).value = lers("numpiece")
+                    appXL.Cells(laLigne, 4).value = lers("numfacture")
                     appXL.Cells(laLigne, 5).value = "411000"
                     appXL.Cells(laLigne, 6).value = "Client Divers"
                     appXL.Cells(laLigne, 7).value = nz(lers("CptSuffixe"), "")
                     appXL.Cells(laLigne, 8).value = lers("tiers")
-                    appXL.Cells(laLigne, 9).value = nz(lers("numfacture"), "")
+                    appXL.Cells(laLigne, 9).value = lers("SocCode") & " " & nz(lers("numfacture"), "")
                     appXL.Cells(laLigne, 10).value = lers("ecrMontantTTC")
                     '                appXL.Cells(laLigne, 12).value = lers("Leslots")
                     laLigne += 1
@@ -142,10 +142,10 @@ Public Class F_FacturationSociete
                     appXL.Cells(laLigne, 1).value = lers("SocCode")
                     appXL.Cells(laLigne, 2).value = date2Xl(lers("ecrDate"))
                     appXL.Cells(laLigne, 3).value = "VT"
-                    appXL.Cells(laLigne, 4).value = lers("numpiece")
+                    appXL.Cells(laLigne, 4).value = lers("numfacture")
                     appXL.Cells(laLigne, 5).value = "445715"
                     appXL.Cells(laLigne, 6).value = "TVA collectée"
-                    appXL.Cells(laLigne, 9).value = nz(lers("numfacture"), "")
+                    appXL.Cells(laLigne, 9).value = lers("SocCode") & " " & nz(lers("numfacture"), "")
                     appXL.Cells(laLigne, 11).value = lers("ecrmontantTVA")
                     laLigne += 1
 

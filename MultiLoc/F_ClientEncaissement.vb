@@ -28,7 +28,7 @@
         Dim lers As OleDb.OleDbDataReader
         ssql = "Select numfacture,sum(-ecrMontantHT) As montantHT,sum(-ecrMontantTVA) As montantTVA, SUM(-ecrmontantttc) As montantTTC from ComptaGene " _
         & " where numfacture='" & Me.lFacture.Text & "'" _
-        & "And tiers='CLIENT' group by numfacture"
+        & "And tiers='CLIENT'  and locid=" & Me.leTiersId & " group by numfacture"
         lers = sqlLit(ssql, conSql)
         While lers.Read
             Me.sHT.Text = lers("montantHT")

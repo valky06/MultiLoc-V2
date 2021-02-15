@@ -624,6 +624,7 @@ Partial Class F_LocaAppel
         Me.Controls.Add(Me.gBail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "F_LocaAppel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Appel Loyer"
         Me.gBail.ResumeLayout(False)

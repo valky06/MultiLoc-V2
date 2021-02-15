@@ -497,6 +497,8 @@ Partial Class F_LocaAvoir
         Me.Controls.Add(Me.gBail)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "F_LocaAvoir"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Avoir Appel Loyer"
         Me.gBail.ResumeLayout(False)

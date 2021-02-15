@@ -232,11 +232,14 @@ Partial Class F_SocieteSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(742, 118)
+        Me.bEditFActure.Image = Global.MultiLoc.My.Resources.Resources.Edit1
+        Me.bEditFActure.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.bEditFActure.Location = New System.Drawing.Point(742, 128)
         Me.bEditFActure.Name = "bEditFActure"
-        Me.bEditFActure.Size = New System.Drawing.Size(93, 32)
+        Me.bEditFActure.Size = New System.Drawing.Size(94, 42)
         Me.bEditFActure.TabIndex = 13
         Me.bEditFActure.Text = "Edition Facture"
+        Me.bEditFActure.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.bEditFActure.UseVisualStyleBackColor = True
         '
         'bsuppEcrit
@@ -244,11 +247,14 @@ Partial Class F_SocieteSuivi
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 193)
+        Me.bsuppEcrit.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
+        Me.bsuppEcrit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 176)
         Me.bsuppEcrit.Name = "bsuppEcrit"
-        Me.bsuppEcrit.Size = New System.Drawing.Size(93, 32)
+        Me.bsuppEcrit.Size = New System.Drawing.Size(94, 42)
         Me.bsuppEcrit.TabIndex = 12
         Me.bsuppEcrit.Text = "Supprimer Ecrit."
+        Me.bsuppEcrit.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.bsuppEcrit.UseVisualStyleBackColor = True
         '
         'Button9
@@ -256,11 +262,14 @@ Partial Class F_SocieteSuivi
         Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Image = Global.MultiLoc.My.Resources.Resources.smallplus
+        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button9.Location = New System.Drawing.Point(742, 80)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(93, 32)
+        Me.Button9.Size = New System.Drawing.Size(94, 42)
         Me.Button9.TabIndex = 10
         Me.Button9.Text = "Facture Client"
+        Me.Button9.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.Button9.UseVisualStyleBackColor = True
         '
         'Bien
@@ -567,6 +576,7 @@ Partial Class F_SocieteSuivi
         'TextBox9
         '
         Me.TextBox9.Location = New System.Drawing.Point(117, 102)
+        Me.TextBox9.MaxLength = 20
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(126, 20)
         Me.TextBox9.TabIndex = 99
@@ -977,7 +987,7 @@ Partial Class F_SocieteSuivi
         'NumFacture
         '
         Me.NumFacture.FillWeight = 50.0!
-        Me.NumFacture.HeaderText = "N°Pièce"
+        Me.NumFacture.HeaderText = "N°Facture"
         Me.NumFacture.Name = "NumFacture"
         Me.NumFacture.ReadOnly = True
         '

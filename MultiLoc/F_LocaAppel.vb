@@ -100,7 +100,7 @@ Public Class F_LocaAppel
 
         'revision de loyer
         If Me.tLoyerNew.Text <> "" Then
-            sqlDo("update locataire set loyerActu=" & num2sql(Me.tLoyerNew.Text) & ",daterevision=dateadd(yy,1,daterevision),indactuid=" & Me.tIndActuid.Text & " where locid=" & leLocId, conSql)
+            sqlDo("update locataire set loyerActu=" & num2sql(Me.tLoyerNew.Text) & ",daterevision=dateadd(yy," & Val(F_LocaSuivi.tDurRev.Text) & ",daterevision),indactuid=" & Me.tIndActuid.Text & " where locid=" & leLocId, conSql)
         End If
 
         Me.DialogResult = Windows.Forms.DialogResult.OK
@@ -140,12 +140,12 @@ Public Class F_LocaAppel
     'End Sub
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles Button8.Click
-        F_LocaDGAppel.leLocId = leLocId
-        F_LocaDGAppel.laSocId = Me.tSocId.Text
-        F_LocaDGAppel.tNbMois.Text = F_LocaSuivi.tNbMoisDG.Text
-        F_LocaDGAppel.tLib.Text = "Appel Dépôt Garantie " & F_LocaSuivi.lLocat.Text
-        If F_LocaDGAppel.ShowDialog = Windows.Forms.DialogResult.OK Then Call comptalocat()
-        F_LocaDGAppel.Dispose()
+        F_LocaDG.leLocId = leLocId
+        F_LocaDG.laSocId = Me.tSocId.Text
+        F_LocaDG.tNbMois.Text = F_LocaSuivi.tNbMoisDG.Text
+        F_LocaDG.tLib.Text = "Appel Dépôt Garantie " & F_LocaSuivi.lLocat.Text
+        If F_LocaDG.ShowDialog = Windows.Forms.DialogResult.OK Then Call comptalocat()
+        F_LocaDG.Dispose()
     End Sub
 
     Private Sub Button13_Click(sender As System.Object, e As System.EventArgs) Handles Button13.Click

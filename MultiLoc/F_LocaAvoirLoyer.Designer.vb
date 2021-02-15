@@ -335,6 +335,8 @@ Partial Class F_LocaAvoirLoyer
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.ImeMode = System.Windows.Forms.ImeMode.Off
         Me.Name = "F_LocaAvoirLoyer"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Avoir sur Loyer"
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()

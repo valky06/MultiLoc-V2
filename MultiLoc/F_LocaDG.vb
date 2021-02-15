@@ -1,6 +1,6 @@
 ﻿Imports System.Math
 
-Public Class F_LocaDGAppel
+Public Class F_LocaDG
     Public leLocId As Integer
     Public laSocId As Integer
 

@@ -22,14 +22,14 @@ Partial Class F_ClientSuivi
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_ClientSuivi))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compte = New System.Windows.Forms.TabPage()
         Me.bEditFActure = New System.Windows.Forms.Button()
@@ -64,6 +64,7 @@ Partial Class F_ClientSuivi
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numPiece = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.societe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -115,11 +116,14 @@ Partial Class F_ClientSuivi
         Me.bEditFActure.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bEditFActure.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bEditFActure.Location = New System.Drawing.Point(815, 49)
+        Me.bEditFActure.Image = Global.MultiLoc.My.Resources.Resources.Edit1
+        Me.bEditFActure.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.bEditFActure.Location = New System.Drawing.Point(810, 6)
         Me.bEditFActure.Name = "bEditFActure"
-        Me.bEditFActure.Size = New System.Drawing.Size(93, 38)
+        Me.bEditFActure.Size = New System.Drawing.Size(94, 42)
         Me.bEditFActure.TabIndex = 19
         Me.bEditFActure.Text = "Edition Facture"
+        Me.bEditFActure.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.bEditFActure.UseVisualStyleBackColor = True
         '
         'Button9
@@ -127,23 +131,27 @@ Partial Class F_ClientSuivi
         Me.Button9.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button9.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Location = New System.Drawing.Point(815, 6)
+        Me.Button9.Location = New System.Drawing.Point(810, 157)
         Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(93, 37)
+        Me.Button9.Size = New System.Drawing.Size(94, 37)
         Me.Button9.TabIndex = 18
         Me.Button9.Text = "Facture"
         Me.Button9.UseVisualStyleBackColor = True
+        Me.Button9.Visible = False
         '
         'bsuppEcrit
         '
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(815, 306)
+        Me.bsuppEcrit.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
+        Me.bsuppEcrit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.bsuppEcrit.Location = New System.Drawing.Point(810, 298)
         Me.bsuppEcrit.Name = "bsuppEcrit"
-        Me.bsuppEcrit.Size = New System.Drawing.Size(93, 34)
+        Me.bsuppEcrit.Size = New System.Drawing.Size(94, 42)
         Me.bsuppEcrit.TabIndex = 16
         Me.bsuppEcrit.Text = "Supprimer Ecrit."
+        Me.bsuppEcrit.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.bsuppEcrit.UseVisualStyleBackColor = True
         '
         'Button11
@@ -151,9 +159,9 @@ Partial Class F_ClientSuivi
         Me.Button11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button11.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button11.Location = New System.Drawing.Point(815, 104)
+        Me.Button11.Location = New System.Drawing.Point(810, 54)
         Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(93, 40)
+        Me.Button11.Size = New System.Drawing.Size(94, 42)
         Me.Button11.TabIndex = 13
         Me.Button11.Text = "Règlement Facture"
         Me.Button11.UseVisualStyleBackColor = False
@@ -167,16 +175,16 @@ Partial Class F_ClientSuivi
         Me.gCompta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gCompta.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.gCompta.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gCompta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gCompta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.gCompta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.numPiece, Me.dateEcr, Me.numFacture, Me.Libelle, Me.debit, Me.credit, Me.solde, Me.SocId})
+        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.numPiece, Me.dateEcr, Me.societe, Me.numFacture, Me.Libelle, Me.debit, Me.credit, Me.solde, Me.SocId})
         Me.gCompta.Location = New System.Drawing.Point(6, 6)
         Me.gCompta.MultiSelect = False
         Me.gCompta.Name = "gCompta"
@@ -234,14 +242,14 @@ Partial Class F_ClientSuivi
         Me.gDoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.gDoc.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.gDoc.BorderStyle = System.Windows.Forms.BorderStyle.None
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gDoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle13
         Me.gDoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gDoc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.dateCrea, Me.docNom, Me.docPath})
         Me.gDoc.Location = New System.Drawing.Point(6, 6)
@@ -262,10 +270,10 @@ Partial Class F_ClientSuivi
         '
         'dateCrea
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.dateCrea.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle14.Format = "d"
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.dateCrea.DefaultCellStyle = DataGridViewCellStyle14
         Me.dateCrea.FillWeight = 20.0!
         Me.dateCrea.HeaderText = "Date"
         Me.dateCrea.Name = "dateCrea"
@@ -449,14 +457,21 @@ Partial Class F_ClientSuivi
         '
         'dateEcr
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Format = "d"
+        DataGridViewCellStyle9.NullValue = Nothing
+        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle9
         Me.dateEcr.FillWeight = 40.0!
         Me.dateEcr.HeaderText = "Date"
         Me.dateEcr.Name = "dateEcr"
         Me.dateEcr.ReadOnly = True
+        '
+        'societe
+        '
+        Me.societe.FillWeight = 40.0!
+        Me.societe.HeaderText = "Société"
+        Me.societe.Name = "societe"
+        Me.societe.ReadOnly = True
         '
         'numFacture
         '
@@ -473,9 +488,9 @@ Partial Class F_ClientSuivi
         '
         'debit
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        Me.debit.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N2"
+        Me.debit.DefaultCellStyle = DataGridViewCellStyle10
         Me.debit.FillWeight = 40.0!
         Me.debit.HeaderText = "Débit"
         Me.debit.Name = "debit"
@@ -483,9 +498,9 @@ Partial Class F_ClientSuivi
         '
         'credit
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        Me.credit.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "N2"
+        Me.credit.DefaultCellStyle = DataGridViewCellStyle11
         Me.credit.FillWeight = 40.0!
         Me.credit.HeaderText = "Crédit"
         Me.credit.Name = "credit"
@@ -493,9 +508,9 @@ Partial Class F_ClientSuivi
         '
         'solde
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N2"
-        Me.solde.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "N2"
+        Me.solde.DefaultCellStyle = DataGridViewCellStyle12
         Me.solde.FillWeight = 40.0!
         Me.solde.HeaderText = "Solde"
         Me.solde.Name = "solde"
@@ -571,6 +586,7 @@ End Sub
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
     Friend WithEvents numPiece As DataGridViewTextBoxColumn
     Friend WithEvents dateEcr As DataGridViewTextBoxColumn
+    Friend WithEvents societe As DataGridViewTextBoxColumn
     Friend WithEvents numFacture As DataGridViewTextBoxColumn
     Friend WithEvents Libelle As DataGridViewTextBoxColumn
     Friend WithEvents debit As DataGridViewTextBoxColumn

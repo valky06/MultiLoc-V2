@@ -153,7 +153,7 @@ Public Class F_LocaSuivi
 
         StatutBar("Locataire")
         Call FormRempli(Me.gBail, "SELECT locid,TBailId,  IndId,TRgtId, TPerId,loyerSOumisTVA,DGSoumisTVA,tauxTVA,dateEntree,dateSortiePrev,dateSortie" _
-            & ",loyerInit,LoyerActu,chargeInit,ChargeActu,socid, cptSuffixe,persId,NbMoisDG,daterevision,surfacebail,loyerReduction,indActuid,DGLoyerTTC,soumisHono,cautionBanc FROM Locataire where locid=" & Me.leLocId, conSql)
+            & ",loyerInit,LoyerActu,chargeInit,ChargeActu,socid, cptSuffixe,persId,NbMoisDG,daterevision,surfacebail,loyerReduction,indActuid,DGLoyerTTC,soumisHono,cautionBanc,dureerevision FROM Locataire where locid=" & Me.leLocId, conSql)
         StatutBar("Lots")
         Call afflisteLot()
         StatutBar("Compta")
@@ -394,20 +394,20 @@ Public Class F_LocaSuivi
     End Sub
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs)
-        F_LocaDGAppel.leLocId = Me.leLocId
-        F_LocaDGAppel.laSocId = Me.tSocId.Text
-        F_LocaDGAppel.tLoyer.Text = Me.tLoyerActu.Text
-        F_LocaDGAppel.tNbMois.Text = Me.tNbMoisDG.Text
-        F_LocaDGAppel.tLib.Text = "Dépôt Garantie " & Me.lLocat.Text
-        If F_LocaDGAppel.ShowDialog = Windows.Forms.DialogResult.OK Then Call affcomptalocat()
-        F_LocaDGAppel.Dispose()
+        F_LocaDG.leLocId = Me.leLocId
+        F_LocaDG.laSocId = Me.tSocId.Text
+        F_LocaDG.tLoyer.Text = Me.tLoyerActu.Text
+        F_LocaDG.tNbMois.Text = Me.tNbMoisDG.Text
+        F_LocaDG.tLib.Text = "Dépôt Garantie " & Me.lLocat.Text
+        If F_LocaDG.ShowDialog = Windows.Forms.DialogResult.OK Then Call affcomptalocat()
+        F_LocaDG.Dispose()
     End Sub
 
     Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles Button10.Click, Button8.Click
         If Me.leLocId = 0 Then Exit Sub
 
         F_LocaAppel.leLocId = Me.leLocId
-        F_LocaAppel.laSocId = Me.tSocId.Text
+        F_LocaAppel.laSocId = Val(Me.tSocId.Text)
         If F_LocaAppel.ShowDialog = Windows.Forms.DialogResult.OK Then
             Call affcomptalocat()
             Call afficheLocat()

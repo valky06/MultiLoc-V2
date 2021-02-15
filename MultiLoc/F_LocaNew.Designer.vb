@@ -60,6 +60,9 @@ Partial Class F_LocaNew
         Me.Label7 = New System.Windows.Forms.Label()
         Me.tIndActuId = New System.Windows.Forms.TextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.tTypeLoc = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.tDurRev = New System.Windows.Forms.TextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -69,8 +72,7 @@ Partial Class F_LocaNew
         Me.LinkLabel4.Location = New System.Drawing.Point(61, 130)
         Me.LinkLabel4.Name = "LinkLabel4"
         Me.LinkLabel4.Size = New System.Drawing.Size(36, 13)
-        Me.LinkLabel4.TabIndex = 8
-        Me.LinkLabel4.TabStop = True
+        Me.LinkLabel4.TabIndex = 23
         Me.LinkLabel4.Text = "Indice"
         '
         'LinkLabel3
@@ -79,8 +81,7 @@ Partial Class F_LocaNew
         Me.LinkLabel3.Location = New System.Drawing.Point(9, 101)
         Me.LinkLabel3.Name = "LinkLabel3"
         Me.LinkLabel3.Size = New System.Drawing.Size(85, 13)
-        Me.LinkLabel3.TabIndex = 6
-        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.TabIndex = 22
         Me.LinkLabel3.Text = "Type Règlement"
         '
         'LinkLabel2
@@ -89,8 +90,7 @@ Partial Class F_LocaNew
         Me.LinkLabel2.Location = New System.Drawing.Point(51, 74)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(43, 13)
-        Me.LinkLabel2.TabIndex = 4
-        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.TabIndex = 21
         Me.LinkLabel2.Text = "Période"
         '
         'bTypeBail
@@ -99,13 +99,12 @@ Partial Class F_LocaNew
         Me.bTypeBail.Location = New System.Drawing.Point(43, 47)
         Me.bTypeBail.Name = "bTypeBail"
         Me.bTypeBail.Size = New System.Drawing.Size(51, 13)
-        Me.bTypeBail.TabIndex = 2
-        Me.bTypeBail.TabStop = True
+        Me.bTypeBail.TabIndex = 20
         Me.bTypeBail.Text = "Type Bail"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(308, 252)
+        Me.TextBox1.Location = New System.Drawing.Point(308, 280)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
         Me.TextBox1.Size = New System.Drawing.Size(37, 20)
@@ -120,7 +119,7 @@ Partial Class F_LocaNew
         Me.lTypePer.Location = New System.Drawing.Point(100, 71)
         Me.lTypePer.Name = "lTypePer"
         Me.lTypePer.Size = New System.Drawing.Size(146, 21)
-        Me.lTypePer.TabIndex = 5
+        Me.lTypePer.TabIndex = 2
         Me.lTypePer.Tag = "TperId,no"
         '
         'lTypeRgt
@@ -130,7 +129,7 @@ Partial Class F_LocaNew
         Me.lTypeRgt.Location = New System.Drawing.Point(100, 98)
         Me.lTypeRgt.Name = "lTypeRgt"
         Me.lTypeRgt.Size = New System.Drawing.Size(146, 21)
-        Me.lTypeRgt.TabIndex = 7
+        Me.lTypeRgt.TabIndex = 3
         Me.lTypeRgt.Tag = "TRgtId,no"
         '
         'Label8
@@ -146,14 +145,14 @@ Partial Class F_LocaNew
         '
         Me.TextBox6.Location = New System.Drawing.Point(100, 152)
         Me.TextBox6.Name = "TextBox6"
-        Me.TextBox6.Size = New System.Drawing.Size(150, 20)
-        Me.TextBox6.TabIndex = 11
+        Me.TextBox6.Size = New System.Drawing.Size(146, 20)
+        Me.TextBox6.TabIndex = 5
         Me.TextBox6.Tag = "regimefiscal,t"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(299, 126)
+        Me.Label4.Location = New System.Drawing.Point(305, 155)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(84, 13)
         Me.Label4.TabIndex = 33
@@ -162,7 +161,7 @@ Partial Class F_LocaNew
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(303, 74)
+        Me.Label2.Location = New System.Drawing.Point(272, 74)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 13)
         Me.Label2.TabIndex = 32
@@ -174,16 +173,16 @@ Partial Class F_LocaNew
         Me.dEntre.Location = New System.Drawing.Point(347, 71)
         Me.dEntre.Name = "dEntre"
         Me.dEntre.Size = New System.Drawing.Size(101, 20)
-        Me.dEntre.TabIndex = 18
+        Me.dEntre.TabIndex = 10
         Me.dEntre.Tag = "dateEntree"
         '
         'tLoyer
         '
         Me.tLoyer.BackColor = System.Drawing.Color.White
-        Me.tLoyer.Location = New System.Drawing.Point(389, 123)
+        Me.tLoyer.Location = New System.Drawing.Point(391, 152)
         Me.tLoyer.Name = "tLoyer"
-        Me.tLoyer.Size = New System.Drawing.Size(59, 20)
-        Me.tLoyer.TabIndex = 20
+        Me.tLoyer.Size = New System.Drawing.Size(57, 20)
+        Me.tLoyer.TabIndex = 13
         Me.tLoyer.Tag = "LoyerInit,no"
         Me.tLoyer.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -194,7 +193,7 @@ Partial Class F_LocaNew
         Me.lIndice.Location = New System.Drawing.Point(100, 125)
         Me.lIndice.Name = "lIndice"
         Me.lIndice.Size = New System.Drawing.Size(146, 21)
-        Me.lIndice.TabIndex = 9
+        Me.lIndice.TabIndex = 4
         Me.lIndice.Tag = "indId,no"
         '
         'lTypeBail
@@ -204,7 +203,7 @@ Partial Class F_LocaNew
         Me.lTypeBail.Location = New System.Drawing.Point(100, 44)
         Me.lTypeBail.Name = "lTypeBail"
         Me.lTypeBail.Size = New System.Drawing.Size(146, 21)
-        Me.lTypeBail.TabIndex = 3
+        Me.lTypeBail.TabIndex = 1
         Me.lTypeBail.Tag = "tbailId,no"
         '
         'tPersNom
@@ -214,13 +213,13 @@ Partial Class F_LocaNew
         Me.tPersNom.Name = "tPersNom"
         Me.tPersNom.ReadOnly = True
         Me.tPersNom.Size = New System.Drawing.Size(348, 20)
-        Me.tPersNom.TabIndex = 1
+        Me.tPersNom.TabIndex = 0
         Me.tPersNom.TabStop = False
         Me.tPersNom.Tag = "nom"
         '
         'tPersId
         '
-        Me.tPersId.Location = New System.Drawing.Point(265, 252)
+        Me.tPersId.Location = New System.Drawing.Point(265, 280)
         Me.tPersId.Name = "tPersId"
         Me.tPersId.ReadOnly = True
         Me.tPersId.Size = New System.Drawing.Size(37, 20)
@@ -231,19 +230,19 @@ Partial Class F_LocaNew
         'Button2
         '
         Me.Button2.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.Button2.Location = New System.Drawing.Point(22, 246)
+        Me.Button2.Location = New System.Drawing.Point(22, 274)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 31)
-        Me.Button2.TabIndex = 24
+        Me.Button2.TabIndex = 18
         Me.Button2.Text = "Annuler"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(373, 246)
+        Me.Button3.Location = New System.Drawing.Point(373, 274)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 31)
-        Me.Button3.TabIndex = 23
+        Me.Button3.TabIndex = 17
         Me.Button3.Text = "Enregistrer"
         Me.Button3.UseVisualStyleBackColor = True
         '
@@ -255,26 +254,26 @@ Partial Class F_LocaNew
         '
         Me.CheckBox1.AutoSize = True
         Me.CheckBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.CheckBox1.Location = New System.Drawing.Point(31, 178)
+        Me.CheckBox1.Location = New System.Drawing.Point(11, 181)
         Me.CheckBox1.Name = "CheckBox1"
         Me.CheckBox1.Size = New System.Drawing.Size(122, 17)
-        Me.CheckBox1.TabIndex = 12
+        Me.CheckBox1.TabIndex = 6
         Me.CheckBox1.Tag = "loyerSoumisTVA,c"
         Me.CheckBox1.Text = "Loyer Soumis a TVA"
         Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'tTauxTVA
         '
-        Me.tTauxTVA.Location = New System.Drawing.Point(205, 176)
+        Me.tTauxTVA.Location = New System.Drawing.Point(192, 178)
         Me.tTauxTVA.Name = "tTauxTVA"
         Me.tTauxTVA.Size = New System.Drawing.Size(33, 20)
-        Me.tTauxTVA.TabIndex = 15
+        Me.tTauxTVA.TabIndex = 7
         Me.tTauxTVA.Tag = "tauxTVA,n"
         '
         'tLoyerActu
         '
         Me.tLoyerActu.BackColor = System.Drawing.Color.White
-        Me.tLoyerActu.Location = New System.Drawing.Point(145, 252)
+        Me.tLoyerActu.Location = New System.Drawing.Point(145, 280)
         Me.tLoyerActu.Name = "tLoyerActu"
         Me.tLoyerActu.Size = New System.Drawing.Size(54, 20)
         Me.tLoyerActu.TabIndex = 56
@@ -284,7 +283,7 @@ Partial Class F_LocaNew
         'tChargeActu
         '
         Me.tChargeActu.BackColor = System.Drawing.Color.White
-        Me.tChargeActu.Location = New System.Drawing.Point(205, 252)
+        Me.tChargeActu.Location = New System.Drawing.Point(205, 280)
         Me.tChargeActu.Name = "tChargeActu"
         Me.tChargeActu.Size = New System.Drawing.Size(54, 20)
         Me.tChargeActu.TabIndex = 57
@@ -297,14 +296,13 @@ Partial Class F_LocaNew
         Me.LinkLabel1.Location = New System.Drawing.Point(65, 21)
         Me.LinkLabel1.Name = "LinkLabel1"
         Me.LinkLabel1.Size = New System.Drawing.Size(29, 13)
-        Me.LinkLabel1.TabIndex = 0
-        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.TabIndex = 19
         Me.LinkLabel1.Text = "Nom"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(281, 155)
+        Me.Label3.Location = New System.Drawing.Point(264, 181)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(121, 13)
         Me.Label3.TabIndex = 60
@@ -312,16 +310,16 @@ Partial Class F_LocaNew
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(408, 152)
+        Me.TextBox2.Location = New System.Drawing.Point(391, 178)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox2.TabIndex = 21
+        Me.TextBox2.Size = New System.Drawing.Size(57, 20)
+        Me.TextBox2.TabIndex = 14
         Me.TextBox2.Tag = "NbMoisDG,n"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(324, 47)
+        Me.Label5.Location = New System.Drawing.Point(281, 47)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(78, 13)
         Me.Label5.TabIndex = 62
@@ -329,20 +327,20 @@ Partial Class F_LocaNew
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(408, 44)
+        Me.TextBox3.Location = New System.Drawing.Point(391, 44)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(40, 20)
-        Me.TextBox3.TabIndex = 17
+        Me.TextBox3.Size = New System.Drawing.Size(57, 20)
+        Me.TextBox3.TabIndex = 9
         Me.TextBox3.Tag = "CptSuffixe,t"
         '
         'cDGTva
         '
         Me.cDGTva.AutoSize = True
         Me.cDGTva.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cDGTva.Location = New System.Drawing.Point(30, 202)
+        Me.cDGTva.Location = New System.Drawing.Point(10, 204)
         Me.cDGTva.Name = "cDGTva"
         Me.cDGTva.Size = New System.Drawing.Size(123, 17)
-        Me.cDGTva.TabIndex = 16
+        Me.cDGTva.TabIndex = 8
         Me.cDGTva.Tag = "DGSoumisTVA,c"
         Me.cDGTva.Text = "Dépôt soumis a TVA"
         Me.cDGTva.UseVisualStyleBackColor = True
@@ -353,7 +351,7 @@ Partial Class F_LocaNew
         Me.dRevision.Location = New System.Drawing.Point(347, 99)
         Me.dRevision.Name = "dRevision"
         Me.dRevision.Size = New System.Drawing.Size(101, 20)
-        Me.dRevision.TabIndex = 19
+        Me.dRevision.TabIndex = 11
         Me.dRevision.Tag = "dateRevision"
         '
         'Label6
@@ -369,10 +367,10 @@ Partial Class F_LocaNew
         '
         Me.cLoyerReduc.AutoSize = True
         Me.cLoyerReduc.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.cLoyerReduc.Location = New System.Drawing.Point(307, 180)
+        Me.cLoyerReduc.Location = New System.Drawing.Point(308, 204)
         Me.cLoyerReduc.Name = "cLoyerReduc"
         Me.cLoyerReduc.Size = New System.Drawing.Size(141, 17)
-        Me.cLoyerReduc.TabIndex = 22
+        Me.cLoyerReduc.TabIndex = 15
         Me.cLoyerReduc.Tag = "LoyerReduction,c"
         Me.cLoyerReduc.Text = "Réduction loyer possible"
         Me.cLoyerReduc.UseVisualStyleBackColor = True
@@ -380,7 +378,7 @@ Partial Class F_LocaNew
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(168, 180)
+        Me.Label1.Location = New System.Drawing.Point(155, 181)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 13)
         Me.Label1.TabIndex = 55
@@ -389,7 +387,7 @@ Partial Class F_LocaNew
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(241, 180)
+        Me.Label7.Location = New System.Drawing.Point(231, 180)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(15, 13)
         Me.Label7.TabIndex = 67
@@ -397,7 +395,7 @@ Partial Class F_LocaNew
         '
         'tIndActuId
         '
-        Me.tIndActuId.Location = New System.Drawing.Point(265, 226)
+        Me.tIndActuId.Location = New System.Drawing.Point(265, 254)
         Me.tIndActuId.Name = "tIndActuId"
         Me.tIndActuId.ReadOnly = True
         Me.tIndActuId.Size = New System.Drawing.Size(37, 20)
@@ -409,19 +407,50 @@ Partial Class F_LocaNew
         '
         Me.CheckBox2.AutoSize = True
         Me.CheckBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.CheckBox2.Location = New System.Drawing.Point(341, 202)
+        Me.CheckBox2.Location = New System.Drawing.Point(342, 227)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(107, 17)
-        Me.CheckBox2.TabIndex = 69
+        Me.CheckBox2.TabIndex = 16
         Me.CheckBox2.Tag = "CautionBanc,c"
         Me.CheckBox2.Text = "Caution Bancaire"
         Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'tTypeLoc
+        '
+        Me.tTypeLoc.Location = New System.Drawing.Point(308, 254)
+        Me.tTypeLoc.Name = "tTypeLoc"
+        Me.tTypeLoc.ReadOnly = True
+        Me.tTypeLoc.Size = New System.Drawing.Size(37, 20)
+        Me.tTypeLoc.TabIndex = 70
+        Me.tTypeLoc.Tag = "typeloc,n"
+        Me.tTypeLoc.Text = "1"
+        Me.tTypeLoc.Visible = False
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(305, 128)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(80, 13)
+        Me.Label17.TabIndex = 88
+        Me.Label17.Text = "Durée Révision"
+        '
+        'tDurRev
+        '
+        Me.tDurRev.Location = New System.Drawing.Point(391, 125)
+        Me.tDurRev.Name = "tDurRev"
+        Me.tDurRev.Size = New System.Drawing.Size(57, 20)
+        Me.tDurRev.TabIndex = 12
+        Me.tDurRev.Tag = "DureeRevision,n"
         '
         'F_LocaNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(468, 294)
+        Me.ClientSize = New System.Drawing.Size(468, 324)
+        Me.Controls.Add(Me.Label17)
+        Me.Controls.Add(Me.tDurRev)
+        Me.Controls.Add(Me.tTypeLoc)
         Me.Controls.Add(Me.CheckBox2)
         Me.Controls.Add(Me.tIndActuId)
         Me.Controls.Add(Me.Label7)
@@ -505,4 +534,7 @@ Partial Class F_LocaNew
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents tIndActuId As System.Windows.Forms.TextBox
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents tTypeLoc As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents tDurRev As TextBox
 End Class

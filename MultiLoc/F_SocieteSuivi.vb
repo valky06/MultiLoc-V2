@@ -275,7 +275,7 @@ Public Class F_SocieteSuivi
         Try
             sSql = "SELECT l.nom as tiers,numfacture,'411' + cptsuffixe as cpt,  ecrLib, ecrMontantHT,ecrdate,ecrmontantTVA,ecrMontantTTC,lotlib,categorie,ecrecheance,numfactureinterne" _
             & " FROM ComptaGene " _
-            & " inner join locataire on ComptaGene.locId = locataire.locId " _
+            & " left join locataire on ComptaGene.locId = locataire.locId " _
             & " left join annuaire as l on locataire.persId= l.persId " _
             & " WHERE ComptaGene.tiers='SOCIETE' " _
             & " and comptagene.socid=" & laSocId _
@@ -283,7 +283,7 @@ Public Class F_SocieteSuivi
 
             If Me.tRechCat.Text <> "" Then sSql &= " and categorie like '%" & Me.tRechCat.Text & "%'"
 
-            sSql &= " order by  ecrdate,cptsuffixe,l.nom,numfacture,ecrlib"
+            sSql &= " order by  ecrdate,numfacture,cptsuffixe,l.nom,ecrlib"
 
 
             Me.gCompta.Rows.Clear()
@@ -339,11 +339,17 @@ Public Class F_SocieteSuivi
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
         If Me.laSocId = 0 Then Exit Sub
-        F_FactureSociete.laSocId = Me.laSocId
-        If F_FactureSociete.ShowDialog = Windows.Forms.DialogResult.OK Then
+        'F_FactureLigne.laSocId = Me.laSocId
+        'If F_FactureLigne.ShowDialog = Windows.Forms.DialogResult.OK Then
+        '    GrandLivreSoc()
+        'End If
+        'F_FactureLigne.Dispose()
+
+        F_FactureEntete.laSocId = Me.laSocId
+        If F_FactureEntete.ShowDialog = Windows.Forms.DialogResult.OK Then
             GrandLivreSoc()
         End If
-        F_FactureSociete.Dispose()
+        F_FactureEntete.Dispose()
     End Sub
 
     Private Sub PlanCompta_Click(sender As Object, e As EventArgs) Handles PlanCompta.Click
@@ -352,5 +358,24 @@ Public Class F_SocieteSuivi
 
     Private Sub lAnnee_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lAnnee.SelectedIndexChanged
         GrandLivreSoc()
+    End Sub
+
+    Private Sub gCompta_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gCompta.CellContentClick
+
+    End Sub
+
+    Private Sub gCompta_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gCompta.CellDoubleClick
+        If Me.gCompta.Rows(e.RowIndex).Cells("Cat").Value = "VENTE" Then
+            F_FactureEntete.laSocId = Me.laSocId
+            F_FactureEntete.laFactNum = Me.gCompta.Rows(e.RowIndex).Cells("numfacture").Value
+            If F_FactureEntete.ShowDialog = Windows.Forms.DialogResult.OK Then
+                GrandLivreSoc()
+            End If
+            F_FactureEntete.Dispose()
+        End If
+    End Sub
+
+    Private Sub Compta_Click(sender As Object, e As EventArgs) Handles Compta.Click
+
     End Sub
 End Class

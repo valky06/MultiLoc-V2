@@ -41,8 +41,8 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>2.0.0.5</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.1.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -138,6 +138,12 @@
       <DependentUpon>F_FactureClient.vb</DependentUpon>
     </Compile>
     <Compile Include="F_FactureClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_FactureEntete.designer.vb">
+      <DependentUpon>F_FactureEntete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_FactureEntete.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F_LocaPlanC.Designer.vb">
@@ -278,10 +284,10 @@
     <Compile Include="F_LocaDGReprise.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_FactureSociete.Designer.vb">
-      <DependentUpon>F_FactureSociete.vb</DependentUpon>
+    <Compile Include="F_FactureLigne.Designer.vb">
+      <DependentUpon>F_FactureLigne.vb</DependentUpon>
     </Compile>
-    <Compile Include="F_FactureSociete.vb">
+    <Compile Include="F_FactureLigne.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F_Budget.Designer.vb">
@@ -368,10 +374,10 @@
     <Compile Include="F_LocaBalance.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_LocaDGAppel.Designer.vb">
-      <DependentUpon>F_LocaDGAppel.vb</DependentUpon>
+    <Compile Include="F_LocaDG.Designer.vb">
+      <DependentUpon>F_LocaDG.vb</DependentUpon>
     </Compile>
-    <Compile Include="F_LocaDGAppel.vb">
+    <Compile Include="F_LocaDG.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="F_BudgetLigne.Designer.vb">
@@ -598,6 +604,9 @@
     <EmbeddedResource Include="F_FactureClient.resx">
       <DependentUpon>F_FactureClient.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="F_FactureEntete.resx">
+      <DependentUpon>F_FactureEntete.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_LocaPlanC.resx">
       <DependentUpon>F_LocaPlanC.vb</DependentUpon>
     </EmbeddedResource>
@@ -667,8 +676,8 @@
     <EmbeddedResource Include="F_LocaDGReprise.resx">
       <DependentUpon>F_LocaDGReprise.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_FactureSociete.resx">
-      <DependentUpon>F_FactureSociete.vb</DependentUpon>
+    <EmbeddedResource Include="F_FactureLigne.resx">
+      <DependentUpon>F_FactureLigne.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F_Budget.resx">
       <DependentUpon>F_Budget.vb</DependentUpon>
@@ -714,8 +723,8 @@
     <EmbeddedResource Include="F_LocaBalance.resx">
       <DependentUpon>F_LocaBalance.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_LocaDGAppel.resx">
-      <DependentUpon>F_LocaDGAppel.vb</DependentUpon>
+    <EmbeddedResource Include="F_LocaDG.resx">
+      <DependentUpon>F_LocaDG.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F_BudgetLigne.resx">
       <DependentUpon>F_BudgetLigne.vb</DependentUpon>

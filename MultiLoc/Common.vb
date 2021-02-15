@@ -704,6 +704,7 @@ Public Module Common
         Dim leModele As String = ""
         Dim appXL As New Microsoft.Office.Interop.Excel.Application
         Dim leTiersId As Integer = 0
+        Dim lelib As String = ""
 
         Try
 
@@ -725,14 +726,14 @@ Public Module Common
                     lers.Close()
                 End If
 
-                If leModele = "" Then leModele = My.Settings.ChemModeleOffice & "Facture.xlsx"
+                If My.Settings.DebugAppel = True Or leModele = "" Then leModele = My.Settings.ChemModeleOffice & "Facture.xlsx"
 
                 appXL.Workbooks.Add(leModele)
                 appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
                 appXL.Visible = True
 
                 'Recherche les données à facturer
-                ssql = "select locid,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrecheance from comptaGene where  numfacture='" & laFacture & "' and Tiers='SOCIETE' and categorie='VENTE' and socid=" & laSocId
+                ssql = "select locid,numFacture,ecrMontantHT,ecrMontantTVA,ecrMontantTTC, ecrLIb, ecrdate,ecrecheance, libfacture from comptaGene where  numfacture='" & laFacture & "' and Tiers='SOCIETE' and categorie='VENTE' and socid=" & laSocId
 
                 'recherche la cellule Article1
                 colArticle = appXL.Range("Article1").Column
@@ -747,20 +748,19 @@ Public Module Common
                     ladate = lers("ecrdate")
                     lEcheance = lers("ecrecheance")
                     leTiersId = lers("locid")
+                    lelib = lers("LibFacture").ToString
                     appXL.Cells(laLigne, colArticle).value = "'" & lers("ecrlib").ToString
-
                     appXL.Cells(laLigne, colHT).value = num2sql(lers("ecrMontantHT").ToString)
                     appXL.Cells(laLigne, colTVA).value = num2sql(lers("ecrMontantTVA").ToString)
                     appXL.Cells(laLigne, colTTC).value = num2sql(lers("ecrMontantTTC").ToString)
-
                     laLigne += 1
-
                 End While
                 lers.Close()
 
                 appXL.Range("NumFacture").Value = "'" & laFacture
                 appXL.Range("DateFacture").Value = "'" & ladate.ToString("dd/MM/yyyy")
                 appXL.Range("ecrEcheance").Value = "'" & lEcheance.ToString("dd/MM/yyyy")
+                appXL.Range("libfacture").Value = "'" & lelib
 
 
                 'recherche les coordonnées du bénéficiaire
