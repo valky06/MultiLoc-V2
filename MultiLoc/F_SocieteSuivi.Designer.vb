@@ -23,16 +23,27 @@ Partial Class F_SocieteSuivi
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.oOnglet = New System.Windows.Forms.TabControl()
         Me.Compta = New System.Windows.Forms.TabPage()
         Me.gCompta = New System.Windows.Forms.DataGridView()
+        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Compte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lots = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MontantHT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.numfact = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.tRechCat = New System.Windows.Forms.TextBox()
         Me.lAnnee = New System.Windows.Forms.ComboBox()
@@ -91,14 +102,13 @@ Partial Class F_SocieteSuivi
         Me.tModeleFacture = New System.Windows.Forms.TextBox()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.PlanCompta = New System.Windows.Forms.TabPage()
-        Me.bDelCpt = New System.Windows.Forms.Button()
+        Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.bAddCpt = New System.Windows.Forms.Button()
         Me.gPlanC = New System.Windows.Forms.DataGridView()
-        Me.pcid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Rubrique = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LeTiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cptnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cptnom = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bDelCpt = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.gPlanLoc = New System.Windows.Forms.DataGridView()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.bWord = New System.Windows.Forms.ToolStripButton()
         Me.bXL = New System.Windows.Forms.ToolStripButton()
@@ -106,16 +116,18 @@ Partial Class F_SocieteSuivi
         Me.lSociete = New System.Windows.Forms.ComboBox()
         Me.kSociete = New System.Windows.Forms.LinkLabel()
         Me.oDial = New System.Windows.Forms.OpenFileDialog()
-        Me.dateEcr = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateEch = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Compte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Tiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.lots = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NumFacture = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Libelle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MontantHT = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.numfact = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pcid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Rubrique = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeTiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TypeTiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cptnum = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cptnom = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pcidloc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TTiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.lesLots = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cptNumLoc = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.oOnglet.SuspendLayout()
         Me.Compta.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,7 +138,12 @@ Partial Class F_SocieteSuivi
         Me.TabPage1.SuspendLayout()
         Me.gSociete.SuspendLayout()
         Me.PlanCompta.SuspendLayout()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SplitContainer1.Panel1.SuspendLayout()
+        Me.SplitContainer1.Panel2.SuspendLayout()
+        Me.SplitContainer1.SuspendLayout()
         CType(Me.gPlanC, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gPlanLoc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -144,7 +161,7 @@ Partial Class F_SocieteSuivi
         Me.oOnglet.Location = New System.Drawing.Point(12, 67)
         Me.oOnglet.Name = "oOnglet"
         Me.oOnglet.SelectedIndex = 0
-        Me.oOnglet.Size = New System.Drawing.Size(854, 445)
+        Me.oOnglet.Size = New System.Drawing.Size(1124, 503)
         Me.oOnglet.TabIndex = 2
         '
         'Compta
@@ -159,7 +176,7 @@ Partial Class F_SocieteSuivi
         Me.Compta.Controls.Add(Me.Button9)
         Me.Compta.Location = New System.Drawing.Point(4, 22)
         Me.Compta.Name = "Compta"
-        Me.Compta.Size = New System.Drawing.Size(846, 419)
+        Me.Compta.Size = New System.Drawing.Size(1116, 477)
         Me.Compta.TabIndex = 3
         Me.Compta.Text = "Compte"
         Me.Compta.UseVisualStyleBackColor = True
@@ -189,8 +206,84 @@ Partial Class F_SocieteSuivi
         Me.gCompta.ReadOnly = True
         Me.gCompta.RowHeadersVisible = False
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gCompta.Size = New System.Drawing.Size(730, 384)
+        Me.gCompta.Size = New System.Drawing.Size(974, 442)
         Me.gCompta.TabIndex = 55
+        '
+        'dateEcr
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
+        Me.dateEcr.FillWeight = 40.0!
+        Me.dateEcr.HeaderText = "Date"
+        Me.dateEcr.Name = "dateEcr"
+        Me.dateEcr.ReadOnly = True
+        '
+        'DateEch
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DateEch.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DateEch.FillWeight = 40.0!
+        Me.DateEch.HeaderText = "Echéance"
+        Me.DateEch.Name = "DateEch"
+        Me.DateEch.ReadOnly = True
+        '
+        'Compte
+        '
+        Me.Compte.FillWeight = 50.0!
+        Me.Compte.HeaderText = "Compte"
+        Me.Compte.Name = "Compte"
+        Me.Compte.ReadOnly = True
+        '
+        'Tiers
+        '
+        Me.Tiers.HeaderText = "Tiers"
+        Me.Tiers.Name = "Tiers"
+        Me.Tiers.ReadOnly = True
+        '
+        'Cat
+        '
+        Me.Cat.FillWeight = 50.0!
+        Me.Cat.HeaderText = "Catégorie"
+        Me.Cat.Name = "Cat"
+        Me.Cat.ReadOnly = True
+        '
+        'lots
+        '
+        Me.lots.HeaderText = "Lots"
+        Me.lots.Name = "lots"
+        Me.lots.ReadOnly = True
+        '
+        'NumFacture
+        '
+        Me.NumFacture.FillWeight = 50.0!
+        Me.NumFacture.HeaderText = "N°Facture"
+        Me.NumFacture.Name = "NumFacture"
+        Me.NumFacture.ReadOnly = True
+        '
+        'Libelle
+        '
+        Me.Libelle.HeaderText = "Libellé"
+        Me.Libelle.Name = "Libelle"
+        Me.Libelle.ReadOnly = True
+        '
+        'MontantHT
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N2"
+        Me.MontantHT.DefaultCellStyle = DataGridViewCellStyle4
+        Me.MontantHT.FillWeight = 50.0!
+        Me.MontantHT.HeaderText = "Montant HT"
+        Me.MontantHT.Name = "MontantHT"
+        Me.MontantHT.ReadOnly = True
+        '
+        'numfact
+        '
+        Me.numfact.HeaderText = "numfact"
+        Me.numfact.Name = "numfact"
+        Me.numfact.ReadOnly = True
+        Me.numfact.Visible = False
         '
         'Label16
         '
@@ -234,7 +327,7 @@ Partial Class F_SocieteSuivi
         Me.bEditFActure.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bEditFActure.Image = Global.MultiLoc.My.Resources.Resources.Edit1
         Me.bEditFActure.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.bEditFActure.Location = New System.Drawing.Point(742, 128)
+        Me.bEditFActure.Location = New System.Drawing.Point(1003, 141)
         Me.bEditFActure.Name = "bEditFActure"
         Me.bEditFActure.Size = New System.Drawing.Size(94, 42)
         Me.bEditFActure.TabIndex = 13
@@ -249,7 +342,7 @@ Partial Class F_SocieteSuivi
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bsuppEcrit.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
         Me.bsuppEcrit.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.bsuppEcrit.Location = New System.Drawing.Point(742, 176)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(1003, 189)
         Me.bsuppEcrit.Name = "bsuppEcrit"
         Me.bsuppEcrit.Size = New System.Drawing.Size(94, 42)
         Me.bsuppEcrit.TabIndex = 12
@@ -264,7 +357,7 @@ Partial Class F_SocieteSuivi
         Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button9.Image = Global.MultiLoc.My.Resources.Resources.smallplus
         Me.Button9.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.Button9.Location = New System.Drawing.Point(742, 80)
+        Me.Button9.Location = New System.Drawing.Point(1003, 93)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(94, 42)
         Me.Button9.TabIndex = 10
@@ -279,7 +372,7 @@ Partial Class F_SocieteSuivi
         Me.Bien.Location = New System.Drawing.Point(4, 22)
         Me.Bien.Name = "Bien"
         Me.Bien.Padding = New System.Windows.Forms.Padding(3)
-        Me.Bien.Size = New System.Drawing.Size(846, 419)
+        Me.Bien.Size = New System.Drawing.Size(1116, 477)
         Me.Bien.TabIndex = 0
         Me.Bien.Text = "Biens"
         Me.Bien.UseVisualStyleBackColor = True
@@ -289,7 +382,7 @@ Partial Class F_SocieteSuivi
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(569, 6)
+        Me.Button1.Location = New System.Drawing.Point(1034, 6)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(76, 41)
         Me.Button1.TabIndex = 11
@@ -313,7 +406,7 @@ Partial Class F_SocieteSuivi
         Me.gLot.ReadOnly = True
         Me.gLot.RowHeadersVisible = False
         Me.gLot.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gLot.Size = New System.Drawing.Size(557, 407)
+        Me.gLot.Size = New System.Drawing.Size(1022, 468)
         Me.gLot.TabIndex = 1
         '
         'lotId
@@ -408,7 +501,7 @@ Partial Class F_SocieteSuivi
         Me.Document.Location = New System.Drawing.Point(4, 22)
         Me.Document.Name = "Document"
         Me.Document.Padding = New System.Windows.Forms.Padding(3)
-        Me.Document.Size = New System.Drawing.Size(846, 419)
+        Me.Document.Size = New System.Drawing.Size(1116, 477)
         Me.Document.TabIndex = 2
         Me.Document.Text = "Documents"
         Me.Document.UseVisualStyleBackColor = True
@@ -419,7 +512,7 @@ Partial Class F_SocieteSuivi
         Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
-        Me.Button3.Location = New System.Drawing.Point(614, 57)
+        Me.Button3.Location = New System.Drawing.Point(1081, 57)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(29, 23)
         Me.Button3.TabIndex = 51
@@ -432,7 +525,7 @@ Partial Class F_SocieteSuivi
         Me.Button6.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Image = Global.MultiLoc.My.Resources.Resources.smallplus
-        Me.Button6.Location = New System.Drawing.Point(614, 6)
+        Me.Button6.Location = New System.Drawing.Point(1081, 6)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(29, 23)
         Me.Button6.TabIndex = 50
@@ -464,7 +557,7 @@ Partial Class F_SocieteSuivi
         Me.gDoc.ReadOnly = True
         Me.gDoc.RowHeadersVisible = False
         Me.gDoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gDoc.Size = New System.Drawing.Size(602, 407)
+        Me.gDoc.Size = New System.Drawing.Size(1069, 468)
         Me.gDoc.TabIndex = 49
         '
         'id
@@ -508,7 +601,7 @@ Partial Class F_SocieteSuivi
         Me.TabPage1.Controls.Add(Me.LinkLabel1)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(846, 419)
+        Me.TabPage1.Size = New System.Drawing.Size(1116, 477)
         Me.TabPage1.TabIndex = 4
         Me.TabPage1.Text = "Paramètres"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -779,28 +872,37 @@ Partial Class F_SocieteSuivi
         '
         'PlanCompta
         '
-        Me.PlanCompta.Controls.Add(Me.bDelCpt)
-        Me.PlanCompta.Controls.Add(Me.bAddCpt)
-        Me.PlanCompta.Controls.Add(Me.gPlanC)
+        Me.PlanCompta.Controls.Add(Me.SplitContainer1)
         Me.PlanCompta.Location = New System.Drawing.Point(4, 22)
         Me.PlanCompta.Name = "PlanCompta"
-        Me.PlanCompta.Size = New System.Drawing.Size(846, 419)
+        Me.PlanCompta.Size = New System.Drawing.Size(1116, 477)
         Me.PlanCompta.TabIndex = 5
         Me.PlanCompta.Text = "Plan Compta"
         Me.PlanCompta.UseVisualStyleBackColor = True
         '
-        'bDelCpt
+        'SplitContainer1
         '
-        Me.bDelCpt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bDelCpt.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.bDelCpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bDelCpt.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
-        Me.bDelCpt.Location = New System.Drawing.Point(536, 54)
-        Me.bDelCpt.Name = "bDelCpt"
-        Me.bDelCpt.Size = New System.Drawing.Size(29, 23)
-        Me.bDelCpt.TabIndex = 58
-        Me.bDelCpt.TabStop = False
-        Me.bDelCpt.UseVisualStyleBackColor = True
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SplitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.SplitContainer1.Location = New System.Drawing.Point(3, 3)
+        Me.SplitContainer1.Name = "SplitContainer1"
+        '
+        'SplitContainer1.Panel1
+        '
+        Me.SplitContainer1.Panel1.Controls.Add(Me.bAddCpt)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.gPlanC)
+        Me.SplitContainer1.Panel1.Controls.Add(Me.bDelCpt)
+        '
+        'SplitContainer1.Panel2
+        '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Button4)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.Button5)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.gPlanLoc)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1110, 471)
+        Me.SplitContainer1.SplitterDistance = 524
+        Me.SplitContainer1.TabIndex = 64
         '
         'bAddCpt
         '
@@ -808,9 +910,9 @@ Partial Class F_SocieteSuivi
         Me.bAddCpt.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bAddCpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.bAddCpt.Image = Global.MultiLoc.My.Resources.Resources.smallplus
-        Me.bAddCpt.Location = New System.Drawing.Point(536, 3)
+        Me.bAddCpt.Location = New System.Drawing.Point(479, 8)
         Me.bAddCpt.Name = "bAddCpt"
-        Me.bAddCpt.Size = New System.Drawing.Size(29, 23)
+        Me.bAddCpt.Size = New System.Drawing.Size(29, 29)
         Me.bAddCpt.TabIndex = 57
         Me.bAddCpt.TabStop = False
         Me.bAddCpt.UseVisualStyleBackColor = True
@@ -833,55 +935,89 @@ Partial Class F_SocieteSuivi
         DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gPlanC.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.gPlanC.ColumnHeadersHeight = 21
-        Me.gPlanC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.pcid, Me.Rubrique, Me.LeTiers, Me.cptnum, Me.cptnom})
-        Me.gPlanC.Location = New System.Drawing.Point(3, 3)
+        Me.gPlanC.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.pcid, Me.Rubrique, Me.LeTiers, Me.TypeTiers, Me.cptnum, Me.cptnom})
+        Me.gPlanC.Location = New System.Drawing.Point(3, 8)
         Me.gPlanC.MultiSelect = False
         Me.gPlanC.Name = "gPlanC"
         Me.gPlanC.ReadOnly = True
         Me.gPlanC.RowHeadersVisible = False
         Me.gPlanC.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gPlanC.Size = New System.Drawing.Size(527, 413)
+        Me.gPlanC.Size = New System.Drawing.Size(470, 458)
         Me.gPlanC.TabIndex = 56
         '
-        'pcid
+        'bDelCpt
         '
-        Me.pcid.HeaderText = "pcid"
-        Me.pcid.Name = "pcid"
-        Me.pcid.ReadOnly = True
-        Me.pcid.Visible = False
+        Me.bDelCpt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bDelCpt.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.bDelCpt.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.bDelCpt.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
+        Me.bDelCpt.Location = New System.Drawing.Point(479, 59)
+        Me.bDelCpt.Name = "bDelCpt"
+        Me.bDelCpt.Size = New System.Drawing.Size(29, 29)
+        Me.bDelCpt.TabIndex = 58
+        Me.bDelCpt.TabStop = False
+        Me.bDelCpt.UseVisualStyleBackColor = True
         '
-        'Rubrique
+        'Button4
         '
-        Me.Rubrique.FillWeight = 60.0!
-        Me.Rubrique.HeaderText = "Rubrique"
-        Me.Rubrique.Name = "Rubrique"
-        Me.Rubrique.ReadOnly = True
+        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Image = Global.MultiLoc.My.Resources.Resources.smallplus
+        Me.Button4.Location = New System.Drawing.Point(543, 8)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(29, 29)
+        Me.Button4.TabIndex = 60
+        Me.Button4.TabStop = False
+        Me.Button4.UseVisualStyleBackColor = True
         '
-        'LeTiers
+        'Button5
         '
-        Me.LeTiers.HeaderText = "Tiers"
-        Me.LeTiers.Name = "LeTiers"
-        Me.LeTiers.ReadOnly = True
+        Me.Button5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Image = Global.MultiLoc.My.Resources.Resources.Cancelled
+        Me.Button5.Location = New System.Drawing.Point(543, 59)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(29, 29)
+        Me.Button5.TabIndex = 61
+        Me.Button5.TabStop = False
+        Me.Button5.UseVisualStyleBackColor = True
         '
-        'cptnum
+        'gPlanLoc
         '
-        Me.cptnum.FillWeight = 60.0!
-        Me.cptnum.HeaderText = "N° Compte"
-        Me.cptnum.Name = "cptnum"
-        Me.cptnum.ReadOnly = True
-        '
-        'cptnom
-        '
-        Me.cptnom.HeaderText = "Compte"
-        Me.cptnom.Name = "cptnom"
-        Me.cptnom.ReadOnly = True
+        Me.gPlanLoc.AllowUserToAddRows = False
+        Me.gPlanLoc.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gPlanLoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.gPlanLoc.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.gPlanLoc.BorderStyle = System.Windows.Forms.BorderStyle.None
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gPlanLoc.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        Me.gPlanLoc.ColumnHeadersHeight = 21
+        Me.gPlanLoc.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.pcidloc, Me.DataGridViewTextBoxColumn3, Me.TTiers, Me.lesLots, Me.cptNumLoc, Me.DataGridViewTextBoxColumn5})
+        Me.gPlanLoc.Location = New System.Drawing.Point(15, 8)
+        Me.gPlanLoc.MultiSelect = False
+        Me.gPlanLoc.Name = "gPlanLoc"
+        Me.gPlanLoc.ReadOnly = True
+        Me.gPlanLoc.RowHeadersVisible = False
+        Me.gPlanLoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.gPlanLoc.Size = New System.Drawing.Size(518, 458)
+        Me.gPlanLoc.TabIndex = 59
         '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bWord, Me.bXL, Me.ToolStripButton2})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(878, 28)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1148, 28)
         Me.ToolStrip1.TabIndex = 8
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -938,88 +1074,94 @@ Partial Class F_SocieteSuivi
         Me.oDial.FileName = "OpenFileDialog1"
         Me.oDial.Filter = "Excel|*.xls;*.xlsx"
         '
-        'dateEcr
+        'pcid
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.dateEcr.DefaultCellStyle = DataGridViewCellStyle2
-        Me.dateEcr.FillWeight = 40.0!
-        Me.dateEcr.HeaderText = "Date"
-        Me.dateEcr.Name = "dateEcr"
-        Me.dateEcr.ReadOnly = True
+        Me.pcid.HeaderText = "pcid"
+        Me.pcid.Name = "pcid"
+        Me.pcid.ReadOnly = True
+        Me.pcid.Visible = False
         '
-        'DateEch
+        'Rubrique
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DateEch.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateEch.FillWeight = 40.0!
-        Me.DateEch.HeaderText = "Echéance"
-        Me.DateEch.Name = "DateEch"
-        Me.DateEch.ReadOnly = True
+        Me.Rubrique.FillWeight = 66.75761!
+        Me.Rubrique.HeaderText = "Rubrique"
+        Me.Rubrique.Name = "Rubrique"
+        Me.Rubrique.ReadOnly = True
         '
-        'Compte
+        'LeTiers
         '
-        Me.Compte.FillWeight = 50.0!
-        Me.Compte.HeaderText = "Compte"
-        Me.Compte.Name = "Compte"
-        Me.Compte.ReadOnly = True
+        Me.LeTiers.FillWeight = 111.2627!
+        Me.LeTiers.HeaderText = "Tiers"
+        Me.LeTiers.Name = "LeTiers"
+        Me.LeTiers.ReadOnly = True
         '
-        'Tiers
+        'TypeTiers
         '
-        Me.Tiers.HeaderText = "Tiers"
-        Me.Tiers.Name = "Tiers"
-        Me.Tiers.ReadOnly = True
+        Me.TypeTiers.FillWeight = 63.95939!
+        Me.TypeTiers.HeaderText = "Type"
+        Me.TypeTiers.Name = "TypeTiers"
+        Me.TypeTiers.ReadOnly = True
         '
-        'Cat
+        'cptnum
         '
-        Me.Cat.FillWeight = 50.0!
-        Me.Cat.HeaderText = "Catégorie"
-        Me.Cat.Name = "Cat"
-        Me.Cat.ReadOnly = True
+        Me.cptnum.FillWeight = 66.75761!
+        Me.cptnum.HeaderText = "N° Compte"
+        Me.cptnum.Name = "cptnum"
+        Me.cptnum.ReadOnly = True
         '
-        'lots
+        'cptnom
         '
-        Me.lots.HeaderText = "Lots"
-        Me.lots.Name = "lots"
-        Me.lots.ReadOnly = True
+        Me.cptnom.FillWeight = 111.2627!
+        Me.cptnom.HeaderText = "Compte"
+        Me.cptnom.Name = "cptnom"
+        Me.cptnom.ReadOnly = True
         '
-        'NumFacture
+        'pcidloc
         '
-        Me.NumFacture.FillWeight = 50.0!
-        Me.NumFacture.HeaderText = "N°Facture"
-        Me.NumFacture.Name = "NumFacture"
-        Me.NumFacture.ReadOnly = True
+        Me.pcidloc.HeaderText = "pcid"
+        Me.pcidloc.Name = "pcidloc"
+        Me.pcidloc.ReadOnly = True
+        Me.pcidloc.Visible = False
         '
-        'Libelle
+        'DataGridViewTextBoxColumn3
         '
-        Me.Libelle.HeaderText = "Libellé"
-        Me.Libelle.Name = "Libelle"
-        Me.Libelle.ReadOnly = True
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Tiers"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.ReadOnly = True
         '
-        'MontantHT
+        'TTiers
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        Me.MontantHT.DefaultCellStyle = DataGridViewCellStyle4
-        Me.MontantHT.FillWeight = 50.0!
-        Me.MontantHT.HeaderText = "Montant HT"
-        Me.MontantHT.Name = "MontantHT"
-        Me.MontantHT.ReadOnly = True
+        Me.TTiers.FillWeight = 50.0!
+        Me.TTiers.HeaderText = "Type"
+        Me.TTiers.Name = "TTiers"
+        Me.TTiers.ReadOnly = True
         '
-        'numfact
+        'lesLots
         '
-        Me.numfact.HeaderText = "numfact"
-        Me.numfact.Name = "numfact"
-        Me.numfact.ReadOnly = True
-        Me.numfact.Visible = False
+        Me.lesLots.HeaderText = "Lots"
+        Me.lesLots.Name = "lesLots"
+        Me.lesLots.ReadOnly = True
+        '
+        'cptNumLoc
+        '
+        Me.cptNumLoc.FillWeight = 80.0!
+        Me.cptNumLoc.HeaderText = "N° Compte"
+        Me.cptNumLoc.Name = "cptNumLoc"
+        Me.cptNumLoc.ReadOnly = True
+        '
+        'DataGridViewTextBoxColumn5
+        '
+        Me.DataGridViewTextBoxColumn5.FillWeight = 80.0!
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Compte"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
+        Me.DataGridViewTextBoxColumn5.ReadOnly = True
         '
         'F_SocieteSuivi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(878, 524)
+        Me.ClientSize = New System.Drawing.Size(1148, 582)
         Me.ControlBox = False
         Me.Controls.Add(Me.kSociete)
         Me.Controls.Add(Me.lSociete)
@@ -1041,7 +1183,12 @@ Partial Class F_SocieteSuivi
         Me.gSociete.ResumeLayout(False)
         Me.gSociete.PerformLayout()
         Me.PlanCompta.ResumeLayout(False)
+        Me.SplitContainer1.Panel1.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.SplitContainer1.ResumeLayout(False)
         CType(Me.gPlanC, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gPlanLoc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.ResumeLayout(False)
@@ -1117,11 +1264,6 @@ End Sub
     Friend WithEvents bDelCpt As Button
     Friend WithEvents bAddCpt As Button
     Friend WithEvents gPlanC As DataGridView
-    Friend WithEvents pcid As DataGridViewTextBoxColumn
-    Friend WithEvents Rubrique As DataGridViewTextBoxColumn
-    Friend WithEvents LeTiers As DataGridViewTextBoxColumn
-    Friend WithEvents cptnum As DataGridViewTextBoxColumn
-    Friend WithEvents cptnom As DataGridViewTextBoxColumn
     Friend WithEvents Label10 As Label
     Friend WithEvents TextBox9 As TextBox
     Friend WithEvents dateEcr As DataGridViewTextBoxColumn
@@ -1134,4 +1276,20 @@ End Sub
     Friend WithEvents Libelle As DataGridViewTextBoxColumn
     Friend WithEvents MontantHT As DataGridViewTextBoxColumn
     Friend WithEvents numfact As DataGridViewTextBoxColumn
+    Friend WithEvents SplitContainer1 As SplitContainer
+    Friend WithEvents gPlanLoc As DataGridView
+    Friend WithEvents Button4 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents pcid As DataGridViewTextBoxColumn
+    Friend WithEvents Rubrique As DataGridViewTextBoxColumn
+    Friend WithEvents LeTiers As DataGridViewTextBoxColumn
+    Friend WithEvents TypeTiers As DataGridViewTextBoxColumn
+    Friend WithEvents cptnum As DataGridViewTextBoxColumn
+    Friend WithEvents cptnom As DataGridViewTextBoxColumn
+    Friend WithEvents pcidloc As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents TTiers As DataGridViewTextBoxColumn
+    Friend WithEvents lesLots As DataGridViewTextBoxColumn
+    Friend WithEvents cptNumLoc As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
 End Class

@@ -45,8 +45,6 @@ Partial Class F_LocaAppel
         Me.Label7 = New System.Windows.Forms.Label()
         Me.tLocId = New System.Windows.Forms.TextBox()
         Me.Button13 = New System.Windows.Forms.Button()
-        Me.bFactInterne = New System.Windows.Forms.Button()
-        Me.bChargeExterne = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.gCompta = New System.Windows.Forms.DataGridView()
@@ -73,6 +71,8 @@ Partial Class F_LocaAppel
         Me.Label19 = New System.Windows.Forms.Label()
         Me.tNumpiece = New System.Windows.Forms.TextBox()
         Me.bRegul = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.gBail.SuspendLayout()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -116,7 +116,7 @@ Partial Class F_LocaAppel
         'tIndActuid
         '
         Me.tIndActuid.BackColor = System.Drawing.Color.White
-        Me.tIndActuid.Location = New System.Drawing.Point(388, 22)
+        Me.tIndActuid.Location = New System.Drawing.Point(387, 23)
         Me.tIndActuid.Name = "tIndActuid"
         Me.tIndActuid.ReadOnly = True
         Me.tIndActuid.Size = New System.Drawing.Size(26, 20)
@@ -291,39 +291,12 @@ Partial Class F_LocaAppel
         Me.Button13.BackColor = System.Drawing.Color.Transparent
         Me.Button13.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button13.Location = New System.Drawing.Point(510, 234)
+        Me.Button13.Location = New System.Drawing.Point(615, 234)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(100, 37)
         Me.Button13.TabIndex = 28
         Me.Button13.Text = "Reprise Dépôt Garantie"
         Me.Button13.UseVisualStyleBackColor = False
-        '
-        'bFactInterne
-        '
-        Me.bFactInterne.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bFactInterne.BackColor = System.Drawing.Color.Transparent
-        Me.bFactInterne.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.bFactInterne.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bFactInterne.Location = New System.Drawing.Point(510, 277)
-        Me.bFactInterne.Name = "bFactInterne"
-        Me.bFactInterne.Size = New System.Drawing.Size(100, 35)
-        Me.bFactInterne.TabIndex = 27
-        Me.bFactInterne.Text = "Charge Interne"
-        Me.bFactInterne.UseVisualStyleBackColor = False
-        '
-        'bChargeExterne
-        '
-        Me.bChargeExterne.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bChargeExterne.BackColor = System.Drawing.Color.Transparent
-        Me.bChargeExterne.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.bChargeExterne.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bChargeExterne.Location = New System.Drawing.Point(147, 416)
-        Me.bChargeExterne.Name = "bChargeExterne"
-        Me.bChargeExterne.Size = New System.Drawing.Size(100, 27)
-        Me.bChargeExterne.TabIndex = 26
-        Me.bChargeExterne.Text = "Charge Externe"
-        Me.bChargeExterne.UseVisualStyleBackColor = False
-        Me.bChargeExterne.Visible = False
         '
         'Button10
         '
@@ -331,7 +304,7 @@ Partial Class F_LocaAppel
         Me.Button10.BackColor = System.Drawing.Color.Transparent
         Me.Button10.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Location = New System.Drawing.Point(510, 148)
+        Me.Button10.Location = New System.Drawing.Point(615, 148)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(100, 37)
         Me.Button10.TabIndex = 23
@@ -344,7 +317,7 @@ Partial Class F_LocaAppel
         Me.Button8.BackColor = System.Drawing.Color.Transparent
         Me.Button8.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Location = New System.Drawing.Point(510, 191)
+        Me.Button8.Location = New System.Drawing.Point(615, 191)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(100, 37)
         Me.Button8.TabIndex = 22
@@ -376,7 +349,7 @@ Partial Class F_LocaAppel
         Me.gCompta.ReadOnly = True
         Me.gCompta.RowHeadersVisible = False
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gCompta.Size = New System.Drawing.Size(494, 254)
+        Me.gCompta.Size = New System.Drawing.Size(599, 347)
         Me.gCompta.TabIndex = 21
         '
         'DataGridViewTextBoxColumn1
@@ -437,7 +410,7 @@ Partial Class F_LocaAppel
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(321, 423)
+        Me.Label3.Location = New System.Drawing.Point(426, 516)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 13)
         Me.Label3.TabIndex = 30
@@ -447,7 +420,7 @@ Partial Class F_LocaAppel
         '
         Me.tTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tTotal.BackColor = System.Drawing.Color.White
-        Me.tTotal.Location = New System.Drawing.Point(382, 420)
+        Me.tTotal.Location = New System.Drawing.Point(487, 513)
         Me.tTotal.Name = "tTotal"
         Me.tTotal.ReadOnly = True
         Me.tTotal.Size = New System.Drawing.Size(122, 20)
@@ -460,7 +433,7 @@ Partial Class F_LocaAppel
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.Transparent
         Me.Button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button1.Location = New System.Drawing.Point(510, 415)
+        Me.Button1.Location = New System.Drawing.Point(615, 508)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(100, 29)
         Me.Button1.TabIndex = 32
@@ -472,7 +445,7 @@ Partial Class F_LocaAppel
         Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.Transparent
         Me.Button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver
-        Me.Button2.Location = New System.Drawing.Point(12, 415)
+        Me.Button2.Location = New System.Drawing.Point(12, 508)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(98, 29)
         Me.Button2.TabIndex = 33
@@ -484,7 +457,7 @@ Partial Class F_LocaAppel
         Me.bsuppEcrit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.bsuppEcrit.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bsuppEcrit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bsuppEcrit.Location = New System.Drawing.Point(510, 366)
+        Me.bsuppEcrit.Location = New System.Drawing.Point(615, 434)
         Me.bsuppEcrit.Name = "bsuppEcrit"
         Me.bsuppEcrit.Size = New System.Drawing.Size(100, 36)
         Me.bsuppEcrit.TabIndex = 34
@@ -587,18 +560,46 @@ Partial Class F_LocaAppel
         Me.bRegul.BackColor = System.Drawing.Color.Transparent
         Me.bRegul.FlatAppearance.BorderColor = System.Drawing.Color.Silver
         Me.bRegul.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.bRegul.Location = New System.Drawing.Point(510, 318)
+        Me.bRegul.Location = New System.Drawing.Point(615, 277)
         Me.bRegul.Name = "bRegul"
         Me.bRegul.Size = New System.Drawing.Size(100, 36)
         Me.bRegul.TabIndex = 92
         Me.bRegul.Text = "Solde Charges N-1"
         Me.bRegul.UseVisualStyleBackColor = False
         '
+        'Button3
+        '
+        Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button3.BackColor = System.Drawing.Color.Transparent
+        Me.Button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button3.Location = New System.Drawing.Point(615, 329)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(100, 38)
+        Me.Button3.TabIndex = 94
+        Me.Button3.Text = "Avoir Loyer + Charges"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
+        'Button4
+        '
+        Me.Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button4.BackColor = System.Drawing.Color.Transparent
+        Me.Button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button4.Location = New System.Drawing.Point(615, 373)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(100, 37)
+        Me.Button4.TabIndex = 93
+        Me.Button4.Text = "Avoir Appel Dépôt Garantie"
+        Me.Button4.UseVisualStyleBackColor = False
+        '
         'F_LocaAppel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(622, 456)
+        Me.ClientSize = New System.Drawing.Size(727, 549)
+        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.bRegul)
         Me.Controls.Add(Me.tNumpiece)
         Me.Controls.Add(Me.Label19)
@@ -616,8 +617,6 @@ Partial Class F_LocaAppel
         Me.Controls.Add(Me.tTotal)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button13)
-        Me.Controls.Add(Me.bFactInterne)
-        Me.Controls.Add(Me.bChargeExterne)
         Me.Controls.Add(Me.Button10)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.gCompta)
@@ -645,8 +644,6 @@ Partial Class F_LocaAppel
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents tLocId As System.Windows.Forms.TextBox
     Friend WithEvents Button13 As System.Windows.Forms.Button
-    Friend WithEvents bFactInterne As System.Windows.Forms.Button
-    Friend WithEvents bChargeExterne As System.Windows.Forms.Button
     Friend WithEvents Button10 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents gCompta As System.Windows.Forms.DataGridView
@@ -682,4 +679,6 @@ Partial Class F_LocaAppel
     Friend WithEvents tIndActuid As System.Windows.Forms.TextBox
     Friend WithEvents tindiceActuAnnee As System.Windows.Forms.TextBox
     Friend WithEvents bRegul As System.Windows.Forms.Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents Button4 As Button
 End Class

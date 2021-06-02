@@ -1,8 +1,13 @@
 ﻿Imports System.Math
 
 Public Class F_LocaAvoirLoyer
-    Public LindiceActu As Decimal
-    Public LindiceActuId As Integer
+    Private LindiceActu As Decimal
+    Private LindiceActuId As Integer
+    Public DateDeb As Date
+    Public Datefin As Date
+    Public laSocId As Integer
+    Public leLocId As Integer
+    Public laFacture As String
 
     Function Montant2Dates(leMontant As Decimal, debut As Date, fin As Date, Letexte As Windows.Forms.Label) As Decimal
         Dim montant As Decimal = 0
@@ -82,14 +87,12 @@ Public Class F_LocaAvoirLoyer
     Private Sub F_location_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.ErrorProvider1.Clear()
 
-
-
         Me.tLoyerActu.Text = F_LocaSuivi.tLoyerActu.Text
         Me.tChargeActu.Text = F_LocaSuivi.tChargeActu.Text
         If F_LocaSuivi.cLoyerTVA.Checked Then Me.tTauxTVA.Text = F_LocaSuivi.tTauxTVA.Text Else Me.tTauxTVA.Text = 0
 
-        Me.dDeb.Value = F_LocaAppel.dDeb.Value
-        Me.dFin.Value = F_LocaAppel.dFin.Value
+        Me.dDeb.Value = Me.DateDeb
+        Me.dFin.Value = Me.Datefin
     End Sub
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles bOK.Click
@@ -101,13 +104,13 @@ Public Class F_LocaAvoirLoyer
             lapiece = NextNumPiece()
             'loyer 
             If txt2num(Me.tLoyerAppHT2.Text) <> 0 Then
-                Dim lecrLoyer As New EcritureCompta(Me.dDeb.Value, Me.dDeb.Value, lapiece, F_LocaAvoir.leLocId, 0, 0, 0, F_LocaAvoir.laSocId, 0, 0, 0, "Avoir Loyer : " & Me.tLib.Text, txt2num(Me.tLoyerAppHT2.Text), txt2num(Me.tLoyerAppTTC2.Text), 100, F_LocaAvoir.lafacture, Me.dDeb.Value, Me.dFin.Value, 0, "", Me.dDeb.Value.Year, 1)
+                Dim lecrLoyer As New EcritureCompta(Me.dDeb.Value, Me.dDeb.Value, lapiece, Me.leLocId, 0, 0, 0, Me.laSocId, 0, 0, 0, "Avoir Loyer : " & Me.tLib.Text, txt2num(Me.tLoyerAppHT2.Text), txt2num(Me.tLoyerAppTTC2.Text), 100, Me.laFacture, Me.dDeb.Value, Me.dFin.Value, 0, "", Me.dDeb.Value.Year, 1)
                 Call EnregCompta(lecrLoyer, ecrType.locAvoirLoyer)
             End If
 
             'charges
             If txt2num(Me.tChargeAppTTC.Text) <> 0 Then
-                Dim lecrCharge As New EcritureCompta(Me.dDeb.Value, Me.dDeb.Value, lapiece, F_LocaAvoir.leLocId, 0, 0, 0, F_LocaAvoir.laSocId, 0, 0, 0, "Avoir Charges : " & Me.tLib.Text, txt2num(Me.tChargeAppHT.Text), txt2num(Me.tChargeAppTTC.Text), 100, F_LocaAvoir.lafacture, Me.dDeb.Value, Me.dFin.Value, 0, "", Me.dDeb.Value.Year, 2)
+                Dim lecrCharge As New EcritureCompta(Me.dDeb.Value, Me.dDeb.Value, lapiece, Me.leLocId, 0, 0, 0, Me.laSocId, 0, 0, 0, "Avoir Charges : " & Me.tLib.Text, txt2num(Me.tChargeAppHT.Text), txt2num(Me.tChargeAppTTC.Text), 100, Me.laFacture, Me.dDeb.Value, Me.dFin.Value, 0, "", Me.dDeb.Value.Year, 2)
                 Call EnregCompta(lecrCharge, ecrType.locAvoirCharge)
             End If
 

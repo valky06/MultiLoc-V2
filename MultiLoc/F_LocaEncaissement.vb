@@ -11,8 +11,8 @@
         Me.tHT.Text = ""
         Me.tTVA.Text = ""
         Me.tTTC.Text = ""
-        Call ComboRempli("select cptbkid,cptbknom from comptebancaire", Me.lCptBk, conSql)
-        Me.lCptBk.SelectedIndex = 0
+        Call ComboRempli("select cptbkid,cptbknom from comptebancaire where socid=" & Me.laSocId, Me.lCptBk, conSql)
+        If Me.lCptBk.Items.Count > 0 Then Me.lCptBk.SelectedIndex = 0
         lers = sqlLit("select sum(ecrMontantHT), sum(ecrMontantTTC),sum(ecrmontantTVA)  from comptagene where tiers='LOCATAIRE' and locid=" & Me.leLocid, conSql)
         While lers.Read
             Me.sHT.Text = num2txt(Math.Round(lers(0), 2))
@@ -31,12 +31,14 @@
 
 
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles bOK.Click
-        Dim NumPiece As Integer
-        NumPiece = NextNumPiece()
-        Dim lecr As New EcritureCompta(Me.dDate.Value, Me.dDate.Value, NumPiece, leLocid, 0, 0, 0, Me.laSocId, Me.lCptBk.SelectedItem.value, 0, 0, Me.tLib.Text, txt2num(Me.tHT.Text), txt2num(Me.tTTC.Text), 100, "", Now, Now, 0, "", Me.dDate.Value.Year, 4)
-        Call EnregCompta(lecr, ecrType.LocEncaisse)
-        Me.DialogResult = Windows.Forms.DialogResult.OK
-        Me.Close()
+        If FormVerif(Me, ErrorProvider1) Then
+            Dim NumPiece As Integer
+            NumPiece = NextNumPiece()
+            Dim lecr As New EcritureCompta(Me.dDate.Value, Me.dDate.Value, NumPiece, leLocid, 0, 0, 0, Me.laSocId, Me.lCptBk.SelectedItem.value, 0, 0, Me.tLib.Text, txt2num(Me.tHT.Text), txt2num(Me.tTTC.Text), 100, "", Now, Now, 0, "", Me.dDate.Value.Year, 4)
+            Call EnregCompta(lecr, ecrType.LocEncaisse)
+            Me.DialogResult = Windows.Forms.DialogResult.OK
+            Me.Close()
+        End If
     End Sub
 
 

@@ -54,4 +54,8 @@
         Call Numfact()
 
     End Sub
+
+    Private Sub bAnnul_Click(sender As Object, e As EventArgs) Handles bAnnul.Click
+
+    End Sub
 End Class

@@ -97,8 +97,8 @@ Partial Class f_ComptaPlan
         '
         'bOK
         '
-        Me.bOK.DialogResult = System.Windows.Forms.DialogResult.OK
-        Me.bOK.Location = New System.Drawing.Point(309, 128)
+        Me.bOK.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.bOK.Location = New System.Drawing.Point(333, 128)
         Me.bOK.Name = "bOK"
         Me.bOK.Size = New System.Drawing.Size(75, 31)
         Me.bOK.TabIndex = 103
@@ -116,9 +116,11 @@ Partial Class f_ComptaPlan
         '
         'tNomCpt
         '
+        Me.tNomCpt.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tNomCpt.Location = New System.Drawing.Point(86, 92)
         Me.tNomCpt.Name = "tNomCpt"
-        Me.tNomCpt.Size = New System.Drawing.Size(298, 20)
+        Me.tNomCpt.Size = New System.Drawing.Size(322, 20)
         Me.tNomCpt.TabIndex = 101
         Me.tNomCpt.Tag = "cptnom,to"
         '
@@ -143,11 +145,14 @@ Partial Class f_ComptaPlan
         '
         'lTiers
         '
+        Me.lTiers.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lTiers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.lTiers.FormattingEnabled = True
         Me.lTiers.Location = New System.Drawing.Point(86, 12)
         Me.lTiers.Name = "lTiers"
-        Me.lTiers.Size = New System.Drawing.Size(298, 21)
+        Me.lTiers.Size = New System.Drawing.Size(322, 21)
+        Me.lTiers.Sorted = True
         Me.lTiers.TabIndex = 117
         Me.lTiers.Tag = "locid,co"
         '
@@ -159,7 +164,8 @@ Partial Class f_ComptaPlan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(411, 174)
+        Me.CancelButton = Me.bAnnul
+        Me.ClientSize = New System.Drawing.Size(435, 174)
         Me.Controls.Add(Me.lTiers)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.tNumCpt)
@@ -172,7 +178,7 @@ Partial Class f_ComptaPlan
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.tNomCpt)
         Me.Controls.Add(Me.Label2)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "f_ComptaPlan"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

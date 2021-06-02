@@ -1663,7 +1663,7 @@ Public Class F_CoproSuivi
             & " left outer join location on location.lotid = lot.lotid" _
             & " left outer join locataire on location.locid = locataire.locid" _
             & " left outer join annuaire on annuaire.persid = locataire.persid" _
-            & " WHERE Lot.CoproId =" & Me.lacoproId
+            & " WHERE Lot.CoproId =" & Me.lacoproId '& " and location.dateDebut<> location.datefin"
             sqlDo(sSql, conSql)
 
             'efface les loc non concernés

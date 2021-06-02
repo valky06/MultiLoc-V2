@@ -914,4 +914,7 @@ Public Class F_LocaSuivi
         End If
     End Sub
 
+    Private Sub gCompta_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gCompta.CellContentClick
+
+    End Sub
 End Class

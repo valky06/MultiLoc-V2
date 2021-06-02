@@ -35,6 +35,11 @@ Public Class F_LocaAvoir
     End Sub
 
     Private Sub Button10_Click(sender As System.Object, e As System.EventArgs) Handles Button10.Click
+        F_LocaAvoirLoyer.DateDeb = Me.dDeb.Value
+        F_LocaAvoirLoyer.Datefin = Me.dFin.Value
+        F_LocaAvoirLoyer.laSocId = Me.laSocId
+        F_LocaAvoirLoyer.leLocId = Me.leLocId
+        F_LocaAvoirLoyer.laFacture = Me.lafacture
         If F_LocaAvoirLoyer.ShowDialog = Windows.Forms.DialogResult.OK Then Call comptalocat()
         F_LocaAvoirLoyer.Dispose()
     End Sub
@@ -113,10 +118,15 @@ Public Class F_LocaAvoir
     'End Sub
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles Button8.Click
+
+
         F_LocaDGAvoir.leLocId = leLocId
         F_LocaDGAvoir.laSocId = Me.tSocId.Text
         F_LocaDGAvoir.tNbMois.Text = F_LocaSuivi.tNbMoisDG.Text
         F_LocaDGAvoir.tLib.Text = "Avoir Dépôt Garantie " & F_LocaSuivi.lLocat.Text
+        F_LocaDGAvoir.laFacture = Me.lafacture
+        F_LocaDGAvoir.leLoyer = Me.tLoyerActu.Text
+
         If F_LocaDGAvoir.ShowDialog = Windows.Forms.DialogResult.OK Then Call comptalocat()
         F_LocaDGAvoir.Dispose()
     End Sub

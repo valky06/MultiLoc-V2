@@ -56,11 +56,32 @@ Public Class F_SocieteSuivi
     '        If debug Then MessageBox.Show(ex.Message)
     '    End Try
     'End Sub
+    Sub affichePlanLoc()
+        Dim sSql As String
+        Dim lers As OleDb.OleDbDataReader
+        Dim leTYpe As String
+
+
+        sSql = "select pcid,L.lotlib ,A.Nom, cptnum,cptnom,l.typeLoc from ComptaPlan C " _
+            & " inner Join locataire L on C.locid=L.LocId " _
+            & " inner Join Annuaire A on A.PersId = L.PersId" _
+            & " where c.socid = " & laSocId & " and c.rubid=0 order by cptnum"
+
+        Me.gPlanLoc.Rows.Clear()
+        lers = sqlLit(sSql, conSql)
+        While lers.Read
+            leTYpe = IIf(lers("TypeLoc") = 1, "Locat.", "Client")
+            Me.gPlanLoc.Rows.Add(lers("pcid"), lers("Nom").ToString, leTYpe, lers("lotlib").ToString, lers("cptnum").ToString, lers("cptnom").ToString)
+        End While
+    End Sub
+
+
     Sub affichePlanC()
         Dim sSql As String
         Dim lers As OleDb.OleDbDataReader
+        Dim leTYpe As String
 
-        sSql = "select pcid, r.RubNom,A.Nom, cptnum,cptnom from ComptaPlan C " _
+        sSql = "select pcid, r.RubNom,A.Nom, cptnum,cptnom,l.typeLoc from ComptaPlan C " _
             & " inner Join locataire L on C.locid=L.LocId " _
             & " inner Join Annuaire A on A.PersId = L.PersId" _
             & " inner Join ComptaRubrique r on r.RubId = c.rubid" _
@@ -69,7 +90,8 @@ Public Class F_SocieteSuivi
         Me.gPlanC.Rows.Clear()
         lers = sqlLit(sSql, conSql)
         While lers.Read
-            Me.gPlanC.Rows.Add(lers("pcid"), lers("RubNom").ToString, lers("Nom").ToString, lers("cptnum").ToString, lers("cptnom").ToString)
+            leTYpe = IIf(lers("TypeLoc") = 1, "Locat.", "Client")
+            Me.gPlanC.Rows.Add(lers("pcid"), lers("RubNom").ToString, lers("Nom").ToString, leTYpe, lers("cptnum").ToString, lers("cptnom").ToString)
         End While
     End Sub
 
@@ -79,7 +101,9 @@ Public Class F_SocieteSuivi
             Case 1 : Call listeBien()
             Case 2 : Call DocListe(docType.Societe, laSocId, Me.gDoc)
             Case 3
-            Case 4 : Call affichePlanC()
+            Case 4
+                Call affichePlanC()
+                Call affichePlanLoc()
         End Select
 
     End Sub
@@ -308,6 +332,7 @@ Public Class F_SocieteSuivi
         If e.RowIndex >= 0 Then
             f_ComptaPlan.leSocId = Me.laSocId
             f_ComptaPlan.lePcId = Me.gPlanC.Rows(e.RowIndex).Cells("pcid").Value
+            f_ComptaPlan.avecRub = True
             If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanC()
             f_ComptaPlan.Dispose()
         End If
@@ -319,6 +344,7 @@ Public Class F_SocieteSuivi
 
     Private Sub bAddCpt_Click(sender As Object, e As EventArgs) Handles bAddCpt.Click
         f_ComptaPlan.leSocId = Me.laSocId
+        f_ComptaPlan.avecRub = True
         f_ComptaPlan.lePcId = 0
         If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanC()
         f_ComptaPlan.Dispose()
@@ -377,5 +403,44 @@ Public Class F_SocieteSuivi
 
     Private Sub Compta_Click(sender As Object, e As EventArgs) Handles Compta.Click
 
+    End Sub
+
+    Private Sub SplitContainer1_Panel2_Paint(sender As Object, e As PaintEventArgs) Handles SplitContainer1.Panel2.Paint
+
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        f_ComptaPlan.leSocId = Me.laSocId
+        f_ComptaPlan.avecRub = False
+        f_ComptaPlan.lePcId = 0
+        If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanLoc()
+        f_ComptaPlan.Dispose()
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        If Me.gPlanLoc.SelectedRows(0).Index >= 0 Then
+            If MsgBox("Supprimer le compte " & Me.gPlanLoc.SelectedRows(0).Cells("cptNumLoc").Value.ToString & " ?", MsgBoxStyle.OkCancel, "Attention") = DialogResult.OK Then
+                sqlDo("Delete from ComptaPlan where pcid=" & Me.gPlanLoc.SelectedRows(0).Cells("pcidloc").Value.ToString, conSql)
+                affichePlanLoc()
+            End If
+        End If
+    End Sub
+
+    Private Sub gPlanLoc_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gPlanLoc.CellContentClick
+
+    End Sub
+
+    Private Sub gPlanLoc_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gPlanLoc.CellDoubleClick
+        If e.RowIndex >= 0 Then
+            f_ComptaPlan.leSocId = Me.laSocId
+            f_ComptaPlan.lePcId = Me.gPlanLoc.Rows(e.RowIndex).Cells("pcidLoc").Value
+            f_ComptaPlan.avecRub = False
+            If f_ComptaPlan.ShowDialog = DialogResult.OK Then affichePlanLoc()
+            f_ComptaPlan.Dispose()
+        End If
     End Sub
 End Class

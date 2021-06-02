@@ -22,6 +22,7 @@ Partial Class F_locaEncaissement
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.tHT = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -42,6 +43,8 @@ Partial Class F_locaEncaissement
         Me.sHT = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.sTTC = New System.Windows.Forms.TextBox()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label6
@@ -55,11 +58,11 @@ Partial Class F_locaEncaissement
         '
         'tHT
         '
-        Me.tHT.Location = New System.Drawing.Point(109, 133)
+        Me.tHT.Location = New System.Drawing.Point(106, 134)
         Me.tHT.Name = "tHT"
         Me.tHT.Size = New System.Drawing.Size(88, 20)
         Me.tHT.TabIndex = 3
-        Me.tHT.Tag = ""
+        Me.tHT.Tag = "SoldeHT,no"
         Me.tHT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label2
@@ -134,6 +137,7 @@ Partial Class F_locaEncaissement
         Me.lCptBk.Name = "lCptBk"
         Me.lCptBk.Size = New System.Drawing.Size(344, 21)
         Me.lCptBk.TabIndex = 0
+        Me.lCptBk.Tag = "Cpt,no"
         '
         'Label3
         '
@@ -168,7 +172,7 @@ Partial Class F_locaEncaissement
         Me.tTTC.Name = "tTTC"
         Me.tTTC.Size = New System.Drawing.Size(87, 20)
         Me.tTTC.TabIndex = 3
-        Me.tTTC.Tag = ""
+        Me.tTTC.Tag = "Solde,no"
         Me.tTTC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label8
@@ -202,7 +206,7 @@ Partial Class F_locaEncaissement
         '
         'sHT
         '
-        Me.sHT.Location = New System.Drawing.Point(109, 104)
+        Me.sHT.Location = New System.Drawing.Point(106, 104)
         Me.sHT.Name = "sHT"
         Me.sHT.ReadOnly = True
         Me.sHT.Size = New System.Drawing.Size(88, 20)
@@ -230,6 +234,10 @@ Partial Class F_locaEncaissement
         Me.sTTC.TabStop = False
         Me.sTTC.Tag = ""
         Me.sTTC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'F_locaEncaissement
         '
@@ -264,6 +272,7 @@ Partial Class F_locaEncaissement
         Me.Name = "F_locaEncaissement"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Encaissement Locataire"
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -288,4 +297,5 @@ Partial Class F_locaEncaissement
     Friend WithEvents sHT As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents sTTC As System.Windows.Forms.TextBox
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

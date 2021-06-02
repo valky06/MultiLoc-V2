@@ -280,19 +280,32 @@ Public Module Common
         End Try
     End Function
 
+
     Function sqlDo(ByVal s As String, ByVal consql As OleDb.OleDbConnection, Optional ByVal b As Boolean = True) As Integer
+        Dim s2 As String
+        sqlDo2(s, consql, b)
+
+        s2 = "insert into log (LogDate,LogCde) values ('" & Now.ToString("yyyy-MM-dd hh:mm:ss") & "','" & s.Replace("'", "''") & "')"
+        sqlDo2(s2, consql)
+    End Function
+
+
+    Function sqlDo2(ByVal s As String, ByVal consql As OleDb.OleDbConnection, Optional ByVal b As Boolean = True) As Integer
         Dim lareq As New OleDb.OleDbCommand
+        Dim lareq2 As New OleDb.OleDbCommand
 
         lareq.CommandText = s
         lareq.Connection = consql
         lareq.CommandType = CommandType.Text
 
+
         Try
+
             If consql.State <> ConnectionState.Open Then consql.Open()
             lareq.ExecuteNonQuery()
             Return 0
         Catch ex As Exception
-            If b Then MsgBox(ex.Message & s)
+            If b Then MsgBox(ex.Message)
             'Throw New Exception("Erreur Execution requête")
         End Try
     End Function
@@ -313,8 +326,6 @@ Public Module Common
             Return Nothing
         End Try
     End Function
-
-
 
 
 #End Region
@@ -903,9 +914,13 @@ Public Module Common
             While lers.Read
                 'premier bien = on ecrit les données immeuble
                 If lesBiens = "" Then
-                    appXL.Range("BienNom").Value = "'" & nz(lers("CoproNom"), "")
-                    appXL.Range("BienAdr").Value = "'" & nz(lers("Adr1"), "")
-                    appXL.Range("BienCP").Value = "'" & nz(lers("codePostal"), "") & " " & nz(lers("localite"), "")
+                    Try
+                        appXL.Range("BienNom").Value = "'" & nz(lers("CoproNom"), "")
+                        appXL.Range("BienAdr").Value = "'" & nz(lers("Adr1"), "")
+                        appXL.Range("BienCP").Value = "'" & nz(lers("codePostal"), "") & " " & nz(lers("localite"), "")
+                    Catch ex As Exception
+
+                    End Try
                 End If
                 If nz(lers("surface"), 0) <> 0 And Not lesBiens.Contains(lers(0).ToString & " N°" & lers(1).ToString) Then
                     lesBiens &= ", " & lers(0).ToString & " N°" & lers(1).ToString
@@ -964,6 +979,255 @@ Public Module Common
         Return Math.Round(txt2num(MontantHT) * (1 + (txt2num(TauxTVA) / 100)), 2)
     End Function
 
+    Sub ExportComptaMontant(appXL As Microsoft.Office.Interop.Excel.Application, lig As Integer, col As Integer, m As Decimal)
+        If m < 0 Then
+            m = -m
+            appXL.Cells(lig, col).value = num2sql(m.ToString)
+        Else
+            appXL.Cells(lig, col + 1).value = num2sql(m.ToString)
+        End If
+
+    End Sub
+
+    Sub ExportCompta(leDeb As Date, laFin As Date)
+        Dim appXL As New Microsoft.Office.Interop.Excel.Application
+        Dim lers As OleDb.OleDbDataReader
+        Dim lersSoc As OleDb.OleDbDataReader
+        Dim sSql As String
+        Dim MontTVA As Decimal
+        Dim MontTot As Decimal
+        Dim lId As String
+        Dim laLigne As Integer
+        Dim leLocCode As String = ""
+        Dim leLocNom As String = ""
+        Dim leCptClient As String = ""
+        Dim leCptNomClient As String = ""
+        Dim laFacture As String = ""
+        Dim laDateEcr As Date
+        Dim dDebut As Date
+        Dim dFin As Date
+
+        appXL.Workbooks.Add()
+        'appXL.ActiveSheet.Name = "Factures"
+        'appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
+
+
+        Try
+            lersSoc = sqlLit("SELECT distinct C.SocId,S.SocCode FROM ComptaGene C inner join societe S on S.socid=C.socid WHERE  " _
+                 & " C.ecrdate >= " & Date2sql(leDeb) & " And C.ecrdate <= " & Date2sql(laFin), conSql)
+
+            While lersSoc.Read
+
+                '--------------------------------------------------
+                'Factures
+                '--------------------------------------------------
+
+                '                appXL.Workbooks.Add()
+                appXL.ActiveWorkbook.Sheets.Add()
+                appXL.ActiveSheet.Name = lersSoc("SocCode") + "-Factures"
+                Call StatutBar(appXL.ActiveSheet.name)
+                appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
+
+                'données
+                laLigne = 1
+                appXL.Cells(laLigne, 1).value = "CJ"
+                appXL.Cells(laLigne, 2).value = "Dates"
+                appXL.Cells(laLigne, 3).value = "NumeroCompte"
+                appXL.Cells(laLigne, 4).value = "LibelleCompte"
+                appXL.Cells(laLigne, 5).value = "Libellé écriture"
+                appXL.Cells(laLigne, 6).value = "MvtsDebit"
+                appXL.Cells(laLigne, 7).value = "MvtsCredit"
+                appXL.Cells(laLigne, 8).value = "Client"
+                appXL.Cells(laLigne, 9).value = "DebutPeriode"
+                appXL.Cells(laLigne, 10).value = "FinPeriode"
+
+                sSql = "SELECT SocCode, ComptaGene.ecrDate, locataire.CptSuffixe, ComptaGene.ecrLib, ComptaGene.ecrMontantHT, ComptaGene.ecrMontantTVA, ComptaGene.ecrMontantTTC, " _
+                & " ComptaGene.NumFacture, ComptaPlan.CptNum, ComptaPlan.CptNom,  Annuaire_1.Nom AS Locataire" _
+                & " ,P2.cptnum as CptNumLoc, P2.CptNom as CptNomLoc, ComptaGene.DateDebut, ComptaGene.Datefin, comptagene.locId,categorie" _
+                & " FROM ComptaGene INNER JOIN locataire ON ComptaGene.LocId = locataire.LocId " _
+                & " LEFT JOIN Societe ON comptagene.SocId = Societe.SocId" _
+                & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
+                & " LEFT OUTER JOIN ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId And ComptaGene.LocId = ComptaPlan.LocId and comptagene.socid=comptaplan.socid " _
+                & " Left Join comptaplan P2 on P2.locid=comptagene.locId And P2.socid=comptagene.socid And P2.rubid=0 and P2.socid=comptagene.socid" _
+                & " WHERE  tiers='SOCIETE' " _
+                & " And ecrdate >= " & Date2sql(leDeb) & " And ecrdate <= " & Date2sql(laFin) _
+                & " And comptagene.socid=" & lersSoc(0) _
+                & " and comptagene.numfacture not like 'T%' " _
+                & " ORDER BY ComptaGene.ecrDate, comptagene.locid,numfacture, cptnum"
+
+                lers = sqlLit(sSql, conSql)
+
+                MontTVA = 0
+                MontTot = 0
+                lId = ""
+                While lers.Read
+                    If lers("LocId") & lers("NumFacture") <> lId Then
+                        If lId <> "" Then
+                            laLigne += 1
+                            appXL.Cells(laLigne, 1).value = "'VT"
+                            appXL.Cells(laLigne, 2).value = date2Xl(laDateEcr)
+                            appXL.Cells(laLigne, 3).value = "'44571500"
+                            appXL.Cells(laLigne, 4).value = "TVA collectée"
+                            appXL.Cells(laLigne, 5).value = laFacture & " " & leLocNom
+                            Call ExportComptaMontant(appXL, laLigne, 6, MontTVA)
+                            appXL.Cells(laLigne, 8).value = leLocNom
+                            appXL.Cells(laLigne, 9).value = date2Xl(dDebut)
+                            appXL.Cells(laLigne, 10).value = date2Xl(dFin)
+
+                            laLigne += 1
+                            appXL.Cells(laLigne, 1).value = "'VT"
+                            appXL.Cells(laLigne, 2).value = date2Xl(laDateEcr)
+                            appXL.Cells(laLigne, 3).value = "'" & leCptClient
+                            appXL.Cells(laLigne, 4).value = leCptNomClient
+                            appXL.Cells(laLigne, 5).value = laFacture & " " & leLocNom
+                            Call ExportComptaMontant(appXL, laLigne, 6, -MontTot)
+                            appXL.Cells(laLigne, 8).value = leLocNom
+                            appXL.Cells(laLigne, 9).value = date2Xl(dDebut)
+                            appXL.Cells(laLigne, 10).value = date2Xl(dFin)
+
+                        End If
+                        MontTVA = 0
+                        MontTot = 0
+                        lId = lers("LocId") & lers("NumFacture")
+                    End If
+
+                    leLocCode = nz(lers("CptSuffixe"), "")
+                    leLocNom = nz(lers("Locataire"), "")
+                    leCptClient = nz(lers("CptNumLoc"), "")
+                    leCptNomClient = nz(lers("CptNomLoc"), "")
+                    If lers("categorie") = "VENTE" Then laFacture = nz(lers("numfacture"), "") Else laFacture = nz(lers("CptSuffixe"), "") & nz(lers("numfacture"), "")
+                    dDebut = lers("DateDebut")
+                    dFin = lers("DateFin")
+                    laDateEcr = lers("ecrDate")
+
+                    laLigne += 1
+                    appXL.Cells(laLigne, 1).value = "'VT"
+                    appXL.Cells(laLigne, 2).value = date2Xl(laDateEcr)
+                    appXL.Cells(laLigne, 3).value = "'" & nz(lers("CptNum"), "")
+                    appXL.Cells(laLigne, 4).value = "'" & nz(lers("CptNom"), "")
+                    appXL.Cells(laLigne, 5).value = laFacture & " " & leLocNom
+                    Call ExportComptaMontant(appXL, laLigne, 6, lers("ecrMontantHT"))
+                    appXL.Cells(laLigne, 9).value = date2Xl(dDebut)
+                    appXL.Cells(laLigne, 10).value = date2Xl(dFin)
+
+                    MontTVA += lers("ecrMontantTVA")
+                    MontTot += lers("ecrMontantTTC")
+                End While
+
+                If lId <> "" Then
+                    laLigne += 1
+                    appXL.Cells(laLigne, 1).value = "'VT"
+                    appXL.Cells(laLigne, 2).value = date2Xl(laDateEcr)
+                    appXL.Cells(laLigne, 3).value = "'44571500"
+                    appXL.Cells(laLigne, 4).value = "TVA collectée"
+                    appXL.Cells(laLigne, 5).value = laFacture & " " & leLocNom
+                    Call ExportComptaMontant(appXL, laLigne, 6, MontTVA)
+                    '                    appXL.Cells(laLigne, 7).value = num2sql(MontTVA.ToString)
+                    appXL.Cells(laLigne, 8).value = leLocNom
+                    appXL.Cells(laLigne, 9).value = date2Xl(dDebut)
+                    appXL.Cells(laLigne, 10).value = date2Xl(dFin)
+
+                    laLigne += 1
+                    appXL.Cells(laLigne, 1).value = "'VT"
+                    appXL.Cells(laLigne, 2).value = date2Xl(laDateEcr)
+                    appXL.Cells(laLigne, 3).value = "'" & leCptClient
+                    appXL.Cells(laLigne, 4).value = leCptNomClient
+                    appXL.Cells(laLigne, 5).value = laFacture & " " & leLocNom
+                    Call ExportComptaMontant(appXL, laLigne, 6, -MontTot)
+                    '                    If MontTot > 0 Then appXL.Cells(laLigne, 6).value = num2sql(MontTot.ToString) Else appXL.Cells(laLigne, 6).value = num2sql((-MontTot).ToString)
+                    appXL.Cells(laLigne, 8).value = leLocNom
+                    appXL.Cells(laLigne, 9).value = date2Xl(dDebut)
+                    appXL.Cells(laLigne, 10).value = date2Xl(dFin)
+                End If
+                lers.Close()
+
+                appXL.Columns(6).Numberformat = "0.00"
+                appXL.Columns(7).Numberformat = "0.00"
+                appXL.Cells.EntireColumn.AutoFit()
+                appXL.Cells(1, 1).select()
+
+
+                '--------------------------------------------------
+                'Versements
+                '--------------------------------------------------
+
+                'appXL.Workbooks.Add()
+                appXL.ActiveWorkbook.Sheets.Add()
+                appXL.ActiveSheet.Name = lersSoc("SocCode") + "-Encaissements"
+                Call StatutBar(appXL.ActiveSheet.name)
+                appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationManual
+
+                'données
+                laLigne = 1
+                appXL.Cells(laLigne, 1).value = "CJ"
+                appXL.Cells(laLigne, 2).value = "Dates"
+                appXL.Cells(laLigne, 3).value = "NumeroCompte"
+                appXL.Cells(laLigne, 4).value = "LibelleCompte"
+                appXL.Cells(laLigne, 5).value = "Libellé écriture"
+                appXL.Cells(laLigne, 6).value = "MvtsDebit"
+                appXL.Cells(laLigne, 7).value = "MvtsCredit"
+                appXL.Cells(laLigne, 8).value = "Client"
+
+
+                sSql = "SELECT  ComptaGene.ecrDate, ComptaGene.ecrLib,  ComptaGene.ecrMontantTTC, Annuaire_1.Nom AS LocNom,P2.cptnum as CptNumLoc, P2.CptNom as CptNomLoc, CompteBancaire.ComptaNum,CompteBancaire.comptaNom" _
+                & " FROM ComptaGene " _
+                & " INNER JOIN locataire ON ComptaGene.LocId = locataire.LocId  " _
+                & " LEFT JOIN Societe ON ComptaGene.SocId = Societe.SocId " _
+                & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
+                & " Left Join comptaplan P2 on P2.locid=comptagene.locId And P2.socid=comptagene.socid And P2.rubid=0 " _
+                & " left join CompteBancaire on ComptaGene.cptBkId = CompteBancaire.cptBkId" _
+                & " WHERE   categorie='ENCAISSEMENT' and Tiers='BANQUE'" _
+                & " And ecrdate >= " & Date2sql(leDeb) & " And ecrdate <= " & Date2sql(laFin) _
+                & " and comptagene.socid=" & lersSoc(0) _
+                & " ORDER BY Annuaire_1.Nom,ComptaGene.ecrDate, numfacture"
+
+
+                lers = sqlLit(sSql, conSql)
+                While lers.Read
+                    laLigne += 1
+                    appXL.Cells(laLigne, 1).value = "BQ"
+                    appXL.Cells(laLigne, 2).value = date2Xl(lers("ecrDate"))
+                    appXL.Cells(laLigne, 3).value = "'" & nz(lers("ComptaNum"), "")
+                    appXL.Cells(laLigne, 4).value = nz(lers("ComptaNom"), "")
+                    appXL.Cells(laLigne, 5).value = nz(lers("ecrLib"), "")
+                    appXL.Cells(laLigne, 6).value = num2sql(-lers("ecrMontantTTC").ToString)
+                    appXL.Cells(laLigne, 8).value = lers("LocNom")
+
+                    laLigne += 1
+                    appXL.Cells(laLigne, 1).value = "BQ"
+                    appXL.Cells(laLigne, 2).value = date2Xl(lers("ecrDate"))
+                    appXL.Cells(laLigne, 3).value = "'" & nz(lers("CptNumLoc"), "")
+                    appXL.Cells(laLigne, 4).value = nz(lers("CptNomLoc"), "")
+                    appXL.Cells(laLigne, 5).value = nz(lers("ecrLib"), "")
+                    appXL.Cells(laLigne, 7).value = num2sql(-lers("ecrMontantTTC").ToString)
+                    appXL.Cells(laLigne, 8).value = lers("LocNom")
+
+                End While
+                lers.Close()
+
+                appXL.Columns(6).Numberformat = "0.00"
+                appXL.Columns(7).Numberformat = "0.00"
+                appXL.Cells.EntireColumn.AutoFit()
+                appXL.Cells(1, 1).select()
+
+            End While
+            lersSoc.Close()
+
+            appXL.Calculation = Microsoft.Office.Interop.Excel.XlCalculation.xlCalculationAutomatic
+            '            appXL.Cells.Select()
+            '        appXL.Cells.EntireColumn.AutoFit()
+            '        appXL.Cells(1, 1).value = "Export Facturation"
+            '        appXL.Cells(1, 1).select()
+            StatutBar("")
+            appXL.Visible = True
+
+        Catch ex As Exception
+            If debug Then MessageBox.Show(ex.Message)
+            Throw New Exception(ex.Message)
+        End Try
+
+        StatutBar("")
+    End Sub
 #End Region
 
 #Region "Formulaire"

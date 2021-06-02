@@ -91,8 +91,8 @@ Partial Class F_LotSuivi
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.gLot)
         Me.SplitContainer1.Panel2.Controls.Add(Me.oOnglet)
-        Me.SplitContainer1.Size = New System.Drawing.Size(871, 377)
-        Me.SplitContainer1.SplitterDistance = 192
+        Me.SplitContainer1.Size = New System.Drawing.Size(908, 512)
+        Me.SplitContainer1.SplitterDistance = 200
         Me.SplitContainer1.TabIndex = 0
         '
         'TreeCopro
@@ -102,7 +102,7 @@ Partial Class F_LotSuivi
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TreeCopro.Location = New System.Drawing.Point(3, 3)
         Me.TreeCopro.Name = "TreeCopro"
-        Me.TreeCopro.Size = New System.Drawing.Size(186, 371)
+        Me.TreeCopro.Size = New System.Drawing.Size(194, 506)
         Me.TreeCopro.TabIndex = 0
         '
         'gLot
@@ -129,7 +129,7 @@ Partial Class F_LotSuivi
         Me.gLot.Controls.Add(Me.Label3)
         Me.gLot.Location = New System.Drawing.Point(4, 3)
         Me.gLot.Name = "gLot"
-        Me.gLot.Size = New System.Drawing.Size(664, 127)
+        Me.gLot.Size = New System.Drawing.Size(693, 127)
         Me.gLot.TabIndex = 8
         Me.gLot.TabStop = False
         '
@@ -310,7 +310,7 @@ Partial Class F_LotSuivi
         Me.oOnglet.Location = New System.Drawing.Point(4, 136)
         Me.oOnglet.Name = "oOnglet"
         Me.oOnglet.SelectedIndex = 0
-        Me.oOnglet.Size = New System.Drawing.Size(665, 236)
+        Me.oOnglet.Size = New System.Drawing.Size(694, 371)
         Me.oOnglet.TabIndex = 3
         '
         'Locataires
@@ -319,7 +319,7 @@ Partial Class F_LotSuivi
         Me.Locataires.Location = New System.Drawing.Point(4, 22)
         Me.Locataires.Name = "Locataires"
         Me.Locataires.Padding = New System.Windows.Forms.Padding(3)
-        Me.Locataires.Size = New System.Drawing.Size(657, 210)
+        Me.Locataires.Size = New System.Drawing.Size(686, 345)
         Me.Locataires.TabIndex = 1
         Me.Locataires.Text = "Locataires"
         Me.Locataires.UseVisualStyleBackColor = True
@@ -341,7 +341,7 @@ Partial Class F_LotSuivi
         Me.gLocataire.ReadOnly = True
         Me.gLocataire.RowHeadersVisible = False
         Me.gLocataire.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.gLocataire.Size = New System.Drawing.Size(647, 209)
+        Me.gLocataire.Size = New System.Drawing.Size(676, 344)
         Me.gLocataire.TabIndex = 3
         '
         'locId
@@ -492,7 +492,7 @@ Partial Class F_LotSuivi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(871, 377)
+        Me.ClientSize = New System.Drawing.Size(908, 512)
         Me.ControlBox = False
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "F_LotSuivi"

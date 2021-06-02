@@ -45,6 +45,9 @@ Public Class F_main
                 w.Close()
             Next
 
+
+            sqlDo("delete from log where logdate<DATEADD(mm,-2,getdate())", conSql)
+
             For Each f In Directory.GetFiles(My.Settings.ChemTemp)
                 If f.Contains("Appel") And f.Contains(".pdf") Then
                     File.Delete(f)
@@ -229,5 +232,11 @@ Public Class F_main
         Call fermeToutFenetre()
         F_FacturationSociete.MdiParent = Me
         F_FacturationSociete.Show()
+    End Sub
+
+    Private Sub CompteBancairesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CompteBancairesToolStripMenuItem.Click
+        F_TypeListe.laForm = F_BanqueNew
+        F_TypeListe.MOdeEdit = True
+        F_TypeListe.ShowDialog()
     End Sub
 End Class

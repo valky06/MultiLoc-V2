@@ -28,7 +28,7 @@ Public Class F_ClientSuivi
 
         Try
             sSql = "SELECT ecrId,numPiece, numfacture, ecrDate, ecrLib, ecrMontantTTC, C.socid, S.SocCode FROM ComptaGene  C " _
-            & " inner Join Societe S on S.SocId = C.SocId " _
+            & " left Join Societe S on S.SocId = C.SocId " _
             & " where Tiers='CLIENT' and locid= " & Me.lCLient.SelectedItem.value & " order by ecrDate desc, numfacture"
 
             Me.gCompta.Rows.Clear()

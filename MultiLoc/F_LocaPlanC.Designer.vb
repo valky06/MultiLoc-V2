@@ -34,6 +34,7 @@ Partial Class F_LocaPlanC
         Me.lRubrique = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.tLocId = New System.Windows.Forms.TextBox()
+        Me.tSocId = New System.Windows.Forms.TextBox()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -134,6 +135,16 @@ Partial Class F_LocaPlanC
         Me.tLocId.Tag = "locid,n"
         Me.tLocId.Visible = False
         '
+        'tSocId
+        '
+        Me.tSocId.Location = New System.Drawing.Point(226, 103)
+        Me.tSocId.Name = "tSocId"
+        Me.tSocId.ReadOnly = True
+        Me.tSocId.Size = New System.Drawing.Size(21, 20)
+        Me.tSocId.TabIndex = 95
+        Me.tSocId.Tag = "Socid,n"
+        Me.tSocId.Visible = False
+        '
         'F_LocaPlanC
         '
         Me.AcceptButton = Me.bOK
@@ -142,6 +153,7 @@ Partial Class F_LocaPlanC
         Me.CancelButton = Me.bAnnul
         Me.ClientSize = New System.Drawing.Size(399, 162)
         Me.ControlBox = False
+        Me.Controls.Add(Me.tSocId)
         Me.Controls.Add(Me.tLocId)
         Me.Controls.Add(Me.lRubrique)
         Me.Controls.Add(Me.Label5)
@@ -173,4 +185,5 @@ Partial Class F_LocaPlanC
     Friend WithEvents lRubrique As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents tLocId As System.Windows.Forms.TextBox
+    Friend WithEvents tSocId As TextBox
 End Class

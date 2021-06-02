@@ -25,18 +25,15 @@ Partial Class F_LocaBalance
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.gCompta = New System.Windows.Forms.DataGridView()
-        Me.locId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cliId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Typepers = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.nom = New System.Windows.Forms.DataGridViewLinkColumn()
-        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Solde = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.bWord = New System.Windows.Forms.ToolStripButton()
         Me.bXL = New System.Windows.Forms.ToolStripButton()
+        Me.societe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Typepers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Tiers = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.debit = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.credit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.gCompta, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -58,7 +55,7 @@ Partial Class F_LocaBalance
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gCompta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.locId, Me.cliId, Me.Typepers, Me.nom, Me.debit, Me.credit, Me.Solde})
+        Me.gCompta.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.societe, Me.Typepers, Me.Tiers, Me.debit, Me.credit})
         Me.gCompta.Location = New System.Drawing.Point(12, 31)
         Me.gCompta.MultiSelect = False
         Me.gCompta.Name = "gCompta"
@@ -67,65 +64,6 @@ Partial Class F_LocaBalance
         Me.gCompta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.gCompta.Size = New System.Drawing.Size(668, 287)
         Me.gCompta.TabIndex = 9
-        '
-        'locId
-        '
-        Me.locId.HeaderText = "locId"
-        Me.locId.Name = "locId"
-        Me.locId.ReadOnly = True
-        Me.locId.Visible = False
-        '
-        'cliId
-        '
-        Me.cliId.HeaderText = "cliId"
-        Me.cliId.Name = "cliId"
-        Me.cliId.ReadOnly = True
-        Me.cliId.Visible = False
-        '
-        'Typepers
-        '
-        Me.Typepers.FillWeight = 60.0!
-        Me.Typepers.HeaderText = "Type"
-        Me.Typepers.Name = "Typepers"
-        Me.Typepers.ReadOnly = True
-        '
-        'nom
-        '
-        Me.nom.HeaderText = "Locataire / Client"
-        Me.nom.Name = "nom"
-        Me.nom.ReadOnly = True
-        Me.nom.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.nom.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'debit
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "N2"
-        Me.debit.DefaultCellStyle = DataGridViewCellStyle2
-        Me.debit.FillWeight = 40.0!
-        Me.debit.HeaderText = "Débit"
-        Me.debit.Name = "debit"
-        Me.debit.ReadOnly = True
-        '
-        'credit
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        Me.credit.DefaultCellStyle = DataGridViewCellStyle3
-        Me.credit.FillWeight = 40.0!
-        Me.credit.HeaderText = "Crédit"
-        Me.credit.Name = "credit"
-        Me.credit.ReadOnly = True
-        '
-        'Solde
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        Me.Solde.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Solde.FillWeight = 40.0!
-        Me.Solde.HeaderText = "Solde"
-        Me.Solde.Name = "Solde"
-        Me.Solde.ReadOnly = True
         '
         'ToolStrip1
         '
@@ -159,6 +97,45 @@ Partial Class F_LocaBalance
         Me.bXL.Size = New System.Drawing.Size(25, 25)
         Me.bXL.Text = "ToolStripButton2"
         '
+        'societe
+        '
+        Me.societe.HeaderText = "Société"
+        Me.societe.Name = "societe"
+        Me.societe.ReadOnly = True
+        '
+        'Typepers
+        '
+        Me.Typepers.FillWeight = 60.0!
+        Me.Typepers.HeaderText = "Type"
+        Me.Typepers.Name = "Typepers"
+        Me.Typepers.ReadOnly = True
+        '
+        'Tiers
+        '
+        Me.Tiers.HeaderText = "Tiers"
+        Me.Tiers.Name = "Tiers"
+        Me.Tiers.ReadOnly = True
+        '
+        'debit
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "N2"
+        Me.debit.DefaultCellStyle = DataGridViewCellStyle2
+        Me.debit.FillWeight = 40.0!
+        Me.debit.HeaderText = "Débit"
+        Me.debit.Name = "debit"
+        Me.debit.ReadOnly = True
+        '
+        'credit
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
+        Me.credit.DefaultCellStyle = DataGridViewCellStyle3
+        Me.credit.FillWeight = 40.0!
+        Me.credit.HeaderText = "Crédit"
+        Me.credit.Name = "credit"
+        Me.credit.ReadOnly = True
+        '
         'F_LocaBalance
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,11 +159,9 @@ Partial Class F_LocaBalance
     Friend WithEvents bWord As System.Windows.Forms.ToolStripButton
     Friend WithEvents bXL As System.Windows.Forms.ToolStripButton
     Friend WithEvents gCompta As System.Windows.Forms.DataGridView
-    Friend WithEvents locId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents cliId As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Typepers As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents nom As System.Windows.Forms.DataGridViewLinkColumn
-    Friend WithEvents debit As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents credit As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Solde As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents societe As DataGridViewTextBoxColumn
+    Friend WithEvents Typepers As DataGridViewTextBoxColumn
+    Friend WithEvents Tiers As DataGridViewTextBoxColumn
+    Friend WithEvents debit As DataGridViewTextBoxColumn
+    Friend WithEvents credit As DataGridViewTextBoxColumn
 End Class

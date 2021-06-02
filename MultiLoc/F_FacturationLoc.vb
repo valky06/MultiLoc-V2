@@ -29,6 +29,7 @@ Public Class F_FacturationLoc
             & " left join annuaire as annuaire2 on annuaire2.persid=societe.persid" _
             & " where tiers='LOCATAIRE' " _
             & " and ecrdate>=" & SqlDate(Me.dDebut) & " and ecrdate<=" & SqlDate(Me.dFin) _
+            & " and comptagene.numfacture not like 'T%' " _
             & " group by annuaire2.nom,cptsuffixe,annuaire.nom,comptagene.locid,comptagene.socid,ecrDATE,ecrEcheance,numfacture" _
             & " order by annuaire2.nom,cptsuffixe,annuaire.nom,ecrdate"
 
@@ -67,7 +68,8 @@ Public Class F_FacturationLoc
         End If
     End Sub
 
-    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+
+    Private Sub ExportCompta_old()
         Dim appXL As New Microsoft.Office.Interop.Excel.Application
         Dim lers As OleDb.OleDbDataReader
         Dim lersSoc As OleDb.OleDbDataReader
@@ -117,16 +119,19 @@ Public Class F_FacturationLoc
                 appXL.Cells(laLigne, 12).value = "Lots"
 
                 sSql = "SELECT Annuaire.Nom, ComptaGene.ecrDate, locataire.CptSuffixe, ComptaGene.ecrLib, ComptaGene.ecrMontantHT, ComptaGene.ecrMontantTVA, ComptaGene.ecrMontantTTC, " _
-                 & " ComptaGene.NumFacture, ComptaPlan.CptNum, ComptaPlan.CptNom, locataire.LotLib,  Annuaire_1.Nom AS LocNom ,  ComptaGene.LocId,societe.CptClient" _
-                 & " FROM ComptaGene INNER JOIN locataire ON ComptaGene.LocId = locataire.LocId " _
-                 & " LEFT JOIN Societe ON locataire.SocId = Societe.SocId" _
-                 & " LEFT JOIN Annuaire ON Societe.PersId = Annuaire.PersId " _
-                 & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
-                 & " LEFT OUTER JOIN ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId AND ComptaGene.LocId = ComptaPlan.LocId " _
-                 & " WHERE   Journal in ('VENTES','DEPOT')  and tiers='LOCATAIRE' " _
-                 & " And ecrdate >= " & SqlDate(Me.dDebut) & " And ecrdate <= " & SqlDate(Me.dFin) _
-                 & " and comptagene.socid=" & lersSoc(0) _
-                 & " ORDER BY Annuaire.Nom,ComptaGene.ecrDate, comptagene.locid,CptSuffixe,numfacture"
+                & " ComptaGene.NumFacture, ComptaPlan.CptNum, ComptaPlan.CptNom, locataire.LotLib,  Annuaire_1.Nom AS LocNom ,  ComptaGene.LocId,societe.CptClient" _
+                & " ,P2.cptnum,P2.cptnom" _
+                & " FROM ComptaGene INNER JOIN locataire ON ComptaGene.LocId = locataire.LocId " _
+                & " LEFT JOIN Societe ON locataire.SocId = Societe.SocId" _
+                & " LEFT JOIN Annuaire ON Societe.PersId = Annuaire.PersId " _
+                & " LEFT JOIN Annuaire AS Annuaire_1 ON locataire.PersId = Annuaire_1.PersId" _
+                & " LEFT OUTER JOIN ComptaPlan ON ComptaGene.RubId = ComptaPlan.RubId AND ComptaGene.LocId = ComptaPlan.LocId " _
+                & " Left Join comptaplan P2 on P2.locid=comptagene.locId And P2.socid=comptagene.socid And P2.rubid=0" _
+                & " WHERE   Journal in ('VENTES','DEPOT')  and tiers='LOCATAIRE' " _
+                & " And ecrdate >= " & SqlDate(Me.dDebut) & " And ecrdate <= " & SqlDate(Me.dFin) _
+                & " and comptagene.numfacture not like 'T%' " _
+                & " and comptagene.socid=" & lersSoc(0) _
+                & " ORDER BY Annuaire.Nom,ComptaGene.ecrDate, comptagene.locid,CptSuffixe,numfacture"
 
                 lers = sqlLit(sSql, conSql)
 
@@ -285,5 +290,11 @@ Public Class F_FacturationLoc
 
         StatutBar("")
         appXL.Visible = True
+    End Sub
+
+
+    Private Sub button_click2(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+        Call ExportCompta(Me.dDebut.Value, Me.dFin.Value)
+
     End Sub
 End Class

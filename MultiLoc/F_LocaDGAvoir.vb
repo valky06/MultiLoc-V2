@@ -3,6 +3,9 @@
 Public Class F_LocaDGAvoir
     Public leLocId As Integer
     Public laSocId As Integer
+    Public laFacture As String = ""
+    Public leLoyer As String = ""
+
 
     Private Sub F_location_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Me.ErrorProvider1.Clear()
@@ -10,8 +13,7 @@ Public Class F_LocaDGAvoir
         If F_LocaSuivi.cDGTVA.Checked Then Me.tTVA.Text = F_LocaSuivi.tTauxTVA.Text Else Me.tTVA.Text = "0"
 
         'calcul loyer
-        Me.tLoyer.Text = F_LocaAvoir.tLoyerActu.Text
-        If F_LocaAppel.tLoyerNew.Text <> "" Then Me.tLoyer.Text = F_LocaAvoir.tLoyerActu.Text
+        Me.tLoyer.Text = Me.leLoyer
 
         If F_LocaSuivi.cDGLoyerTTC.Checked Then
             Me.tLoyerHTTTC.Text = "TTC"
@@ -31,7 +33,7 @@ Public Class F_LocaDGAvoir
         If FormVerif(Me, Me.ErrorProvider1) Then
             lapiece = NextNumPiece()
 
-            Dim lecr As New EcritureCompta(Me.dDate.Value, Me.dDate.Value, lapiece, leLocId, 0, 0, 0, Me.laSocId, 0, 0, 0, Me.tLib.Text, txt2num(Me.tDGHT.Text), txt2num(Me.tDGTTC.Text), 100, F_LocaAvoir.lafacture, Now, Now, 0, "", Me.dDate.Value.Year, 3)
+            Dim lecr As New EcritureCompta(Me.dDate.Value, Me.dDate.Value, lapiece, leLocId, 0, 0, 0, Me.laSocId, 0, 0, 0, Me.tLib.Text, txt2num(Me.tDGHT.Text), txt2num(Me.tDGTTC.Text), 100, Me.laFacture, Now, Now, 0, "", Me.dDate.Value.Year, 3)
 
             Call EnregCompta(lecr, ecrType.locAvoirDG)
 

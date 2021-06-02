@@ -98,15 +98,15 @@ Public Class F_BanqueSuivi
     End Sub
 
     Private Sub tNouveau_Click(sender As System.Object, e As System.EventArgs) Handles tNouveau.Click
-        F_BanqueNew.leCptBkId = 0
-        If F_BanqueNew.ShowDialog = Windows.Forms.DialogResult.OK Then Call listeCptBk()
+        '  F_BanqueNew.leCptBkId = 0
+        ' If F_BanqueNew.ShowDialog = Windows.Forms.DialogResult.OK Then Call listeCptBk()
 
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As System.Object, e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        If Me.leCptBkId = 0 Then Exit Sub
-        F_BanqueNew.leCptBkId = Me.leCptBkId
-        If F_BanqueNew.ShowDialog = Windows.Forms.DialogResult.OK Then Call listeCptBk()
+        'If Me.leCptBkId = 0 Then Exit Sub
+        'F_BanqueNew.leCptBkId = Me.leCptBkId
+        'If F_BanqueNew.ShowDialog = Windows.Forms.DialogResult.OK Then Call listeCptBk()
     End Sub
 
     Private Sub Button2_Click(sender As System.Object, e As System.EventArgs)

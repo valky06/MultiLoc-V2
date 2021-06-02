@@ -51,6 +51,7 @@ Partial Class F_main
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.IndicesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RubriqueComptableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CompteBancairesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuTBail = New System.Windows.Forms.ToolStripMenuItem()
         Me.TypeChargeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TypeAdresseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -180,6 +181,7 @@ Partial Class F_main
         Me.RèglementFournisseurToolStripMenuItem.Name = "RèglementFournisseurToolStripMenuItem"
         Me.RèglementFournisseurToolStripMenuItem.Size = New System.Drawing.Size(218, 22)
         Me.RèglementFournisseurToolStripMenuItem.Text = "Balance Fournisseurs"
+        Me.RèglementFournisseurToolStripMenuItem.Visible = False
         '
         'BilanLocataireToolStripMenuItem
         '
@@ -206,7 +208,7 @@ Partial Class F_main
         '
         'ToolStripMenuItem1
         '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IndicesToolStripMenuItem, Me.RubriqueComptableToolStripMenuItem, Me.mnuTBail, Me.TypeChargeToolStripMenuItem, Me.TypeAdresseToolStripMenuItem, Me.mnuTLocal, Me.mnuTPeriode, Me.mnuTRgt, Me.mnuTSociete, Me.ToolStripSeparator1, Me.mParam, Me.MiseÀJourToolStripMenuItem})
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.IndicesToolStripMenuItem, Me.RubriqueComptableToolStripMenuItem, Me.CompteBancairesToolStripMenuItem, Me.mnuTBail, Me.TypeChargeToolStripMenuItem, Me.TypeAdresseToolStripMenuItem, Me.mnuTLocal, Me.mnuTPeriode, Me.mnuTRgt, Me.mnuTSociete, Me.ToolStripSeparator1, Me.mParam, Me.MiseÀJourToolStripMenuItem})
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
         Me.ToolStripMenuItem1.Size = New System.Drawing.Size(78, 20)
         Me.ToolStripMenuItem1.Text = "Paramètres"
@@ -222,6 +224,12 @@ Partial Class F_main
         Me.RubriqueComptableToolStripMenuItem.Name = "RubriqueComptableToolStripMenuItem"
         Me.RubriqueComptableToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
         Me.RubriqueComptableToolStripMenuItem.Text = "Catégorie Comptable"
+        '
+        'CompteBancairesToolStripMenuItem
+        '
+        Me.CompteBancairesToolStripMenuItem.Name = "CompteBancairesToolStripMenuItem"
+        Me.CompteBancairesToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.CompteBancairesToolStripMenuItem.Text = "Compte Bancaires"
         '
         'mnuTBail
         '
@@ -342,4 +350,5 @@ Partial Class F_main
     Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents FinDeBailToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FacturationSociétéToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CompteBancairesToolStripMenuItem As ToolStripMenuItem
 End Class

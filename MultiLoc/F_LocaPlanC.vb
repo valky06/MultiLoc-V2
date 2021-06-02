@@ -19,7 +19,7 @@
             Call FormRempli(Me, "select pcid,rubid,locid,cptNUm,cptNom from ComptaPlan where pcid=" & lePCId, conSql)
         End If
         Me.tLocId.Text = Me.leLocId
-
+        Me.tSocId.Text = F_LocaSuivi.tSocId.Text
     End Sub
 
 
